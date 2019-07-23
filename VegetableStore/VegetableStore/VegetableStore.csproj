@@ -6,85 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Share\Client\index.cshtml" />
-    <Content Remove="wwwroot\css\all.css" />
-    <Content Remove="wwwroot\css\animate.css" />
-    <Content Remove="wwwroot\css\aos.css" />
-    <Content Remove="wwwroot\css\bootstrap.min.css" />
-    <Content Remove="wwwroot\css\flaticon.css" />
-    <Content Remove="wwwroot\css\font-awesome.min.css" />
-    <Content Remove="wwwroot\css\lightslider.min.css" />
-    <Content Remove="wwwroot\css\magnific-popup.css" />
-    <Content Remove="wwwroot\css\nice-select.css" />
-    <Content Remove="wwwroot\css\owl.carousel.min.css" />
-    <Content Remove="wwwroot\css\price_rangs.css" />
-    <Content Remove="wwwroot\css\slick-theme.min.css" />
-    <Content Remove="wwwroot\css\slick.css" />
-    <Content Remove="wwwroot\css\slick.min.css" />
-    <Content Remove="wwwroot\css\style.css" />
-    <Content Remove="wwwroot\css\style.map" />
-    <Content Remove="wwwroot\css\swiper.min.css" />
-    <Content Remove="wwwroot\css\themify-icons.css" />
-    <Content Remove="wwwroot\fonts\Flaticon.eot" />
-    <Content Remove="wwwroot\fonts\Flaticon.ttf" />
-    <Content Remove="wwwroot\fonts\Flaticon.woff" />
-    <Content Remove="wwwroot\fonts\Flaticon.woff2" />
-    <Content Remove="wwwroot\fonts\fontawesome-webfont.eot" />
-    <Content Remove="wwwroot\fonts\fontawesome-webfont.svg" />
-    <Content Remove="wwwroot\fonts\fontawesome-webfont.ttf" />
-    <Content Remove="wwwroot\fonts\fontawesome-webfont.woff" />
-    <Content Remove="wwwroot\fonts\fontawesome-webfont.woff2" />
-    <Content Remove="wwwroot\fonts\FontAwesome.otf" />
-    <Content Remove="wwwroot\fonts\themify.eot" />
-    <Content Remove="wwwroot\fonts\themify.svg" />
-    <Content Remove="wwwroot\fonts\themify.ttf" />
-    <Content Remove="wwwroot\fonts\themify.woff" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Share\Client\index.cshtml" />
-    <None Include="wwwroot\css\all.css" />
-    <None Include="wwwroot\css\animate.css" />
-    <None Include="wwwroot\css\aos.css" />
-    <None Include="wwwroot\css\bootstrap.min.css" />
-    <None Include="wwwroot\css\flaticon.css" />
-    <None Include="wwwroot\css\font-awesome.min.css" />
-    <None Include="wwwroot\css\lightslider.min.css" />
-    <None Include="wwwroot\css\magnific-popup.css" />
-    <None Include="wwwroot\css\nice-select.css" />
-    <None Include="wwwroot\css\owl.carousel.min.css" />
-    <None Include="wwwroot\css\price_rangs.css" />
-    <None Include="wwwroot\css\slick-theme.min.css" />
-    <None Include="wwwroot\css\slick.css" />
-    <None Include="wwwroot\css\slick.min.css" />
-    <None Include="wwwroot\css\style.css" />
-    <None Include="wwwroot\css\style.map" />
-    <None Include="wwwroot\css\swiper.min.css" />
-    <None Include="wwwroot\css\themify-icons.css" />
-    <None Include="wwwroot\fonts\Flaticon.eot" />
-    <None Include="wwwroot\fonts\Flaticon.ttf" />
-    <None Include="wwwroot\fonts\Flaticon.woff" />
-    <None Include="wwwroot\fonts\Flaticon.woff2" />
-    <None Include="wwwroot\fonts\fontawesome-webfont.eot" />
-    <None Include="wwwroot\fonts\fontawesome-webfont.svg" />
-    <None Include="wwwroot\fonts\fontawesome-webfont.ttf" />
-    <None Include="wwwroot\fonts\fontawesome-webfont.woff" />
-    <None Include="wwwroot\fonts\fontawesome-webfont.woff2" />
-    <None Include="wwwroot\fonts\FontAwesome.otf" />
-    <None Include="wwwroot\fonts\themify.eot" />
-    <None Include="wwwroot\fonts\themify.svg" />
-    <None Include="wwwroot\fonts\themify.ttf" />
-    <None Include="wwwroot\fonts\themify.woff" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Assets\img\blog\latest-post\" />
-    <Folder Include="Assets\img\product\blog\latest-post\" />
   </ItemGroup>
 
 </Project>
