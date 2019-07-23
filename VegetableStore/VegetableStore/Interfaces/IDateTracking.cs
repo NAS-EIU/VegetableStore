@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 
 namespace VegetableStore.Interfaces
 {
-    public class Class
+    public interface IDateTracking
     {
+        DateTime DateCreated { set; get; }
+
+        DateTime DateModified { set; get; }
     }
 }

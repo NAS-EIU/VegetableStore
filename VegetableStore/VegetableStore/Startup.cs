@@ -12,8 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using VegetableStore.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using VegetableStore.Repositories;
-using VegetableStore.Interfaces;
+using VegetableStore.Models;
 
 namespace VegetableStore
 {
@@ -39,9 +38,10 @@ namespace VegetableStore
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddIdentity<AppUser, AppRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddScoped<UserManager<AppUser>, UserManager<AppUser>>();
+            services.AddScoped<RoleManager<AppRole>, RoleManager<AppRole>>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

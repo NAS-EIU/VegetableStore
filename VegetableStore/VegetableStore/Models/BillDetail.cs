@@ -2,7 +2,8 @@
 
 namespace VegetableStore.Models
 {
-    public class BillDetail
+    [Table("BillDetails")]
+    public class BillDetail : DomainEntity<int>
     {
         public int BillId { set; get; }
 
@@ -18,5 +19,4 @@ namespace VegetableStore.Models
 
         
     }
-}
 }

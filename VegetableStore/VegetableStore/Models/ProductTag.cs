@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VegetableStore.Models
 {
-    public class ProductTag
+    public class ProductTag : DomainEntity<int>
     {
         public int ProductId { get; set; }
 

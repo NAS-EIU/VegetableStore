@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace VegetableStore.Models
 {
-    public class ProductImage
+    [Table("ProductImages")]
+    public class ProductImage : DomainEntity<int>
     {
         public int ProductId { get; set; }
 
