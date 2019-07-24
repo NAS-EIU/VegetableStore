@@ -216,6 +216,26 @@ namespace VegetableStore.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ProductQuantities",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ProductId = table.Column<int>(nullable: false),
+                    Quantity = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductQuantities", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProductQuantities_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ProductTags",
                 columns: table => new
                 {
@@ -283,6 +303,11 @@ namespace VegetableStore.Data.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ProductQuantities_ProductId",
+                table: "ProductQuantities",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ProductTags_ProductId",
                 table: "ProductTags",
                 column: "ProductId");
@@ -313,6 +338,9 @@ namespace VegetableStore.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "ProductImages");
+
+            migrationBuilder.DropTable(
+                name: "ProductQuantities");
 
             migrationBuilder.DropTable(
                 name: "ProductTags");

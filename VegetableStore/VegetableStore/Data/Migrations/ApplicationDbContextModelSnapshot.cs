@@ -282,6 +282,23 @@ namespace VegetableStore.Data.Migrations
                     b.ToTable("ProductImages");
                 });
 
+            modelBuilder.Entity("VegetableStore.Models.ProductQuantity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ProductId");
+
+                    b.Property<int>("Quantity");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductQuantities");
+                });
+
             modelBuilder.Entity("VegetableStore.Models.ProductTag", b =>
                 {
                     b.Property<int>("Id")
@@ -321,6 +338,14 @@ namespace VegetableStore.Data.Migrations
                 });
 
             modelBuilder.Entity("VegetableStore.Models.ProductImage", b =>
+                {
+                    b.HasOne("VegetableStore.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("VegetableStore.Models.ProductQuantity", b =>
                 {
                     b.HasOne("VegetableStore.Models.Product", "Product")
                         .WithMany()
