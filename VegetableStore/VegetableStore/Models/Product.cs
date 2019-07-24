@@ -12,6 +12,10 @@ namespace VegetableStore.Models
     [Table("Products")]
     public class Product:DomainEntity<int>
     {
+        public Product()
+        {
+        }
+
         public Product(int id ,string name,string image,decimal price,string description,string content,string tags,Status status)
         {
             Status = status;
