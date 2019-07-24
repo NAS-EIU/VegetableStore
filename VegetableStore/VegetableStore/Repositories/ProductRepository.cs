@@ -20,13 +20,15 @@ namespace VegetableStore.Repositories
         private IRepository<ProductTag, int> _productTagRepository;
         private IRepository<ProductImage, int> _productImageRepository;
         private IUnitOfWork _unitOfWork;
+        private IRepository<ProductQuantity, int> _productQuantityRepository;
 
-        public ProductRepository(IRepository<Product, int> productRepository, IRepository<ProductTag, int> productTagRepository, IRepository<ProductImage, int> productImageRepository, IUnitOfWork unitOfWork)
+        public ProductRepository(IRepository<Product, int> productRepository, IRepository<ProductTag, int> productTagRepository, IRepository<ProductImage, int> productImageRepository, IUnitOfWork unitOfWork, IRepository<ProductQuantity, int> productQuantityRepository)
         {
             _productRepository = productRepository;
             _productTagRepository = productTagRepository;
             _productImageRepository = productImageRepository;
             _unitOfWork = unitOfWork;
+            _productQuantityRepository = productQuantityRepository;
         }
 
         public ProductViewModel Add(ProductViewModel productVm)
@@ -53,6 +55,18 @@ namespace VegetableStore.Repositories
                 _productRepository.Add(product);
             }
             return productVm;
+        }
+        public void AddQuantity(int productId, List<ProductQuantityViewModel> quantities)
+        {
+            _productQuantityRepository.RemoveMultiple(_productQuantityRepository.FindAll(x => x.ProductId == productId).ToList());
+            foreach (var quantity in quantities)
+            {
+                _productQuantityRepository.Add(new ProductQuantity()
+                {
+                    ProductId = productId,
+                    Quantity = quantity.Quantity
+                });
+            }
         }
         public void Delete(int id)
         {
@@ -183,10 +197,13 @@ namespace VegetableStore.Repositories
                 .ProjectTo<ProductViewModel>()
                 .ToList();
         }
-
+        public List<ProductQuantityViewModel> GetQuantities(int productId)
+        {
+            return _productQuantityRepository.FindAll(x => x.ProductId == productId).ProjectTo<ProductQuantityViewModel>().ToList();
+        }
         public void Dispose()
         {
-            throw new NotImplementedException();
+            GC.SuppressFinalize(this);
         }
     }
 }

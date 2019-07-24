@@ -1,4 +1,6 @@
-﻿namespace VegetableStore.Utilities
+﻿using System;
+
+namespace VegetableStore.Utilities
 {
     public abstract class PagedResultBase
     {

@@ -7,12 +7,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using VegetableStore.Interfaces;
 using VegetableStore.Models;
+using VegetableStore.Models.Enums;
 using VegetableStore.Models.ViewModels;
 using VegetableStore.Utilities;
 
 namespace VegetableStore.Repositories
 {
-    public class BillRepository
+    public class BillRepository: IBillRepository
     {
         private readonly IRepository<Bill, int> _orderRepository;
         private readonly IRepository<BillDetail, int> _orderDetailRepository;
@@ -78,10 +79,7 @@ namespace VegetableStore.Repositories
             _orderRepository.Update(order);
         }
 
-        public List<SizeViewModel> GetSizes()
-        {
-            return _sizeRepository.FindAll().ProjectTo<SizeViewModel>().ToList();
-        }
+     
 
         public void Save()
         {
@@ -145,7 +143,7 @@ namespace VegetableStore.Repositories
             return billDetailVm;
         }
 
-        public void DeleteDetail(int productId, int billId, int colorId, int sizeId)
+        public void DeleteDetail(int productId, int billId)
         {
             var detail = _orderDetailRepository.FindSingle(x => x.ProductId == productId
            && x.BillId == billId);

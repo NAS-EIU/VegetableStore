@@ -10,7 +10,7 @@ using VegetableStore.Data;
 namespace VegetableStore.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190723160425_initDatabase")]
+    [Migration("20190724091948_initDatabase")]
     partial class initDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

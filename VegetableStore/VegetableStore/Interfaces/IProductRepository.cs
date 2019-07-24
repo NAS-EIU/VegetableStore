@@ -9,7 +9,7 @@ namespace VegetableStore.Interfaces
     public interface IProductRepository: IDisposable
     {
         List<ProductViewModel> GetAll();
-
+        List<ProductQuantityViewModel> GetQuantities(int productId);
         ProductViewModel Add(ProductViewModel product);
 
         void Update(ProductViewModel product);
@@ -29,6 +29,6 @@ namespace VegetableStore.Interfaces
         List<ProductViewModel> GetLastest(int top);
 
         List<ProductViewModel> GetHotProduct(int top);
-       
+        void AddQuantity(int productId, List<ProductQuantityViewModel> quantities);
     }
 }
