@@ -2,21 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace VegetableStore.Areas.Admin.Controllers
 {
-    public class HomeController : BaseController
+    [Area("Admin")]
+    [Authorize]
+    public class BaseController : Controller
     {
-        
 
-        public IActionResult Index()
-        {
-            
-
-            return View();
-        }
-
-      
     }
 }

@@ -42,7 +42,7 @@
                     window.location.href = "/Admin/Home/Index";
                 }
                 else {
-                    window.location.href = "/Admin/Home/Index";
+                    tedu.notify('Login ok', 'error');
                 }
             }
         })
