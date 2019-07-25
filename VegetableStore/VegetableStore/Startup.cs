@@ -13,6 +13,8 @@ using VegetableStore.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using VegetableStore.Models;
+using VegetableStore.Repositories;
+using VegetableStore.Interfaces;
 
 namespace VegetableStore
 {
@@ -42,6 +44,8 @@ namespace VegetableStore
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddScoped<UserManager<AppUser>, UserManager<AppUser>>();
             services.AddScoped<RoleManager<AppRole>, RoleManager<AppRole>>();
+            services.AddTransient<IBillRepository, BillRepository>();
+            services.AddTransient<IProductRepository, ProductRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -70,6 +74,8 @@ namespace VegetableStore
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(name: "areaRoute",
+                   template: "{area:exists}/{controller=Login}/{action=Index}/{id?}");
             });
         }
     }

@@ -8,14 +8,16 @@ namespace VegetableStore.Models.ViewModels
 {
     public class LoginViewModel
     {
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Required")]
         [DataType(DataType.Password)]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
-        public string ReturnUrl { get; set; }
+        [Display(Name = "Remember")]
+        public bool RememberMe { get; set; }
     }
 }
