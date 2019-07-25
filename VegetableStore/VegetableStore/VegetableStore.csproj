@@ -27,7 +27,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Identity\Pages\" />
     <Folder Include="Areas\Identity\Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\lib\notifyjs\.gitignore" />
+    <None Include="wwwroot\lib\notifyjs\CHANGES.md" />
+    <None Include="wwwroot\lib\notifyjs\dist\notify.js" />
+    <None Include="wwwroot\lib\notifyjs\dist\styles\metro\notify-metro.js" />
+    <None Include="wwwroot\lib\notifyjs\README.md" />
   </ItemGroup>
 
 </Project>

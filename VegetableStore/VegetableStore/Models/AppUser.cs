@@ -8,6 +8,8 @@ namespace VegetableStore.Models
     [Table("AppUsers")]
     public class AppUser: IdentityUser<Guid>
     {
+       
+        
         public AppUser(Guid id, string fullName, string userName,
             string email, string phoneNumber, string avatar, Status status)
         {
@@ -19,6 +21,7 @@ namespace VegetableStore.Models
             Avatar = avatar;
             Status = status;
         }
+
         public string FullName { get; set; }
 
         public DateTime? BirthDay { set; get; }
