@@ -8,8 +8,10 @@ namespace VegetableStore.Models
     [Table("AppUsers")]
     public class AppUser: IdentityUser<Guid>
     {
-       
-        
+        public AppUser()
+        {
+        }
+
         public AppUser(Guid id, string fullName, string userName,
             string email, string phoneNumber, string avatar, Status status)
         {

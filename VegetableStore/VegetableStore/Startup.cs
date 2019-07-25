@@ -47,6 +47,7 @@ namespace VegetableStore
             services.AddTransient<IBillRepository, BillRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddTransient<Dbintinatilecs>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
