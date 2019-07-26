@@ -36,13 +36,13 @@
                 Password: pass
             },
             dateType: 'json',
-            url: '/admin/login/authen',
+            url: '/admin',
             success: function (res) {
                 if (res.Success) {
                     window.location.href = "/Admin/Home/Index";
                 }
                 else {
-                    window.location.href = "/Admin/Home/Index";
+                    console.log("fail")
                 }
             }
         })
