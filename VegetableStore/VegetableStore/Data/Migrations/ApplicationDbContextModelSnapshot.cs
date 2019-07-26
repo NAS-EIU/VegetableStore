@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VegetableStore.Data;
 
-namespace VegetableStore.Data.Migrations
+namespace VegetableStore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -225,6 +225,33 @@ namespace VegetableStore.Data.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("BillDetails");
+                });
+
+            modelBuilder.Entity("VegetableStore.Models.Function", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("IconCss");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(128);
+
+                    b.Property<string>("ParentId")
+                        .HasMaxLength(128);
+
+                    b.Property<int>("SortOrder");
+
+                    b.Property<int>("Status");
+
+                    b.Property<string>("URL")
+                        .IsRequired()
+                        .HasMaxLength(250);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Functions");
                 });
 
             modelBuilder.Entity("VegetableStore.Models.Product", b =>
