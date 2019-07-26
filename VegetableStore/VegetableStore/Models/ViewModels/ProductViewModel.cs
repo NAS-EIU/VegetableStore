@@ -32,5 +32,7 @@ namespace VegetableStore.Models.ViewModels
         public string Tags { get; set; }
         public string Content { get; set; }
         public Status Status { set; get; }
+        [StringLength(255)]
+        public string SeoAlias { set; get; }
     }
 }
