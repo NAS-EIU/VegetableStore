@@ -57,6 +57,7 @@ namespace VegetableStore.Data
                 var user = await _userManager.FindByNameAsync("admin");
                 await _userManager.AddToRoleAsync(user, "Admin");
             }
+
             await _context.SaveChangesAsync();
         }
         }
