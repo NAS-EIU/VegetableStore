@@ -44,7 +44,7 @@ namespace VegetableStore.Data
             }
             if (!_userManager.Users.Any())
             {
-                await _userManager.CreateAsync(new AppUser()
+                var c=await _userManager.CreateAsync(new AppUser()
                 {
                     UserName = "admin",
                     FullName = "Administrator",
@@ -53,7 +53,7 @@ namespace VegetableStore.Data
                     DateCreated = DateTime.Now,
                     DateModified = DateTime.Now,
                     Status = Status.Active
-                }, "123654$");
+                }, "Admin@123");
                 var user = await _userManager.FindByNameAsync("admin");
                 await _userManager.AddToRoleAsync(user, "Admin");
             }

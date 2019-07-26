@@ -52,6 +52,8 @@
     <None Include="wwwroot\app\shared\messages.js" />
     <None Include="wwwroot\app\shared\signalR.js" />
     <None Include="wwwroot\app\shared\tedu.js" />
+    <None Include="wwwroot\bundled\site-admin.min.js" />
+    <None Include="wwwroot\bundled\site-client.min.js" />
     <None Include="wwwroot\lib\animate.css\gulpfile.js" />
     <None Include="wwwroot\lib\animate.css\LICENSE" />
     <None Include="wwwroot\lib\DateJS\build\date-af-ZA.js" />

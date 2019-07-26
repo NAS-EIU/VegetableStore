@@ -36,13 +36,13 @@
                 Password: pass
             },
             dateType: 'json',
-            url: '/admin',
+            url: '/admin/login/authen',
             success: function (res) {
                 if (res.Success) {
                     window.location.href = "/Admin/Home/Index";
                 }
                 else {
-                    console.log("fail")
+                    tedu.notify('Login ok', 'error');
                 }
             }
         })
