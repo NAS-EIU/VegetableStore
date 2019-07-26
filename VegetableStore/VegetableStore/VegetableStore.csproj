@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <UserSecretsId>aspnet-VegetableStore-A54CA5D3-CB52-4255-A4D6-450FC9D6E8E7</UserSecretsId>
+    <TypeScriptToolsVersion>3.0</TypeScriptToolsVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -30,6 +31,7 @@
   <ItemGroup>
     <Folder Include="Areas\Identity\Pages\" />
     <Folder Include="Areas\Identity\Services\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
 
   <ItemGroup>
