@@ -28,6 +28,8 @@ namespace VegetableStore.Data
         public DbSet<ProductImage> ProductImages { set; get; }
         public DbSet<ProductTag> ProductTags { set; get; }
         public DbSet<ProductQuantity> ProductQuantities { set; get; }
+
+        public DbSet<Function> Functions { set; get; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             #region Identity Config

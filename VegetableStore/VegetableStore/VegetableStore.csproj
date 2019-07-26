@@ -7,19 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Data\Migrations\20190722151357_InitialCreate.cs" />
-    <Compile Remove="Data\Migrations\20190722151357_InitialCreate.Designer.cs" />
-    <Compile Remove="Data\Migrations\20190723053836_update-Key.cs" />
-    <Compile Remove="Data\Migrations\20190723053836_update-Key.Designer.cs" />
-    <Compile Remove="Data\Migrations\20190723160425_initDatabase.cs" />
-    <Compile Remove="Data\Migrations\20190723160425_initDatabase.Designer.cs" />
-    <Compile Remove="Data\Migrations\20190724091821_add-quanity.cs" />
-    <Compile Remove="Data\Migrations\20190724091821_add-quanity.Designer.cs" />
-    <Compile Remove="Data\Migrations\20190724091948_initDatabase.cs" />
-    <Compile Remove="Data\Migrations\20190724091948_initDatabase.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.1.1" />
     <PackageReference Include="EPPlus.Core" Version="1.5.4" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
