@@ -9,7 +9,6 @@ namespace VegetableStore.Models.ViewModels
     {
         public int ProductId { get; set; }
 
-
         public int Quantity { get; set; }
 
         public ProductViewModel Product { get; set; }

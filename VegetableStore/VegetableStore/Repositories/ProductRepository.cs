@@ -205,5 +205,12 @@ namespace VegetableStore.Repositories
         {
             GC.SuppressFinalize(this);
         }
+        public bool CheckAvailability(int productId)
+        {
+            var quantity = _productQuantityRepository.FindSingle(x =>  x.ProductId == productId);
+            if (quantity == null)
+                return false;
+            return quantity.Quantity > 0;
+        }
     }
 }

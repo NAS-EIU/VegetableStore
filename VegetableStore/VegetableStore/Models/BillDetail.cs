@@ -5,6 +5,14 @@ namespace VegetableStore.Models
     [Table("BillDetails")]
     public class BillDetail : DomainEntity<int>
     {
+        public BillDetail(int id, int billId, int productId, decimal price)
+        {
+            Id = id;
+            BillId = billId;
+            ProductId = productId;
+            Price = price;
+        }
+
         public int BillId { set; get; }
 
         public int ProductId { set; get; }

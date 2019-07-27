@@ -16,6 +16,17 @@ namespace VegetableStore.Models
         {
         }
 
+        public Product(string name, string image, decimal price, string description, string content, string tags, Status status)
+        {
+            Name = name;
+            Image = image;
+            Price = price;
+            Description = description;
+            Content = content;
+            Tags = tags;
+            Status = status;
+        }
+
         public Product(int id ,string name,string image,decimal price,string description,string content,string tags,Status status)
         {
             Status = status;

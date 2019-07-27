@@ -15,6 +15,8 @@ using Microsoft.Extensions.DependencyInjection;
 using VegetableStore.Models;
 using VegetableStore.Repositories;
 using VegetableStore.Interfaces;
+using AutoMapper;
+using VegetableStore.AutoMapp;
 
 namespace VegetableStore
 {
@@ -36,7 +38,9 @@ namespace VegetableStore
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+            services.AddAutoMapper();
 
+            //services.AddScoped<IMapper>(sp => new Mapper(sp.GetRequiredService<AutoMapper.IConfigurationProvider>(), sp.GetService));
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -47,7 +51,8 @@ namespace VegetableStore
             services.AddTransient<IBillRepository, BillRepository>();
             services.AddTransient<IFunctionRepository, FunctionRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
-            
+            services.AddTransient(typeof(IUnitOfWork), typeof(EFUnitOfWork));
+            services.AddTransient(typeof(IRepository<,>), typeof(EFRepository<,>));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddTransient<Dbintinatilecs>();
         }
