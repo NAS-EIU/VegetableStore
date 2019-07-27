@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using VegetableStore.Models.Enums;
@@ -8,6 +9,21 @@ namespace VegetableStore.Models
 {
     public class Bill: DomainEntity<int>
     {
+       
+
+        public Bill(int id, string customerName, string customerAddress, string customerMobile, string customerMessage, BillStatus billStatus, PaymentMethod paymentMethod, Status status, Guid? customerId)
+        {
+            Id = id;
+            CustomerName = customerName;
+            CustomerAddress = customerAddress;
+            CustomerMobile = customerMobile;
+            CustomerMessage = customerMessage;
+            BillStatus = billStatus;
+            PaymentMethod = paymentMethod;
+            Status = status;
+            CustomerId = customerId;
+        }
+
         [Required]
         [MaxLength(256)]
         public string CustomerName { set; get; }
@@ -27,7 +43,8 @@ namespace VegetableStore.Models
         public PaymentMethod PaymentMethod { set; get; }
 
         public BillStatus BillStatus { set; get; }
-
+        [DefaultValue(Status.Active)]
+        public Status Status { set; get; } = Status.Active;
         public DateTime DateCreated { set; get; }
         public DateTime DateModified { set; get; }
         public Guid? CustomerId { set; get; }

@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VegetableStore.Models.ViewModels;
+using VegetableStore.Utilities;
 
 namespace VegetableStore.Interfaces
 {
-    public interface IProductRepository: IDisposable
+    public interface IProductRepository:IDisposable
     {
         List<ProductViewModel> GetAll();
-        List<ProductQuantityViewModel> GetQuantities(int productId);
+
+        PagedResult<ProductViewModel> GetAllPaging(int? categoryId, string keyword, int page, int pageSize);
+
         ProductViewModel Add(ProductViewModel product);
 
         void Update(ProductViewModel product);
@@ -23,12 +26,18 @@ namespace VegetableStore.Interfaces
 
         void Save();
 
+        void AddQuantity(int productId, List<ProductQuantityViewModel> quantities);
+
+        List<ProductQuantityViewModel> GetQuantities(int productId);
+
         void AddImages(int productId, string[] images);
 
         List<ProductImageViewModel> GetImages(int productId);
+
         List<ProductViewModel> GetLastest(int top);
 
-        List<ProductViewModel> GetHotProduct(int top);
-        void AddQuantity(int productId, List<ProductQuantityViewModel> quantities);
+        List<ProductViewModel> GetHotProduct(int top);   
+        bool CheckAvailability(int productId);
+
     }
 }

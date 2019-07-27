@@ -11,7 +11,7 @@ using VegetableStore.Utilities;
 
 namespace VegetableStore.Areas.Admin.Components
 {
-    public class SideBarViewComponent : ViewComponent
+    public class SideBarViewComponent: ViewComponent
     {
         private IFunctionRepository _functionRepository;
 
@@ -19,7 +19,6 @@ namespace VegetableStore.Areas.Admin.Components
         {
             _functionRepository = functionRepository;
         }
-
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var roles = ((ClaimsPrincipal)User).GetSpecificClaim("Roles");
