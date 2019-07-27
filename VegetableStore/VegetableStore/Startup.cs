@@ -45,7 +45,7 @@ namespace VegetableStore
             services.AddScoped<UserManager<AppUser>, UserManager<AppUser>>();
             services.AddScoped<RoleManager<AppRole>, RoleManager<AppRole>>();
             services.AddTransient<IBillRepository, BillRepository>();
-            services.AddTransient<IFunctionRepository, FunctionRepository>();
+          //  services.AddTransient<IFunctionRepository, FunctionRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
