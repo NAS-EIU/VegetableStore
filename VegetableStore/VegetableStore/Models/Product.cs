@@ -37,7 +37,6 @@ namespace VegetableStore.Models
             Description = description;
             Content = content;
             Tags = tags;
-            ProductTags = new List<ProductTag>();
         }
         [StringLength(255)]
         [Required]
@@ -55,10 +54,7 @@ namespace VegetableStore.Models
         public string Content { get; set; }
 
         [StringLength(255)]
-        public string Tags { get; set; }
-
-        public virtual ICollection<ProductTag> ProductTags { set; get; }
-
+        public string Tags { get; set; }        
         public DateTime DateCreated { set; get; }
         public DateTime DateModified { set; get; }
 

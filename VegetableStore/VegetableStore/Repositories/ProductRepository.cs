@@ -17,15 +17,13 @@ namespace VegetableStore.Repositories
     public class ProductRepository : IProductRepository
     {
         private IRepository<Product, int> _productRepository;
-        private IRepository<ProductTag, int> _productTagRepository;
         private IRepository<ProductImage, int> _productImageRepository;
         private IUnitOfWork _unitOfWork;
         private IRepository<ProductQuantity, int> _productQuantityRepository;
 
-        public ProductRepository(IRepository<Product, int> productRepository, IRepository<ProductTag, int> productTagRepository, IRepository<ProductImage, int> productImageRepository, IUnitOfWork unitOfWork, IRepository<ProductQuantity, int> productQuantityRepository)
+        public ProductRepository(IRepository<Product, int> productRepository, IRepository<ProductImage, int> productImageRepository, IUnitOfWork unitOfWork, IRepository<ProductQuantity, int> productQuantityRepository)
         {
             _productRepository = productRepository;
-            _productTagRepository = productTagRepository;
             _productImageRepository = productImageRepository;
             _unitOfWork = unitOfWork;
             _productQuantityRepository = productQuantityRepository;
@@ -33,25 +31,9 @@ namespace VegetableStore.Repositories
 
         public ProductViewModel Add(ProductViewModel productVm)
         {
-            List<ProductTag> productTags = new List<ProductTag>();
             if (!string.IsNullOrEmpty(productVm.Tags))
-            {
-                string[] tags = productVm.Tags.Split(',');
-                foreach (string t in tags)
-                {
-
-                    var tagId = TextHelper.ToUnsignString(t);
-                    ProductTag productTag = new ProductTag
-                    {
-                        TagId = tagId
-                    };
-                    productTags.Add(productTag);
-                }
+            {             
                 var product = Mapper.Map<ProductViewModel, Product>(productVm);
-                foreach (var productTag in productTags)
-                {
-                    product.ProductTags.Add(productTag);
-                }
                 _productRepository.Add(product);
             }
             return productVm;
@@ -139,29 +121,10 @@ namespace VegetableStore.Repositories
 
         public void Update(ProductViewModel productVm)
         {
-            List<ProductTag> productTags = new List<ProductTag>();
 
-            if (!string.IsNullOrEmpty(productVm.Tags))
-            {
-                string[] tags = productVm.Tags.Split(',');
-                foreach (string t in tags)
-                {
-                    var tagId = TextHelper.ToUnsignString(t);
-
-                    _productTagRepository.RemoveMultiple(_productTagRepository.FindAll(x => x.Id == productVm.Id).ToList());
-                    ProductTag productTag = new ProductTag
-                    {
-                        TagId = tagId
-                    };
-                    productTags.Add(productTag);
-                }
-            }
 
             var product = Mapper.Map<ProductViewModel, Product>(productVm);
-            foreach (var productTag in productTags)
-            {
-                product.ProductTags.Add(productTag);
-            }
+          
             _productRepository.Update(product);
         }
         public List<ProductImageViewModel> GetImages(int productId)

@@ -26,7 +26,6 @@ namespace VegetableStore.Data
         public DbSet<BillDetail> BillDetails { set; get; }
         public DbSet<Product> Products { set; get; }
         public DbSet<ProductImage> ProductImages { set; get; }
-        public DbSet<ProductTag> ProductTags { set; get; }
         public DbSet<ProductQuantity> ProductQuantities { set; get; }
 
         public DbSet<Function> Functions { set; get; }

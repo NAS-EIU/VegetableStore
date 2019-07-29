@@ -1,7 +1,6 @@
 ﻿var productController = function () {
     var quantityManagement = new QuantityManagement();
     var imageManagement = new ImageManagement();
-    var wholePriceManagement = new WholePriceManagement();
 
     this.initialize = function () {
         loadCategories();
@@ -173,22 +172,13 @@
             e.preventDefault();
             var id = $('#hidIdM').val();
             var name = $('#txtNameM').val();
-            var categoryId = $('#ddlCategoryIdM').combotree('getValue');
 
             var description = $('#txtDescM').val();
-            var unit = $('#txtUnitM').val();
-
             var price = $('#txtPriceM').val();
-            var originalPrice = $('#txtOriginalPriceM').val();
-            var promotionPrice = $('#txtPromotionPriceM').val();
-
-            //var image = $('#txtImageM').val();
+            var image = $('#txtImageM').val();
 
             var tags = $('#txtTagM').val();
-            var seoKeyword = $('#txtMetakeywordM').val();
-            var seoMetaDescription = $('#txtMetaDescriptionM').val();
-            var seoPageTitle = $('#txtSeoPageTitleM').val();
-            var seoAlias = $('#txtSeoAliasM').val();
+            
 
             var content = CKEDITOR.instances.txtContent.getData();
             var status = $('#ckStatusM').prop('checked') == true ? 1 : 0;
@@ -202,21 +192,14 @@
                     Id: id,
                     Name: name,
                     CategoryId: categoryId,
-                    Image: '',
+                    Image: image,
                     Price: price,
-                    OriginalPrice: originalPrice,
-                    PromotionPrice: promotionPrice,
                     Description: description,
                     Content: content,
                     HomeFlag: showHome,
                     HotFlag: hot,
                     Tags: tags,
-                    Unit: unit,
                     Status: status,
-                    SeoPageTitle: seoPageTitle,
-                    SeoAlias: seoAlias,
-                    SeoKeywords: seoKeyword,
-                    SeoDescription: seoMetaDescription
                 },
                 dataType: "json",
                 beforeSend: function () {

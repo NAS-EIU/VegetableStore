@@ -19,6 +19,7 @@
     <Folder Include="Areas\Identity\Pages\" />
     <Folder Include="Areas\Identity\Services\" />
     <Folder Include="Extensions\" />
+    <Folder Include="wwwroot\uploaded\images\20190729\" />
   </ItemGroup>
 
   <ItemGroup>
