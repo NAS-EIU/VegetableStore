@@ -255,25 +255,25 @@
             },
             success: function (response) {
                 var data = response;
-                $('#hidIdM').val(data.Id);
-                $('#txtNameM').val(data.Name);
-                initTreeDropDownCategory(data.CategoryId);
+                $('#hidIdM').val(data.id);
+                $('#txtNameM').val(data.name);
+               // initTreeDropDownCategory(data.CategoryId);
 
-                $('#txtDescM').val(data.Description);
-
-
-                $('#txtPriceM').val(data.Price);
+                $('#txtDescM').val(data.description);
 
 
-                $('#txtImageM').val(data.ThumbnailImage);
+                $('#txtPriceM').val(data.price);
 
-                $('#txtTagM').val(data.Tags);
+
+                $('#txtImageM').val(data.thumbnailImage);
+
+                $('#txtTagM').val(data.tags);
                
 
-                CKEDITOR.instances.txtContent.setData(data.Content);
-                $('#ckStatusM').prop('checked', data.Status == 1);
-                $('#ckHotM').prop('checked', data.HotFlag);
-                $('#ckShowHomeM').prop('checked', data.HomeFlag);
+                CKEDITOR.instances.txtContent.setData(data.content);
+                $('#ckStatusM').prop('checked', data.status == 1);
+                $('#ckHotM').prop('checked', data.hotFlag);
+                $('#ckShowHomeM').prop('checked', data.homeFlag);
 
                 $('#modal-add-edit').modal('show');
                 tedu.stopLoading();
@@ -380,12 +380,12 @@
                 console.log(response);
                 $.each(response.results, function (i, item) {
                     render += Mustache.render(template, {
-                        Id: item.Id,
-                        Name: item.Name,
-                        Image: item.Image == null ? '<img src="/admin-side/images/user.png" width=25' : '<img src="' + item.Image + '" width=25 />',
-                        Price: item.Price,
-                        CreatedDate: tedu.dateTimeFormatJson(item.DateCreated),
-                        Status: tedu.getStatus(item.Status)
+                        Id: item.id,
+                        Name: item.name,
+                        Image: item.image == null ? '<img src="/admin-side/images/user.png" width=25' : '<img src="' + item.image + '" width=25 />',
+                        Price: item.price,
+                        CreatedDate: tedu.dateTimeFormatJson(item.dateCreated),
+                        Status: tedu.getStatus(item.status)
                     });
                     
                 });
