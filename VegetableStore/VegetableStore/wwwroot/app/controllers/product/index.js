@@ -89,6 +89,7 @@
             e.preventDefault();
             var that = $(this).data('id');
             deleteProduct(that);
+            
         });
 
         $('#btnSave').on('click', function (e) {
@@ -226,7 +227,7 @@
             $.ajax({
                 type: "POST",
                 url: "/Admin/Product/Delete",
-                data: { id: that },
+                data: { id },
                 dataType: "json",
                 beforeSend: function () {
                     tedu.startLoading();
@@ -235,6 +236,7 @@
                     tedu.notify('Delete successful', 'success');
                     tedu.stopLoading();
                     loadData();
+                    location.reload(true);
                 },
                 error: function (status) {
                     tedu.notify('Has an error in delete progress', 'error');
@@ -265,7 +267,7 @@
                 $('#txtPriceM').val(data.price);
 
 
-                $('#txtImageM').val(data.thumbnailImage);
+                $('#txtImageM').val(data.image);
 
                 $('#txtTagM').val(data.tags);
                

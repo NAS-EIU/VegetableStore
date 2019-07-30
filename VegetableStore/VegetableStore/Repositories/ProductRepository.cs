@@ -54,7 +54,7 @@ namespace VegetableStore.Repositories
         }
         public List<ProductViewModel> GetAll()
         {
-            return _productRepository.FindAll(x => x.Id).ProjectTo<ProductViewModel>().ToList();
+            return _productRepository.FindAll().ProjectTo<ProductViewModel>().ToList();
         }
         public ProductViewModel GetById(int id)
         {
