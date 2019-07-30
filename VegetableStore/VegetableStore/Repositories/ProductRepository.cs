@@ -31,11 +31,9 @@ namespace VegetableStore.Repositories
 
         public ProductViewModel Add(ProductViewModel productVm)
         {
-            if (!string.IsNullOrEmpty(productVm.Tags))
-            {             
-                var product = Mapper.Map<ProductViewModel, Product>(productVm);
-                _productRepository.Add(product);
-            }
+            var product = Mapper.Map<ProductViewModel, Product>(productVm);
+            _productRepository.Add(product);
+
             return productVm;
         }
         public void AddQuantity(int productId, List<ProductQuantityViewModel> quantities)

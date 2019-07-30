@@ -3,13 +3,13 @@
     var imageManagement = new ImageManagement();
 
     this.initialize = function () {
-        loadCategories();
+        //loadCategories();
         loadData();
         registerEvents();
         registerControls();
         quantityManagement.initialize();
         imageManagement.initialize();
-        wholePriceManagement.initialize();
+       // wholePriceManagement.initialize();
     }
 
     function registerEvents() {
@@ -69,7 +69,7 @@
                 processData: false,
                 data: data,
                 success: function (path) {
-                    $('#txtImage').val(path);
+                    $('#txtImageM').val(path);
                     tedu.notify('Upload image succesful!', 'success');
 
                 },
@@ -191,7 +191,6 @@
                 data: {
                     Id: id,
                     Name: name,
-                    CategoryId: categoryId,
                     Image: image,
                     Price: price,
                     Description: description,
@@ -261,19 +260,15 @@
                 initTreeDropDownCategory(data.CategoryId);
 
                 $('#txtDescM').val(data.Description);
-                $('#txtUnitM').val(data.Unit);
+
 
                 $('#txtPriceM').val(data.Price);
-                $('#txtOriginalPriceM').val(data.OriginalPrice);
-                $('#txtPromotionPriceM').val(data.PromotionPrice);
 
-                // $('#txtImageM').val(data.ThumbnailImage);
+
+                $('#txtImageM').val(data.ThumbnailImage);
 
                 $('#txtTagM').val(data.Tags);
-                $('#txtMetakeywordM').val(data.SeoKeywords);
-                $('#txtMetaDescriptionM').val(data.SeoDescription);
-                $('#txtSeoPageTitleM').val(data.SeoPageTitle);
-                $('#txtSeoAliasM').val(data.SeoAlias);
+               
 
                 CKEDITOR.instances.txtContent.setData(data.Content);
                 $('#ckStatusM').prop('checked', data.Status == 1);
@@ -383,13 +378,12 @@
             dataType: 'json',
             success: function (response) {
                 console.log(response);
-                $.each(response.Results, function (i, item) {
+                $.each(response.results, function (i, item) {
                     render += Mustache.render(template, {
                         Id: item.Id,
                         Name: item.Name,
                         Image: item.Image == null ? '<img src="/admin-side/images/user.png" width=25' : '<img src="' + item.Image + '" width=25 />',
-                        CategoryName: item.ProductCategory.Name,
-                        Price: tedu.formatNumber(item.Price, 0),
+                        Price: item.Price,
                         CreatedDate: tedu.dateTimeFormatJson(item.DateCreated),
                         Status: tedu.getStatus(item.Status)
                     });

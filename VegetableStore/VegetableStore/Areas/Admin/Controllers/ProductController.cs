@@ -67,7 +67,6 @@ namespace VegetableStore.Areas.Admin.Controllers
             }
             else
             {
-                productVm.SeoAlias = TextHelper.ToUnsignString(productVm.Name);
                 if (productVm.Id == 0)
                 {
                     _productRepository.Add(productVm);

@@ -188,7 +188,7 @@
                     $.each(response.Results, function (i, item) {
                         render += Mustache.render(template, {
                             Name: item.Name,
-                            Alias: item.Alias,
+    
                             Id: item.Id,
                             Status: tedu.getStatus(item.Status)
                         });
