@@ -387,18 +387,18 @@
     };
     function getPaymentMethodName(paymentMethod) {
         var method = $.grep(cachedObj.paymentMethods, function (element, index) {
-            return element.value == paymentMethod;
+            return element.Value == paymentMethod;
         });
         if (method.length > 0)
-            return method[0].name;
+            return method[0].Name;
         else return '';
     }
     function getBillStatusName(status) {
         var status = $.grep(cachedObj.billStatuses, function (element, index) {
-            return element.value == status;
+            return element.Value == status;
         });
         if (status.length > 0)
-            return status[0].name;
+            return status[0].Name;
         else return '';
     }
     function wrapPaging(recordCount, callBack, changePageSize) {
