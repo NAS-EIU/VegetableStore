@@ -1,16 +1,16 @@
 ﻿var BillController = function () {
     var cachedObj = {
         products: [],
-        colors: [],
-        sizes: [],
+        //colors: [],
+        //sizes: [],
         paymentMethods: [],
         billStatuses: []
     }
     this.initialize = function () {
         $.when(loadBillStatus(),
             loadPaymentMethod(),
-            loadColors(),
-            loadSizes(),
+            //loadColors(),
+            //loadSizes(),
             loadProducts())
             .done(function () {
                 loadData();
@@ -86,15 +86,15 @@
 
                         $.each(billDetails, function (i, item) {
                             var products = getProductOptions(item.ProductId);
-                            var colors = getColorOptions(item.ColorId);
-                            var sizes = getSizeOptions(item.SizeId);
+                            //var colors = getColorOptions(item.ColorId);
+                            //var sizes = getSizeOptions(item.SizeId);
 
                             render += Mustache.render(templateDetails,
                                 {
                                     Id: item.Id,
                                     Products: products,
-                                    Colors: colors,
-                                    Sizes: sizes,
+                                    //Colors: colors,
+                                    //Sizes: sizes,
                                     Quantity: item.Quantity
                                 });
                         });
@@ -130,8 +130,8 @@
                         Id: $(item).data('id'),
                         ProductId: $(item).find('select.ddlProductId').first().val(),
                         Quantity: $(item).find('input.txtQuantity').first().val(),
-                        ColorId: $(item).find('select.ddlColorId').first().val(),
-                        SizeId: $(item).find('select.ddlSizeId').first().val(),
+                        //ColorId: $(item).find('select.ddlColorId').first().val(),
+                        //SizeId: $(item).find('select.ddlSizeId').first().val(),
                         BillId: id
                     });
                 });
@@ -176,14 +176,14 @@
         $('#btnAddDetail').on('click', function () {
             var template = $('#template-table-bill-details').html();
             var products = getProductOptions(null);
-            var colors = getColorOptions(null);
-            var sizes = getSizeOptions(null);
+            //var colors = getColorOptions(null);
+            //var sizes = getSizeOptions(null);
             var render = Mustache.render(template,
                 {
                     Id: 0,
                     Products: products,
-                    Colors: colors,
-                    Sizes: sizes,
+                    //Colors: colors,
+                    //Sizes: sizes,
                     Quantity: 0,
                     Total: 0
                 });
@@ -222,7 +222,7 @@
                 cachedObj.billStatuses = response;
                 var render = "";
                 $.each(response, function (i, item) {
-                    render += "<option value='" + item.Value + "'>" + item.Name + "</option>";
+                    render += "<option value='" + item.value + "'>" + item.name + "</option>";
                 });
                 $('#ddlBillStatus').html(render);
             }
@@ -238,7 +238,7 @@
                 cachedObj.paymentMethods = response;
                 var render = "";
                 $.each(response, function (i, item) {
-                    render += "<option value='" + item.Value + "'>" + item.Name + "</option>";
+                    render += "<option value='" + item.value + "'>" + item.name + "</option>";
                 });
                 $('#ddlPaymentMethod').html(render);
             }
@@ -259,69 +259,69 @@
         });
     }
 
-    function loadColors() {
-        return $.ajax({
-            type: "GET",
-            url: "/Admin/Bill/GetColors",
-            dataType: "json",
-            success: function (response) {
-                cachedObj.colors = response;
-            },
-            error: function () {
-                tedu.notify('Has an error in progress', 'error');
-            }
-        });
-    }
+    //function loadColors() {
+    //    return $.ajax({
+    //        type: "GET",
+    //        url: "/Admin/Bill/GetColors",
+    //        dataType: "json",
+    //        success: function (response) {
+    //            cachedObj.colors = response;
+    //        },
+    //        error: function () {
+    //            tedu.notify('Has an error in progress', 'error');
+    //        }
+    //    });
+    //}
 
-    function loadSizes() {
-        return $.ajax({
-            type: "GET",
-            url: "/Admin/Bill/GetSizes",
-            dataType: "json",
-            success: function (response) {
-                cachedObj.sizes = response;
-            },
-            error: function () {
-                tedu.notify('Has an error in progress', 'error');
-            }
-        });
-    }
+    //function loadSizes() {
+    //    return $.ajax({
+    //        type: "GET",
+    //        url: "/Admin/Bill/GetSizes",
+    //        dataType: "json",
+    //        success: function (response) {
+    //            cachedObj.sizes = response;
+    //        },
+    //        error: function () {
+    //            tedu.notify('Has an error in progress', 'error');
+    //        }
+    //    });
+    //}
 
     function getProductOptions(selectedId) {
         var products = "<select class='form-control ddlProductId'>";
         $.each(cachedObj.products, function (i, product) {
-            if (selectedId === product.Id)
-                products += '<option value="' + product.Id + '" selected="select">' + product.Name + '</option>';
+            if (selectedId === product.id)
+                products += '<option value="' + product.id + '" selected="select">' + product.name + '</option>';
             else
-                products += '<option value="' + product.Id + '">' + product.Name + '</option>';
+                products += '<option value="' + product.id + '">' + product.name + '</option>';
         });
         products += "</select>";
         return products;
     }
 
-    function getColorOptions(selectedId) {
-        var colors = "<select class='form-control ddlColorId'>";
-        $.each(cachedObj.colors, function (i, color) {
-            if (selectedId === color.Id)
-                colors += '<option value="' + color.Id + '" selected="select">' + color.Name + '</option>';
-            else
-                colors += '<option value="' + color.Id + '">' + color.Name + '</option>';
-        });
-        colors += "</select>";
-        return colors;
-    }
+    //function getColorOptions(selectedId) {
+    //    var colors = "<select class='form-control ddlColorId'>";
+    //    $.each(cachedObj.colors, function (i, color) {
+    //        if (selectedId === color.Id)
+    //            colors += '<option value="' + color.Id + '" selected="select">' + color.Name + '</option>';
+    //        else
+    //            colors += '<option value="' + color.Id + '">' + color.Name + '</option>';
+    //    });
+    //    colors += "</select>";
+    //    return colors;
+    //}
 
-    function getSizeOptions(selectedId) {
-        var sizes = "<select class='form-control ddlSizeId'>";
-        $.each(cachedObj.sizes, function (i, size) {
-            if (selectedId === size.Id)
-                sizes += '<option value="' + size.Id + '" selected="select">' + size.Name + '</option>';
-            else
-                sizes += '<option value="' + size.Id + '">' + size.Name + '</option>';
-        });
-        sizes += "</select>";
-        return sizes;
-    }
+    //function getSizeOptions(selectedId) {
+    //    var sizes = "<select class='form-control ddlSizeId'>";
+    //    $.each(cachedObj.sizes, function (i, size) {
+    //        if (selectedId === size.Id)
+    //            sizes += '<option value="' + size.Id + '" selected="select">' + size.Name + '</option>';
+    //        else
+    //            sizes += '<option value="' + size.Id + '">' + size.Name + '</option>';
+    //    });
+    //    sizes += "</select>";
+    //    return sizes;
+    //}
     function resetFormMaintainance() {
         $('#hidId').val(0);
         $('#txtCustomerName').val('');
@@ -353,22 +353,22 @@
             success: function (response) {
                 var template = $('#table-template').html();
                 var render = "";
-                if (response.RowCount > 0) {
-                    $.each(response.Results, function (i, item) {
+                if (response.rowCount > 0) {
+                    $.each(response.results, function (i, item) {
                         render += Mustache.render(template, {
-                            CustomerName: item.CustomerName,
-                            Id: item.Id,
-                            PaymentMethod: getPaymentMethodName(item.PaymentMethod),
-                            DateCreated: tedu.dateTimeFormatJson(item.DateCreated),
-                            BillStatus: getBillStatusName(item.BillStatus)
+                            CustomerName: item.customerName,
+                            Id: item.id,
+                            PaymentMethod: getPaymentMethodName(item.paymentMethod),
+                            DateCreated: tedu.dateTimeFormatJson(item.dateCreated),
+                            BillStatus: getBillStatusName(item.billStatus)
                         });
                     });
-                    $("#lbl-total-records").text(response.RowCount);
+                    $("#lbl-total-records").text(response.rowCount);
                     if (render != undefined) {
                         $('#tbl-content').html(render);
 
                     }
-                    wrapPaging(response.RowCount, function () {
+                    wrapPaging(response.rowCount, function () {
                         loadData();
                     }, isPageChanged);
 
@@ -387,18 +387,18 @@
     };
     function getPaymentMethodName(paymentMethod) {
         var method = $.grep(cachedObj.paymentMethods, function (element, index) {
-            return element.Value == paymentMethod;
+            return element.value == paymentMethod;
         });
         if (method.length > 0)
-            return method[0].Name;
+            return method[0].name;
         else return '';
     }
     function getBillStatusName(status) {
         var status = $.grep(cachedObj.billStatuses, function (element, index) {
-            return element.Value == status;
+            return element.value == status;
         });
         if (status.length > 0)
-            return status[0].Name;
+            return status[0].name;
         else return '';
     }
     function wrapPaging(recordCount, callBack, changePageSize) {

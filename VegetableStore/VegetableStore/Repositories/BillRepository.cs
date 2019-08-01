@@ -20,6 +20,14 @@ namespace VegetableStore.Repositories
         private readonly IRepository<Product, int> _productRepository;
         private readonly IUnitOfWork _unitOfWork;
 
+        public BillRepository(IRepository<Bill, int> orderRepository, IRepository<BillDetail, int> orderDetailRepository, IRepository<Product, int> productRepository, IUnitOfWork unitOfWork)
+        {
+            _orderRepository = orderRepository;
+            _orderDetailRepository = orderDetailRepository;
+            _productRepository = productRepository;
+            _unitOfWork = unitOfWork;
+        }
+
         public void Create(BillViewModel billVm)
         {
             var order = Mapper.Map<BillViewModel, Bill>(billVm);
@@ -89,34 +97,34 @@ namespace VegetableStore.Repositories
         public PagedResult<BillViewModel> GetAllPaging(string startDate, string endDate, string keyword
             , int pageIndex, int pageSize)
         {
-            var query = _orderRepository.FindAll();
-            if (!string.IsNullOrEmpty(startDate))
-            {
-                DateTime start = DateTime.ParseExact(startDate, "dd/MM/yyyy", CultureInfo.GetCultureInfo("vi-VN"));
-                query = query.Where(x => x.DateCreated >= start);
-            }
-            if (!string.IsNullOrEmpty(endDate))
-            {
-                DateTime end = DateTime.ParseExact(endDate, "dd/MM/yyyy", CultureInfo.GetCultureInfo("vi-VN"));
-                query = query.Where(x => x.DateCreated <= end);
-            }
-            if (!string.IsNullOrEmpty(keyword))
-            {
-                query = query.Where(x => x.CustomerName.Contains(keyword) || x.CustomerMobile.Contains(keyword));
-            }
-            var totalRow = query.Count();
-            var data = query.OrderByDescending(x => x.DateCreated)
-                .Skip((pageIndex - 1) * pageSize)
-                .Take(pageSize)
-                .ProjectTo<BillViewModel>()
-                .ToList();
+                var query = _orderRepository.FindAll();
+                if (!string.IsNullOrEmpty(startDate))
+                {
+                    DateTime start = DateTime.ParseExact(startDate, "dd/MM/yyyy", CultureInfo.GetCultureInfo("vi-VN"));
+                    query = query.Where(x => x.DateCreated >= start);
+                }
+                if (!string.IsNullOrEmpty(endDate))
+                {
+                    DateTime end = DateTime.ParseExact(endDate, "dd/MM/yyyy", CultureInfo.GetCultureInfo("vi-VN"));
+                    query = query.Where(x => x.DateCreated <= end);
+                }
+                if (!string.IsNullOrEmpty(keyword))
+                {
+                    query = query.Where(x => x.CustomerName.Contains(keyword) || x.CustomerMobile.Contains(keyword));
+                }
+                var totalRow = query.Count();
+                var data = query.OrderByDescending(x => x.DateCreated)
+                    .Skip((pageIndex - 1) * pageSize)
+                    .Take(pageSize)
+                    .ProjectTo<BillViewModel>()
+                    .ToList();
             return new PagedResult<BillViewModel>()
-            {
-                CurrentPage = pageIndex,
-                PageSize = pageSize,
-                Results = data,
-                RowCount = totalRow
-            };
+                {
+                    CurrentPage = pageIndex,
+                    PageSize = pageSize,
+                    Results = data,
+                    RowCount = totalRow
+                };
         }
 
         public BillViewModel GetDetail(int billId)
