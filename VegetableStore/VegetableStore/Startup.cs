@@ -17,6 +17,10 @@ using VegetableStore.Repositories;
 using VegetableStore.Interfaces;
 using AutoMapper;
 using VegetableStore.AutoMapp;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
+using Newtonsoft.Json.Serialization;
 
 namespace VegetableStore
 {
@@ -58,6 +62,39 @@ namespace VegetableStore
             services.AddTransient(typeof(IRepository<,>), typeof(EFRepository<,>));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddTransient<Dbintinatilecs>();
+            services.Configure<RequestLocalizationOptions>(
+             opts =>
+             {
+                 var supportedCultures = new List<CultureInfo>
+                 {
+                        new CultureInfo("en-US"),
+                        new CultureInfo("vi-VN")
+                 };
+
+                 opts.DefaultRequestCulture = new RequestCulture("en-US");
+                  // Formatting numbers, dates, etc.
+                  opts.SupportedCultures = supportedCultures;
+                  // UI strings that we have localized.
+                  opts.SupportedUICultures = supportedCultures;
+             });
+            services.AddMvc(options =>
+            {
+                options.CacheProfiles.Add("Default",
+                    new CacheProfile()
+                    {
+                        Duration = 60
+                    });
+                options.CacheProfiles.Add("Never",
+                    new CacheProfile()
+                    {
+                        Location = ResponseCacheLocation.None,
+                        NoStore = true
+                    });
+            }).AddViewLocalization(
+                   LanguageViewLocationExpanderFormat.Suffix,
+                   opts => { opts.ResourcesPath = "Resources"; })
+               .AddDataAnnotationsLocalization()
+               .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

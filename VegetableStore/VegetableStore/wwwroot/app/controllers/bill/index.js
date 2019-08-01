@@ -1,16 +1,16 @@
 ﻿var BillController = function () {
     var cachedObj = {
         products: [],
-        colors: [],
-        sizes: [],
+       // colors: [],
+      //  sizes: [],
         paymentMethods: [],
         billStatuses: []
     }
     this.initialize = function () {
         $.when(loadBillStatus(),
             loadPaymentMethod(),
-            loadColors(),
-            loadSizes(),
+         //   loadColors(),
+         //   loadSizes(),
             loadProducts())
             .done(function () {
                 loadData();

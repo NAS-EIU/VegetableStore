@@ -20,6 +20,14 @@ namespace VegetableStore.Repositories
         private readonly IRepository<Product, int> _productRepository;
         private readonly IUnitOfWork _unitOfWork;
 
+        public BillRepository(IRepository<Bill, int> orderRepository, IRepository<BillDetail, int> orderDetailRepository, IRepository<Product, int> productRepository, IUnitOfWork unitOfWork)
+        {
+            _orderRepository = orderRepository;
+            _orderDetailRepository = orderDetailRepository;
+            _productRepository = productRepository;
+            _unitOfWork = unitOfWork;
+        }
+
         public void Create(BillViewModel billVm)
         {
             var order = Mapper.Map<BillViewModel, Bill>(billVm);
