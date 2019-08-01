@@ -91,11 +91,11 @@
 
                             render += Mustache.render(templateDetails,
                                 {
-                                    Id: item.Id,
+                                    Id: item.id,
                                     Products: products,
                                     //Colors: colors,
                                     //Sizes: sizes,
-                                    Quantity: item.Quantity
+                                    Quantity: itemQuantity
                                 });
                         });
                         $('#tbl-bill-details').html(render);
@@ -222,7 +222,7 @@
                 cachedObj.billStatuses = response;
                 var render = "";
                 $.each(response, function (i, item) {
-                    render += "<option value='" + item.value + "'>" + item.name + "</option>";
+                    render += "<option value='" + item.Value + "'>" + item.Name + "</option>";
                 });
                 $('#ddlBillStatus').html(render);
             }
@@ -238,7 +238,7 @@
                 cachedObj.paymentMethods = response;
                 var render = "";
                 $.each(response, function (i, item) {
-                    render += "<option value='" + item.value + "'>" + item.name + "</option>";
+                    render += "<option value='" + item.Value + "'>" + item.Name + "</option>";
                 });
                 $('#ddlPaymentMethod').html(render);
             }
@@ -290,10 +290,10 @@
     function getProductOptions(selectedId) {
         var products = "<select class='form-control ddlProductId'>";
         $.each(cachedObj.products, function (i, product) {
-            if (selectedId === product.id)
-                products += '<option value="' + product.id + '" selected="select">' + product.name + '</option>';
+            if (selectedId === product.Id)
+                products += '<option value="' + product.Id + '" selected="select">' + product.Name + '</option>';
             else
-                products += '<option value="' + product.id + '">' + product.name + '</option>';
+                products += '<option value="' + product.Id + '">' + product.Name + '</option>';
         });
         products += "</select>";
         return products;
@@ -353,22 +353,22 @@
             success: function (response) {
                 var template = $('#table-template').html();
                 var render = "";
-                if (response.rowCount > 0) {
-                    $.each(response.results, function (i, item) {
+                if (response.RowCount > 0) {
+                    $.each(response.Results, function (i, item) {
                         render += Mustache.render(template, {
-                            CustomerName: item.customerName,
-                            Id: item.id,
-                            PaymentMethod: getPaymentMethodName(item.paymentMethod),
-                            DateCreated: tedu.dateTimeFormatJson(item.dateCreated),
-                            BillStatus: getBillStatusName(item.billStatus)
+                            CustomerName: item.CustomerName,
+                            Id: item.Id,
+                            PaymentMethod: getPaymentMethodName(item.PaymentMethod),
+                            DateCreated: tedu.dateTimeFormatJson(item.DateCreated),
+                            BillStatus: getBillStatusName(item.BillStatus)
                         });
                     });
-                    $("#lbl-total-records").text(response.rowCount);
+                    $("#lbl-total-records").text(response.RowCount);
                     if (render != undefined) {
                         $('#tbl-content').html(render);
 
                     }
-                    wrapPaging(response.rowCount, function () {
+                    wrapPaging(response.RowCount, function () {
                         loadData();
                     }, isPageChanged);
 
