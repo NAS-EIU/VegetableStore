@@ -23,15 +23,31 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Identity\Pages\" />
-    <Folder Include="Areas\Identity\Services\" />
+    <Folder Include="Areas\" />
+    <Folder Include="Data\" />
     <Folder Include="Data\Migrations\" />
     <Folder Include="Extensions\" />
+    <Folder Include="wwwroot\css\" />
+    <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\js\" />
     <Folder Include="wwwroot\uploaded\images\20190729\" />
     <Folder Include="wwwroot\uploaded\images\20190730\" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Account\AccessDenied.cshtml" />
+    <None Include="Views\Account\ConfirmEmail.cshtml" />
+    <None Include="Views\Account\ExternalLogin.cshtml" />
+    <None Include="Views\Account\ForgotPassword.cshtml" />
+    <None Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <None Include="Views\Account\Lockout.cshtml" />
+    <None Include="Views\Account\Login.cshtml" />
+    <None Include="Views\Account\LoginWith2fa.cshtml" />
+    <None Include="Views\Account\LoginWithRecoveryCode.cshtml" />
+    <None Include="Views\Account\Register.cshtml" />
+    <None Include="Views\Account\ResetPassword.cshtml" />
+    <None Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <None Include="Views\Account\SignedOut.cshtml" />
     <None Include="wwwroot\admin-side\js\custom.js" />
     <None Include="wwwroot\admin-side\js\custom.min.js" />
     <None Include="wwwroot\app\controllers\bill\index.js" />

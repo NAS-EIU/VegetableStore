@@ -21,6 +21,7 @@ using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Newtonsoft.Json.Serialization;
+using Microsoft.Extensions.Logging;
 
 namespace VegetableStore
 {
@@ -48,7 +49,12 @@ namespace VegetableStore
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-
+            services.AddLogging(config =>
+            {
+                config.AddDebug();
+                config.AddConsole();
+                //etc
+            });
             services.AddIdentity<AppUser, AppRole>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders()
