@@ -25,7 +25,6 @@
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Data\Migrations\" />
-    <Folder Include="Extensions\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\js\" />
@@ -47,6 +46,10 @@
     <None Include="Views\Account\ResetPassword.cshtml" />
     <None Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <None Include="Views\Account\SignedOut.cshtml" />
+    <None Include="Views\Product\Catalog.cshtml" />
+    <None Include="Views\Product\Details.cshtml" />
+    <None Include="Views\Product\Index.cshtml" />
+    <None Include="Views\Product\Search.cshtml" />
     <None Include="wwwroot\admin-side\js\custom.js" />
     <None Include="wwwroot\admin-side\js\custom.min.js" />
     <None Include="wwwroot\app\controllers\bill\index.js" />

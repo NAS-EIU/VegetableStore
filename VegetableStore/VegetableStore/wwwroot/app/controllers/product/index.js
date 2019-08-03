@@ -4,7 +4,7 @@
    // var wholePriceManagement = new WholePriceManagement();
 
     this.initialize = function () {
-        loadCategories();
+        //loadCategories();
         loadData();
         registerEvents();
         registerControls();
@@ -271,7 +271,7 @@
                 $('#txtPriceM').val(data.Price);
               
 
-                $('#txtImageM').val(data.ThumbnailImage);
+                $('#txtImageM').val(data.Image);
 
                 $('#txtTagM').val(data.Tags);
 
@@ -381,7 +381,6 @@
                         Id: item.Id,
                         Name: item.Name,
                         Image: item.Image == null ? '<img src="/admin-side/images/user.png" width=25' : '<img src="' + item.Image + '" width=25 />',
-                        CategoryName: item.ProductCategory.Name,
                         Price: tedu.formatNumber(item.Price, 0),
                         CreatedDate: tedu.dateTimeFormatJson(item.DateCreated),
                         Status: tedu.getStatus(item.Status)
