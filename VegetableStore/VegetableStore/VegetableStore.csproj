@@ -65,7 +65,6 @@
     <None Include="wwwroot\app\shared\base.js" />
     <None Include="wwwroot\app\shared\constants.js" />
     <None Include="wwwroot\app\shared\messages.js" />
-    <None Include="wwwroot\app\shared\signalR.js" />
     <None Include="wwwroot\app\shared\tedu.js" />
     <None Include="wwwroot\bundled\site-admin.min.js" />
     <None Include="wwwroot\bundled\site-client.min.js" />

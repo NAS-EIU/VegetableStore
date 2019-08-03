@@ -12,6 +12,10 @@ namespace VegetableStore.Models.ViewModels
         [Display(Name = "Full name")]
         public string FullName { set; get; }
 
+        [Required(ErrorMessage = "User name required", AllowEmptyStrings = false)]
+        [Display(Name = "User name")]
+        public string UserName { set; get; }
+
         [Display(Name = "DOB")]
         public DateTime? BirthDay { set; get; }
 
