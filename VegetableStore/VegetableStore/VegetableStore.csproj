@@ -54,7 +54,6 @@
     <None Include="wwwroot\app\controllers\home\index.js" />
     <None Include="wwwroot\app\controllers\login\index.js" />
     <None Include="wwwroot\app\controllers\page\index.js" />
-    <None Include="wwwroot\app\controllers\product-category\index.js" />
     <None Include="wwwroot\app\controllers\product\image-management.js" />
     <None Include="wwwroot\app\controllers\product\index.js" />
     <None Include="wwwroot\app\controllers\product\quantity-management.js" />

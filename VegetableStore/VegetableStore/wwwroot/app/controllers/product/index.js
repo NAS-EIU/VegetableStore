@@ -1,7 +1,7 @@
 ﻿var productController = function () {
     var quantityManagement = new QuantityManagement();
     var imageManagement = new ImageManagement();
-    var wholePriceManagement = new WholePriceManagement();
+   // var wholePriceManagement = new WholePriceManagement();
 
     this.initialize = function () {
         loadCategories();
@@ -10,7 +10,7 @@
         registerControls();
         quantityManagement.initialize();
         imageManagement.initialize();
-        wholePriceManagement.initialize();
+      //  wholePriceManagement.initialize();
     }
 
     function registerEvents() {
@@ -173,22 +173,16 @@
             e.preventDefault();
             var id = $('#hidIdM').val();
             var name = $('#txtNameM').val();
-            var categoryId = $('#ddlCategoryIdM').combotree('getValue');
-
             var description = $('#txtDescM').val();
             var unit = $('#txtUnitM').val();
 
             var price = $('#txtPriceM').val();
-            var originalPrice = $('#txtOriginalPriceM').val();
-            var promotionPrice = $('#txtPromotionPriceM').val();
 
-            //var image = $('#txtImageM').val();
+
+            var image = $('#txtImageM').val();
 
             var tags = $('#txtTagM').val();
-            var seoKeyword = $('#txtMetakeywordM').val();
-            var seoMetaDescription = $('#txtMetaDescriptionM').val();
-            var seoPageTitle = $('#txtSeoPageTitleM').val();
-            var seoAlias = $('#txtSeoAliasM').val();
+          
 
             var content = CKEDITOR.instances.txtContent.getData();
             var status = $('#ckStatusM').prop('checked') == true ? 1 : 0;
@@ -201,22 +195,16 @@
                 data: {
                     Id: id,
                     Name: name,
-                    CategoryId: categoryId,
-                    Image: '',
+                    Image: image,
                     Price: price,
-                    OriginalPrice: originalPrice,
-                    PromotionPrice: promotionPrice,
                     Description: description,
                     Content: content,
                     HomeFlag: showHome,
                     HotFlag: hot,
                     Tags: tags,
                     Unit: unit,
-                    Status: status,
-                    SeoPageTitle: seoPageTitle,
-                    SeoAlias: seoAlias,
-                    SeoKeywords: seoKeyword,
-                    SeoDescription: seoMetaDescription
+                    Status: status
+                  
                 },
                 dataType: "json",
                 beforeSend: function () {
@@ -281,16 +269,11 @@
                 $('#txtUnitM').val(data.Unit);
 
                 $('#txtPriceM').val(data.Price);
-                $('#txtOriginalPriceM').val(data.OriginalPrice);
-                $('#txtPromotionPriceM').val(data.PromotionPrice);
+              
 
-                // $('#txtImageM').val(data.ThumbnailImage);
+                $('#txtImageM').val(data.ThumbnailImage);
 
                 $('#txtTagM').val(data.Tags);
-                $('#txtMetakeywordM').val(data.SeoKeywords);
-                $('#txtMetaDescriptionM').val(data.SeoDescription);
-                $('#txtSeoPageTitleM').val(data.SeoPageTitle);
-                $('#txtSeoAliasM').val(data.SeoAlias);
 
                 CKEDITOR.instances.txtContent.setData(data.Content);
                 $('#ckStatusM').prop('checked', data.Status == 1);
@@ -325,9 +308,6 @@
                     });
                 });
                 var arr = tedu.unflattern(data);
-                $('#ddlCategoryIdM').combotree({
-                    data: arr
-                });
 
                 $('#ddlCategoryIdImportExcel').combotree({
                     data: arr
@@ -351,13 +331,9 @@
         $('#txtOriginalPriceM').val('');
         $('#txtPromotionPriceM').val('');
 
-        //$('#txtImageM').val('');
+        $('#txtImageM').val('');
 
         $('#txtTagM').val('');
-        $('#txtMetakeywordM').val('');
-        $('#txtMetaDescriptionM').val('');
-        $('#txtSeoPageTitleM').val('');
-        $('#txtSeoAliasM').val('');
 
         //CKEDITOR.instances.txtContentM.setData('');
         $('#ckStatusM').prop('checked', true);
