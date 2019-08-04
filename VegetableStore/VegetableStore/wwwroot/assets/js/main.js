@@ -528,6 +528,10 @@
          });
          $('#cat_toggle > ul > li.has-sub > a,.shop_toggle li.has-sub > a').append('<span class="holder"></span>');
     
-
+    var name = $(".account_inner p")[0].innerText;
+    if (name != "") {
+        document.getElementById("sign").href = "/logout.html"
+        document.getElementById("sign").innerText = "Log out"
+    }
 
 })(jQuery);
