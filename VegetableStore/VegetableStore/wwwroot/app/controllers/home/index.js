@@ -1,7 +1,7 @@
 ﻿var HomeController = function () {
     this.initialize = function () {
         initDateRangePicker();
-        loadData();
+       // loadData();
     }
 
     function loadData(from, to) {

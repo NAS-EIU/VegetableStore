@@ -232,7 +232,7 @@
             $.ajax({
                 type: "POST",
                 url: "/Admin/Product/Delete",
-                data: { id: that },
+                data: { id },
                 dataType: "json",
                 beforeSend: function () {
                     tedu.startLoading();

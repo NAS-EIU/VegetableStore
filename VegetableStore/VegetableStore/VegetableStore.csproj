@@ -7,10 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Data\Migrations\20190726141356_intitdata.cs" />
-    <Compile Remove="Data\Migrations\20190726141356_intitdata.Designer.cs" />
-    <Compile Remove="Migrations\20190729161301_initlized.cs" />
-    <Compile Remove="Migrations\20190729161301_initlized.Designer.cs" />
+    <Compile Remove="wwwroot\uploaded\images\20190729\**" />
+    <Content Remove="wwwroot\uploaded\images\20190729\**" />
+    <EmbeddedResource Remove="wwwroot\uploaded\images\20190729\**" />
+    <None Remove="wwwroot\uploaded\images\20190729\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20190729161301_initlized.cs" />
+    <Compile Remove="Data\Migrations\20190729161301_initlized.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,13 +28,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
-    <Folder Include="Data\Migrations\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\js\" />
-    <Folder Include="wwwroot\uploaded\images\20190729\" />
-    <Folder Include="wwwroot\uploaded\images\20190730\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,10 +47,6 @@
     <None Include="Views\Account\ResetPassword.cshtml" />
     <None Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <None Include="Views\Account\SignedOut.cshtml" />
-    <None Include="Views\Product\Catalog.cshtml" />
-    <None Include="Views\Product\Details.cshtml" />
-    <None Include="Views\Product\Index.cshtml" />
-    <None Include="Views\Product\Search.cshtml" />
     <None Include="wwwroot\admin-side\js\custom.js" />
     <None Include="wwwroot\admin-side\js\custom.min.js" />
     <None Include="wwwroot\app\controllers\bill\index.js" />

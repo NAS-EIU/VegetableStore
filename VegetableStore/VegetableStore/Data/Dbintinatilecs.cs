@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using VegetableStore.Models;
 using VegetableStore.Models.Enums;
@@ -55,7 +56,13 @@ namespace VegetableStore.Data
                     Status = Status.Active
                 }, "Admin@123");
                 var user = await _userManager.FindByNameAsync("admin");
-                await _userManager.AddToRoleAsync(user, "Admin");
+                var rs=await _userManager.AddToRoleAsync(user, "Admin");
+                await _userManager.AddClaimAsync(user, new Claim("FullName",user.FullName));
+                await _userManager.AddClaimAsync(user, new Claim("Email", user.Email));
+                if (rs.Succeeded)
+                {
+
+                }
             }
             if (_context.Functions.Count() == 0)
             {
@@ -90,6 +97,24 @@ namespace VegetableStore.Data
                     new Function() {Id = "REVENUES",Name = "Revenue report",ParentId = "REPORT",SortOrder = 1,Status = Status.Active,URL = "/admin/report/revenues",IconCss = "fa-bar-chart-o"  },
                     new Function() {Id = "ACCESS",Name = "Visitor Report",ParentId = "REPORT",SortOrder = 2,Status = Status.Active,URL = "/admin/report/visitor",IconCss = "fa-bar-chart-o"  },
                     new Function() {Id = "READER",Name = "Reader Report",ParentId = "REPORT",SortOrder = 3,Status = Status.Active,URL = "/admin/report/reader",IconCss = "fa-bar-chart-o"  },
+                });
+            }
+            if (_context.Products.Count() == 0)
+            {
+                _context.Products.AddRange(new List<Product>()
+                {
+                    new Product(){Name="Cà chua",DateCreated=DateTime.Now,Image="/uploaded/images/6.jpg",Price = 1000,Status = Status.Active},
+                    new Product(){Name="Cam",DateCreated=DateTime.Now,Image="/uploaded/images/3.jpg",Price = 1000,Status = Status.Active},
+                    new Product(){Name="Nho",DateCreated=DateTime.Now,Image="/uploaded/images/4.jpg",Price = 1000,Status = Status.Active},
+                    new Product(){Name="Bơ",DateCreated=DateTime.Now,Image="/uploaded/images/7.jpg",Price = 1000,Status = Status.Active},
+                    new Product(){Name="Chanh",DateCreated=DateTime.Now,Image="/uploaded/images/Lemon.jpg",Price = 1000,Status = Status.Active},
+                    new Product(){Name="Sầu Riêng",DateCreated=DateTime.Now,Image="/uploaded/images/Durian.jpg",Price = 1000,Status = Status.Active},
+                    new Product(){Name="Dưa Hấu",DateCreated=DateTime.Now,Image="/uploaded/images/watermelon.jpg",Price = 1000,Status = Status.Active},
+                    new Product(){Name="Dâu",DateCreated=DateTime.Now,Image="/uploaded/images/strawberry.jpg",Price = 1000,Status = Status.Active},
+                    new Product(){Name="Việt Quất",DateCreated=DateTime.Now,Image="/uploaded/images/blueberry.jpg",Price = 1000,Status = Status.Active},
+                    new Product(){Name="Quýt",DateCreated=DateTime.Now,Image="/uploaded/images/tangerines.jpg",Price = 1000,Status = Status.Active},
+                    new Product(){Name="Xoài",DateCreated=DateTime.Now,Image="/uploaded/images/mango.jpg",Price = 1000,Status = Status.Active},
+                    new Product(){Name="Trái Thăng Long",DateCreated=DateTime.Now,Image="/uploaded/images/dragon.jpg",Price = 1000,Status = Status.Active}
                 });
             }
             await _context.SaveChangesAsync();
