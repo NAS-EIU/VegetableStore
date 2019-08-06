@@ -446,7 +446,7 @@
 <!--Shipping area end-->
 <!--shop product area start-->
 <div class="shop_product">
-    <div class="container-fluid">
+    @*<div class="container-fluid">
         <div class="row">
             <div class="col-12">
                 <div class="shop_product_head d-flex justify-content-between mb-30">
@@ -1791,7 +1791,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
 </div>
 <!--shop product area end-->
 <!--Banner area start-->
@@ -1845,8 +1845,39 @@
             <div class="tab-pane active show fade" id="fresh_fruit" role="tabpanel">
                 <div class="row">
                     <div class="features_product_active owl-carousel">
-
-                        <div class="col-lg-2">
+                        @foreach (var item in Model.TopSellProducts)
+                        {
+                            <div class="col-lg-2">
+                                <div class="single__product">
+                                    <div class="single_product__inner">
+                                        <span class="new_badge">new</span>
+                                        <div class="product_img">
+                                            <a href="#">
+                                                <img src="@item.Image" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="product__content text-center">
+                                            <div class="produc_desc_info">
+                                                <div class="product_title">
+                                                    <h4><a href="product-details.html">@item.Name</a></h4>
+                                                </div>
+                                                <div class="product_price">
+                                                    <p>$@item.Price</p>
+                                                </div>
+                                            </div>
+                                            <div class="product__hover">
+                                                <ul>
+                                                    <li><a href="#"><i class="ion-android-cart"></i></a></li>
+                                                    <li><a class="cart-fore" href="#" data-toggle="modal" data-target="#my_modal" title="Quick View"><i class="ion-android-open"></i></a></li>
+                                                    <li><a href="product-details.html"><i class="ion-clipboard"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        @*<div class="col-lg-2">
                             <div class="single__product">
                                 <div class="single_product__inner">
                                     <span class="new_badge">new</span>
@@ -2117,7 +2148,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>*@
                     </div>
                 </div>
             </div>
