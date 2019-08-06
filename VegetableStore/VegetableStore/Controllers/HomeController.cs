@@ -31,7 +31,7 @@ namespace VegetableStore.Controllers
                 var homeVm = new HomeViewModel();
                 homeVm.HotProducts = _productService.GetHotProduct(12);
                 homeVm.TopSellProducts = _productService.GetLastest(12);
-
+                
                 return View(homeVm);
             
         }
