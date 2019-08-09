@@ -1,0 +1,65 @@
+﻿@model VegetableStore.Utilities.PagedResultBase
+@{
+    var urlTemplate = Url.Action() + "?page={0}";
+    var request = ViewContext.HttpContext.Request;
+    foreach (var key in request.Query.Keys)
+    {
+        if (key == "page")
+        {
+            continue;
+        }
+
+        urlTemplate += "&" + key + "=" + request.Query[key];
+    }
+
+    var startIndex = Math.Max(Model.CurrentPage - 5, 1);
+    var finishIndex = Math.Min(Model.CurrentPage + 5, Model.PageCount);
+}
+<div class="shop_pagination">
+    <div class="row align-items-center">
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="total_item_shop">
+                Showing @Model.FirstRowOnPage-@Model.LastRowOnPage of @Model.RowCount item(s)
+            </div>
+        </div>
+        <div class="col-lg-6 offset-lg-2 col-md-6 col-sm-6">
+            <div class="page_list_clearfix text-center">
+                @if (Model.PageCount > 1)
+                {
+                <ul>
+                    @if (Model.CurrentPage == startIndex)
+                    {
+                        <li class="prev"><a href="#"><i class="zmdi zmdi-chevron-left"></i> Previous</a></li>
+                    }
+                    else
+                    {
+                        <li class="prev"><a href="@urlTemplate.Replace("{0}", Model.PageCount.ToString())"><i class="zmdi zmdi-chevron-left"></i> Previous</a></li>
+                    }
+                    @for (var i = startIndex; i <= finishIndex; i++)
+                    {
+                        if (i == Model.CurrentPage)
+                        {
+                            <li><a href="#">@i</a></li>
+                        }
+                        else
+                        {
+                            <li class="current_page"><a href="@urlTemplate.Replace("{0}", i.ToString())">@i</a></li>
+                        }
+                    }
+                    <li><a href="#">1</a></li>
+                    <li class="current_page"><a href="#">2</a></li>
+                    @if (Model.CurrentPage == finishIndex)
+                    {
+                        <li class="next"><a href="#"> Next <i class="zmdi zmdi-chevron-right"></i></a></li>
+                    }
+                    else
+                    {
+                        <li class="next"><a href="@urlTemplate.Replace("{0}", Model.PageCount.ToString())"> Next <i class="zmdi zmdi-chevron-right"></i></a></li>
+                    }
+                </ul>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+   
