@@ -1,5 +1,5 @@
 ﻿@model List<ShoppingCartViewModel>
-<div class="mini__cart">
+<div class="mini__cart"id="headerCart">
     <div class="mini_cart_inner">
         <div class="cart_icon">
             <a href="#">
@@ -31,7 +31,7 @@
                             <span class="cart_price">$@item.Product.Price</span>
                         </div>
                         <div class="cart_remove">
-                            <a href="#"><i class="zmdi zmdi-delete"></i></a>
+                            <a href="#" title="@item.Product.Name" data-id="@item.Product.Id" class="remove-cart"><i class="zmdi zmdi-delete"></i></a>
                         </div>
                     </div>
                 }

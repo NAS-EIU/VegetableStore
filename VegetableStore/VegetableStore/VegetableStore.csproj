@@ -976,4 +976,10 @@
     <None Include="wwwroot\lib\nprogress\Readme.md" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Home\_modalView.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
 </Project>

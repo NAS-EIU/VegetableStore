@@ -90,7 +90,7 @@ namespace VegetableStore.Repositories
                 }
             }
         }
-        public PagedResult<ProductViewModel> GetAllPaging(int? categoryId, string keyword, int page, int pageSize)
+        public PagedResult<ProductViewModel> GetAllPaging(string keyword, int page, int pageSize)
         {
             var query = _productRepository.FindAll(x => x.Status == Status.Active);
             if (!string.IsNullOrEmpty(keyword))

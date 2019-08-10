@@ -4,7 +4,7 @@
     }
 
     function registerEvents() {
-        $('body').on('click', '.add-to-cart', function (e) {
+        $('body').on('click', '.ion-android-cart', function (e) {
             e.preventDefault();
             var id = $(this).data('id');
             $.ajax({
@@ -12,9 +12,7 @@
                 type: 'post',
                 data: {
                     productId: id,
-                    quantity: 1,
-                    color: 0,
-                    size: 0
+                    quantity: 1
                 },
                 success: function (response) {
                     tedu.notify(resources["AddCartOK"], 'success');

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using VegetableStore.Interfaces;
+using VegetableStore.Models.ViewModels;
 using VegetableStore.Repositories;
 
 namespace VegetableStore.Controllers
@@ -22,9 +23,14 @@ namespace VegetableStore.Controllers
             _configuration = configuration;
         }
         [Route("products.html")]
-        public IActionResult Index()
+        public IActionResult Index(int? pageSize, string sortBy, int page = 1)
         {
-            var products = _productRepository.GetAll();
+            var products = new ListProductViewModel();
+            if (pageSize == null)
+                pageSize = _configuration.GetValue<int>("PageSize");
+            products.PageSize = pageSize;
+            products.SortType = sortBy;
+            products.Data = _productRepository.GetAllPaging("", page, pageSize.Value);
             return View(products);
         }
     }
