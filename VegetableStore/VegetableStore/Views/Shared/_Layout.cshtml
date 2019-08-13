@@ -34,6 +34,7 @@
         @RenderBody()
         <!--Header end-->
         <!-- footer start -->
+        <vc:brand></vc:brand>
         <partial name="_Footer.cshtml" />
 
         <!-- footer end -->
@@ -61,7 +62,11 @@
     <script src="~/assets/js/plugins.js"></script>
     <script src="~/assets/js/main.js"></script>
     <script src="~/client-app/controllers/base/index.js"></script>
-    <script>var baseObj = new BaseController();
+    <environment names="Development">
+        <script src="~/client-app/shared/tedu.js" asp-append-version="true"></script>
+    </environment>
+    <script>
+var baseObj = new BaseController();
         baseObj.initialize();
     </script>
     <div style="text-align: right;position: fixed;z-index:9999999;bottom: 0;width: auto;right: 1%;cursor: pointer;line-height: 0;display:block !important;"><a title="Hosted on free web hosting 000webhost.com. Host your own website for FREE." target="_blank" href="https://www.000webhost.com/?utm_source=000webhostapp&utm_campaign=000_logo&utm_medium=website&utm_content=footer_img"><img src="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png" alt="www.000webhost.com"></a></div>

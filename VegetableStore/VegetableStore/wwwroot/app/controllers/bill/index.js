@@ -86,8 +86,8 @@
 
                         $.each(billDetails, function (i, item) {
                             var products = getProductOptions(item.ProductId);
-                            var colors = getColorOptions(item.ColorId);
-                            var sizes = getSizeOptions(item.SizeId);
+                           // var colors = getColorOptions(item.ColorId);
+                           // var sizes = getSizeOptions(item.SizeId);
 
                             render += Mustache.render(templateDetails,
                                 {

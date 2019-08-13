@@ -47,6 +47,7 @@
     <None Include="Views\Account\ResetPassword.cshtml" />
     <None Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <None Include="Views\Account\SignedOut.cshtml" />
+    <None Include="Views\Shared\Components\Brand\Default.cshtml" />
     <None Include="Views\Shared\Components\HeaderCart\Default.cshtml" />
     <None Include="Views\Shared\Components\Pager\Default.cshtml" />
     <None Include="wwwroot\admin-side\js\custom.js" />

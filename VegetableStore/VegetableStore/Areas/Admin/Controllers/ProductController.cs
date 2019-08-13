@@ -40,9 +40,14 @@ namespace VegetableStore.Areas.Admin.Controllers
             var model = _productRepository.GetAll();
             return new OkObjectResult(model);
         }
+        [HttpGet]
+        public IActionResult GetAllPaging( string keyword, int page, int pageSize)
+        {
+            var model = _productRepository.GetAllPaging(keyword, page, pageSize);
+            return new OkObjectResult(model);
+        }
 
-       
-        
+
 
         [HttpGet]
         public IActionResult GetById(int id)

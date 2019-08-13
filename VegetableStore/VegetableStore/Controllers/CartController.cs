@@ -135,7 +135,7 @@ namespace VegetableStore.Controllers
         /// <param name="quantity"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult AddToCart(int productId, int quantity, int color, int size)
+        public IActionResult AddToCart(int productId, int quantity)
         {
             //Get product detail
             var product = _productRepository.GetById(productId);

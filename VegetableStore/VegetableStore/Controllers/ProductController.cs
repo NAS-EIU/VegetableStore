@@ -33,5 +33,30 @@ namespace VegetableStore.Controllers
             products.Data = _productRepository.GetAllPaging("", page, pageSize.Value);
             return View(products);
         }
+        [Route("search.html")]
+        public IActionResult Search(string keyword, int? pageSize, string sortBy, int page = 1)
+        {           
+            if (keyword != "")
+            {
+                var result = new SearchResultViewModel();
+                if (pageSize == null)
+                    pageSize = _configuration.GetValue<int>("PageSize");
+
+                result.PageSize = pageSize;
+                result.SortType = sortBy;
+                result.Data = _productRepository.GetAllPaging(keyword, page, pageSize.Value);
+                result.Keyword = keyword;
+
+                return View(result);
+            }
+            return View();
+        }
+        [HttpGet]
+        public IActionResult GetById(int id)
+        {
+            var model = _productRepository.GetById(id);
+
+            return new OkObjectResult(model);
+        }
     }
 }

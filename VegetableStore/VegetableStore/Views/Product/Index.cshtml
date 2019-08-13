@@ -5,7 +5,13 @@
     ViewData["MetaDescription"] = Model.Data.CurrentPage;
 }
 <!-- Breadcrumbs -->
-
+@section Scripts{
+    <script src="~/client-app/controllers/product/details.js" asp-append-version="true"></script>
+    <script>
+        var ProductDetail = new ProductDetailController();
+        ProductDetail.initialize();
+    </script>
+}
 <div class="breadcrumb_container">
     <div class="container-fluid">
         <div class="row">
@@ -97,9 +103,9 @@
                                                         <div class="product__hover">
                                                             <ul>
                                                                 <li><a href="#"><i class="ion-android-cart"></i></a></li>
-                                                                <li><a class="cart-fore" href="#" data-toggle="modal" data-target="#my_modal" title="Quick View"><i class="ion-android-open"></i></a></li>
+                                                                <li><a class="cart-fore" href="#" data-toggle="modal" data-id="@item.Id" title="Quick View"><i class="ion-android-open"></i></a></li>
 
-                                                                <li><a href="product-details.html"><i class="ion-clipboard"></i></a></li>
+                                                                <li><a href="product-details.html" data-id="@item.Id"><i class="ion-clipboard"></i></a></li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -149,9 +155,9 @@
                                                         <div class="product_cart_icone">
                                                             <ul>
                                                                 <li><a href="#"><i class="ion-android-cart"></i></a></li>
-                                                                <li><a class="cart-fore" href="#" data-toggle="modal" data-target="#my_modal" title="Quick View"><i class="ion-android-open"></i></a></li>
+                                                                <li><a class="cart-fore" href="#" data-toggle="modal" data-id="@item.Id" title="Quick View"><i class="ion-android-open"></i></a></li>
 
-                                                                <li><a href="product-details.html"><i class="ion-clipboard"></i></a></li>
+                                                                <li><a href="product-details.html" data-id="@item.Id"><i class="ion-clipboard"></i></a></li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -175,67 +181,7 @@
     <!--Brand logo start-->
     <!--Brand logo end-->
     <!-- footer start -->
-
-    <div class="brand_logo">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="brand_list_carousel owl-carousel shop_page">
-                        <div class="single_brand_logo">
-                            <a href="#">
-                                <img src="assets/img/brand/1.png" alt="brand logo">
-                            </a>
-                        </div>
-                        <div class="single_brand_logo">
-                            <a href="#">
-                                <img src="assets/img/brand/2.png" alt="brand logo">
-                            </a>
-                        </div>
-                        <div class="single_brand_logo">
-                            <a href="#">
-                                <img src="assets/img/brand/3.png" alt="brand logo">
-                            </a>
-                        </div>
-                        <div class="single_brand_logo">
-                            <a href="#">
-                                <img src="assets/img/brand/4.png" alt="brand logo">
-                            </a>
-                        </div>
-                        <div class="single_brand_logo">
-                            <a href="#">
-                                <img src="assets/img/brand/5.png" alt="brand logo">
-                            </a>
-                        </div>
-                        <div class="single_brand_logo">
-                            <a href="#">
-                                <img src="assets/img/brand/1.png" alt="brand logo">
-                            </a>
-                        </div>
-                        <div class="single_brand_logo">
-                            <a href="#">
-                                <img src="assets/img/brand/2.png" alt="brand logo">
-                            </a>
-                        </div>
-                        <div class="single_brand_logo">
-                            <a href="#">
-                                <img src="assets/img/brand/3.png" alt="brand logo">
-                            </a>
-                        </div>
-                        <div class="single_brand_logo">
-                            <a href="#">
-                                <img src="assets/img/brand/4.png" alt="brand logo">
-                            </a>
-                        </div>
-                        <div class="single_brand_logo">
-                            <a href="#">
-                                <img src="assets/img/brand/5.png" alt="brand logo">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- footer end -->
 
 </div>
+@Html.Partial("_modalView.cshtml")

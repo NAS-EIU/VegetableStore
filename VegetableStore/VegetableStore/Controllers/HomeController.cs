@@ -13,12 +13,12 @@ namespace VegetableStore.Controllers
 {
     public class HomeController : Controller
     {
-        private IProductRepository _productService;
+        private IProductRepository _productRepository;
         private readonly IStringLocalizer<HomeController> _localizer;
 
-        public HomeController(IProductRepository productService, IStringLocalizer<HomeController> localizer)
+        public HomeController(IProductRepository productRepository, IStringLocalizer<HomeController> localizer)
         {
-            _productService = productService;
+            _productRepository = productRepository;
             _localizer = localizer;
         }
 
@@ -29,13 +29,19 @@ namespace VegetableStore.Controllers
                 //var culture = HttpContext.Features.Get<IRequestCultureFeature>().RequestCulture.Culture.Name;
                 ViewData["BodyClass"] = "cms-index-index cms-home-page";
                 var homeVm = new HomeViewModel();
-                homeVm.HotProducts = _productService.GetHotProduct(12);
-                homeVm.TopSellProducts = _productService.GetLastest(12);
+                homeVm.HotProducts = _productRepository.GetHotProduct(12);
+                homeVm.TopSellProducts = _productRepository.GetLastest(12);
                 
                 return View(homeVm);
             
         }
+        [HttpGet]
+        public IActionResult GetById(int id)
+        {
+            var model = _productRepository.GetById(id);
 
+            return new OkObjectResult(model);
+        }
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";

@@ -4,7 +4,7 @@
     }
 
     function registerEvents() {
-        $('body').on('click', '.ion-android-cart', function (e) {
+        $('body').on('click', '.cart-order', function (e) {
             e.preventDefault();
             var id = $(this).data('id');
             $.ajax({
@@ -15,7 +15,7 @@
                     quantity: 1
                 },
                 success: function (response) {
-                    tedu.notify(resources["AddCartOK"], 'success');
+                    //tedu.notify(resources["AddCartOK"], 'success');
                     loadHeaderCart();
                 }
             });
