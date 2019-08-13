@@ -528,10 +528,18 @@
          });
          $('#cat_toggle > ul > li.has-sub > a,.shop_toggle li.has-sub > a').append('<span class="holder"></span>');
     
-    var name = $(".account_inner p")[0].innerText;
+    var name = $(".account_inner i")[0].innerText;
     if (name != "") {
-        document.getElementById("sign").href = "/logout.html"
+        document.getElementById("sign").href = "/index.html"
         document.getElementById("sign").innerText = "Log out"
+        if (name.length > 20)
+            $(".account_inner i")[0].innerText = name.slice(0, 17) + "...";
+        
     }
-
+    $(".account_inner i ").mouseover(function () {
+        document.getElementById("popup").style.display = "block"
+    });
+    $(".account_inner i ").mouseout(function () {
+        document.getElementById("popup").style.display = "none"
+    });
 })(jQuery);
