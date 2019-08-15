@@ -14,7 +14,7 @@ namespace VegetableStore.AutoMapp
         public ViewModelToDomainMappingProfile()
         {
             CreateMap<ProductViewModel, Product>()
-           .ConstructUsing(c => new Product(c.Name, c.Image, c.Price
+           .ConstructUsing(c => new Product(c.Name, c.CategoryId ,c.Image, c.Price
            , c.Description, c.Content, c.Tags, c.Status));
             CreateMap<BillViewModel, Bill>()
               .ConstructUsing(c => new Bill(c.Id, c.CustomerName, c.CustomerAddress,
@@ -24,6 +24,9 @@ namespace VegetableStore.AutoMapp
             CreateMap<BillDetailViewModel, BillDetail>()
               .ConstructUsing(c => new BillDetail(c.Id, c.BillId, c.ProductId,
               c.Price));
+            CreateMap<ProductCategoryViewModel, ProductCategory>()
+                .ConstructUsing(c => new ProductCategory(c.Name, c.Description, c.ParentId, c.HomeOrder, c.Image, c.HomeFlag,
+                c.SortOrder, c.Status));
         }
         
     }

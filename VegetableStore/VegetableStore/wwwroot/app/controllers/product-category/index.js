@@ -113,7 +113,7 @@
                 e.preventDefault();
                 var id = parseInt($('#hidIdM').val());
                 var name = $('#txtNameM').val();
-                var parentId = $('#ddlCategoryIdM').searchbox('getValue');
+                var parentId = $('#ddlCategoryIdM').combotree('getValue');
                 var description = $('#txtDescM').val();
 
                 var image = $('#txtImageM').val();

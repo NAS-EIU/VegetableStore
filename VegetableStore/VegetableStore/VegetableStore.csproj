@@ -16,6 +16,8 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20190729161301_initlized.cs" />
     <Compile Remove="Data\Migrations\20190729161301_initlized.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190814153625_upcategory.cs" />
+    <Compile Remove="Data\Migrations\20190814153625_upcategory.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +33,7 @@
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\uploaded\images\20190815\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,6 +53,7 @@
     <None Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <None Include="Views\Account\SignedOut.cshtml" />
     <None Include="Views\Shared\Components\Brand\Default.cshtml" />
+    <None Include="Views\Shared\Components\CategoryMenu\Default.cshtml" />
     <None Include="Views\Shared\Components\HeaderCart\Default.cshtml" />
     <None Include="Views\Shared\Components\Pager\Default.cshtml" />
     <None Include="wwwroot\admin-side\js\custom.js" />
@@ -68,7 +72,6 @@
     <None Include="wwwroot\app\shared\base.js" />
     <None Include="wwwroot\app\shared\constants.js" />
     <None Include="wwwroot\app\shared\messages.js" />
-    <None Include="wwwroot\app\shared\tedu.js" />
     <None Include="wwwroot\bundled\site-admin.min.js" />
     <None Include="wwwroot\bundled\site-client.min.js" />
     <None Include="wwwroot\app\controllers\product-category\index.js" />

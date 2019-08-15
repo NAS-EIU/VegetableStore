@@ -15,13 +15,16 @@ namespace VegetableStore.Controllers
         IProductRepository _productRepository;
         IBillRepository _billRepository;
         IConfiguration _configuration;
+        IProductCategoryRepository _productCategoryRepository;
 
-        public ProductController(IProductRepository productRepository, IBillRepository billRepository, IConfiguration configuration)
+        public ProductController(IProductRepository productRepository, IBillRepository billRepository, IConfiguration configuration, IProductCategoryRepository productCategoryRepository)
         {
             _productRepository = productRepository;
             _billRepository = billRepository;
             _configuration = configuration;
+            _productCategoryRepository = productCategoryRepository;
         }
+
         [Route("products.html")]
         public IActionResult Index(int? pageSize, string sortBy, int page = 1)
         {
@@ -57,6 +60,21 @@ namespace VegetableStore.Controllers
             var model = _productRepository.GetById(id);
 
             return new OkObjectResult(model);
+        }
+        [Route("{name}-c.{id}.html")]
+        public IActionResult Catalog(int id, int? pageSize, string sortBy, int page = 1)
+        {
+            var catalog = new ListProductViewModel();
+            
+            if (pageSize == null)
+                pageSize = _configuration.GetValue<int>("PageSize");
+
+            catalog.PageSize = pageSize;
+            catalog.SortType = sortBy;
+            catalog.Data = _productRepository.GetAllPaging( string.Empty, page, pageSize.Value);
+            catalog.Category = _productCategoryRepository.GetById(id);
+
+            return View(catalog);
         }
         [Route("{name}-p.{id}.html", Name = "ProductDetail")]
         public IActionResult Details(int id)

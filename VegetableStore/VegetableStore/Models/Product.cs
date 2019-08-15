@@ -16,9 +16,10 @@ namespace VegetableStore.Models
         {
         }
 
-        public Product(string name, string image, decimal price, string description, string content, string tags, Status status)
+        public Product(string name, int categoryId, string image, decimal price, string description, string content, string tags, Status status)
         {
             Name = name;
+            CategoryId = categoryId;
             Image = image;
             Price = price;
             Description = description;
@@ -27,21 +28,27 @@ namespace VegetableStore.Models
             Status = status;
         }
 
-        public Product(int id ,string name,string image,decimal price,string description,string content,string tags,Status status)
+        public Product(string name, int categoryId, string image, decimal price, string description, string content, string tags, DateTime dateCreated, DateTime dateModified, Status status)
         {
-            Status = status;
-            Id = id;
             Name = name;
+            CategoryId = categoryId;
             Image = image;
             Price = price;
             Description = description;
             Content = content;
             Tags = tags;
+            DateCreated = dateCreated;
+            DateModified = dateModified;
+            Status = status;
         }
+
         [StringLength(255)]
         [Required]
         public string Name { get; set; }
-
+        [ForeignKey("CategoryId")]
+        public virtual ProductCategory ProductCategory { set; get; }
+        [Required]
+        public int CategoryId { get; set; }
         [StringLength(255)]
         public string Image { get; set; }
 

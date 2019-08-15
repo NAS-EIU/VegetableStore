@@ -14,6 +14,7 @@ namespace VegetableStore.AutoMapp
             CreateMap<Function, FunctionViewModel>();
             CreateMap<Bill, BillViewModel>();
             CreateMap<BillDetail, BillDetailViewModel>();
+            CreateMap<ProductCategory, ProductCategoryViewModel>();
         }
     }
 }

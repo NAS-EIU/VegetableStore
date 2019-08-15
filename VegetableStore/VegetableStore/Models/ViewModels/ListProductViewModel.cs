@@ -9,6 +9,7 @@ namespace VegetableStore.Models.ViewModels
 {
     public class ListProductViewModel
     {
+        public ProductCategoryViewModel Category { set; get; }
         public PagedResult<ProductViewModel> Data { get; set; }
         public int? PageSize { set; get; }
         public string SortType { set; get; }

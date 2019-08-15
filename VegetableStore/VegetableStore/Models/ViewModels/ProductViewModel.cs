@@ -25,7 +25,7 @@ namespace VegetableStore.Models.ViewModels
         [Required]
         [DefaultValue(0)]
         public decimal Price { get; set; }
-
+        public ProductCategoryViewModel ProductCategory { set; get; }
         [StringLength(255)]
         public string Description { get; set; }
         [StringLength(255)]

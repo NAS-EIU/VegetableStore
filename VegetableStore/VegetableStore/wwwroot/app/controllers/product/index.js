@@ -1,16 +1,16 @@
 ﻿var productController = function () {
     var quantityManagement = new QuantityManagement();
     var imageManagement = new ImageManagement();
-   // var wholePriceManagement = new WholePriceManagement();
+    var wholePriceManagement = new WholePriceManagement();
 
     this.initialize = function () {
-        //loadCategories();
+        loadCategories();
         loadData();
         registerEvents();
         registerControls();
         quantityManagement.initialize();
         imageManagement.initialize();
-      //  wholePriceManagement.initialize();
+        wholePriceManagement.initialize();
     }
 
     function registerEvents() {
@@ -70,7 +70,7 @@
                 processData: false,
                 data: data,
                 success: function (path) {
-                    $('#txtImage').val(path);
+                    $('#txtImageM').val(path);
                     tedu.notify('Upload image succesful!', 'success');
 
                 },
@@ -173,16 +173,18 @@
             e.preventDefault();
             var id = $('#hidIdM').val();
             var name = $('#txtNameM').val();
+            var categoryId = $('#ddlCategoryIdM').combotree('getValue');
+
             var description = $('#txtDescM').val();
-            var unit = $('#txtUnitM').val();
+
 
             var price = $('#txtPriceM').val();
-
+    
 
             var image = $('#txtImageM').val();
 
             var tags = $('#txtTagM').val();
-          
+ 
 
             var content = CKEDITOR.instances.txtContent.getData();
             var status = $('#ckStatusM').prop('checked') == true ? 1 : 0;
@@ -195,16 +197,18 @@
                 data: {
                     Id: id,
                     Name: name,
+                    CategoryId: categoryId,
                     Image: image,
                     Price: price,
+ 
                     Description: description,
                     Content: content,
                     HomeFlag: showHome,
                     HotFlag: hot,
                     Tags: tags,
-                    Unit: unit,
-                    Status: status
-                  
+   
+                    Status: status,
+   
                 },
                 dataType: "json",
                 beforeSend: function () {
@@ -232,7 +236,7 @@
             $.ajax({
                 type: "POST",
                 url: "/Admin/Product/Delete",
-                data: { id },
+                data: { id: that },
                 dataType: "json",
                 beforeSend: function () {
                     tedu.startLoading();
@@ -266,14 +270,15 @@
                 initTreeDropDownCategory(data.CategoryId);
 
                 $('#txtDescM').val(data.Description);
-                $('#txtUnitM').val(data.Unit);
+  
 
                 $('#txtPriceM').val(data.Price);
-              
+  
 
                 $('#txtImageM').val(data.Image);
 
                 $('#txtTagM').val(data.Tags);
+
 
                 CKEDITOR.instances.txtContent.setData(data.Content);
                 $('#ckStatusM').prop('checked', data.Status == 1);
@@ -308,6 +313,9 @@
                     });
                 });
                 var arr = tedu.unflattern(data);
+                $('#ddlCategoryIdM').combotree({
+                    data: arr
+                });
 
                 $('#ddlCategoryIdImportExcel').combotree({
                     data: arr
@@ -325,15 +333,16 @@
         initTreeDropDownCategory('');
 
         $('#txtDescM').val('');
-        $('#txtUnitM').val('');
+
 
         $('#txtPriceM').val('0');
-        $('#txtOriginalPriceM').val('');
-        $('#txtPromotionPriceM').val('');
+
+
 
         $('#txtImageM').val('');
 
         $('#txtTagM').val('');
+
 
         //CKEDITOR.instances.txtContentM.setData('');
         $('#ckStatusM').prop('checked', true);
@@ -381,6 +390,7 @@
                         Id: item.Id,
                         Name: item.Name,
                         Image: item.Image == null ? '<img src="/admin-side/images/user.png" width=25' : '<img src="' + item.Image + '" width=25 />',
+                        CategoryName: item.ProductCategory.Name,
                         Price: tedu.formatNumber(item.Price, 0),
                         CreatedDate: tedu.dateTimeFormatJson(item.DateCreated),
                         Status: tedu.getStatus(item.Status)

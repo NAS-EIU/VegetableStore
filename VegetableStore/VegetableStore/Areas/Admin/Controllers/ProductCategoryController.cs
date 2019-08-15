@@ -31,37 +31,18 @@ namespace VegetableStore.Areas.Admin.Controllers
         {
             return View();
         }
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            var model = _productRepository.GetAll();
-            return new OkObjectResult(model);
-        }
 
-        [HttpGet]
-        public IActionResult GetAllCategories()
-        {
-            var model = _productCategoryRepository.GetAll();
-            return new OkObjectResult(model);
-        }
 
-        [HttpGet]
-        public IActionResult GetAllPaging( string keyword, int page, int pageSize)
-        {
-            var model = _productRepository.GetAllPaging( keyword, page, pageSize);
-            return new OkObjectResult(model);
-        }
-
+        #region Get Data API
         [HttpGet]
         public IActionResult GetById(int id)
         {
-            var model = _productRepository.GetById(id);
+            var model = _productCategoryRepository.GetById(id);
 
-            return new OkObjectResult(model);
+            return new ObjectResult(model);
         }
-
         [HttpPost]
-        public IActionResult SaveEntity(ProductViewModel productVm)
+        public IActionResult SaveEntity(ProductCategoryViewModel productVm)
         {
             if (!ModelState.IsValid)
             {
@@ -73,19 +54,41 @@ namespace VegetableStore.Areas.Admin.Controllers
                 
                 if (productVm.Id == 0)
                 {
-                    _productRepository.Add(productVm);
+                    _productCategoryRepository.Add(productVm);
                 }
                 else
                 {
-                    _productRepository.Update(productVm);
+                    _productCategoryRepository.Update(productVm);
                 }
-                _productRepository.Save();
+                _productCategoryRepository.Save();
                 return new OkObjectResult(productVm);
+
             }
         }
 
         [HttpPost]
         public IActionResult Delete(int id)
+        {
+            if (id == 0)
+            {
+                return new BadRequestResult();
+            }
+            else
+            {
+                _productCategoryRepository.Delete(id);
+                _productCategoryRepository.Save();
+                return new OkObjectResult(id);
+            }
+        }
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var model = _productCategoryRepository.GetAll();
+            return new OkObjectResult(model);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateParentId(int sourceId, int targetId, Dictionary<int, int> items)
         {
             if (!ModelState.IsValid)
             {
@@ -93,101 +96,42 @@ namespace VegetableStore.Areas.Admin.Controllers
             }
             else
             {
-                _productRepository.Delete(id);
-                _productRepository.Save();
-
-                return new OkObjectResult(id);
-            }
-        }
-        [HttpPost]
-        public IActionResult SaveQuantities(int productId, List<ProductQuantityViewModel> quantities)
-        {
-            _productRepository.AddQuantity(productId, quantities);
-            _productRepository.Save();
-            return new OkObjectResult(quantities);
-        }
-
-        [HttpGet]
-        public IActionResult GetQuantities(int productId)
-        {
-            var quantities = _productRepository.GetQuantities(productId);
-            return new OkObjectResult(quantities);
-        }
-        [HttpPost]
-        public IActionResult SaveImages(int productId, string[] images)
-        {
-            _productRepository.AddImages(productId, images);
-            _productRepository.Save();
-            return new OkObjectResult(images);
-        }
-
-        [HttpGet]
-        public IActionResult GetImages(int productId)
-        {
-            var images = _productRepository.GetImages(productId);
-            return new OkObjectResult(images);
-        }
-
-        
-
-       
-        [HttpPost]
-        public IActionResult ImportExcel(IList<IFormFile> files, int categoryId)
-        {
-            if (files != null && files.Count > 0)
-            {
-                var file = files[0];
-                var filename = ContentDispositionHeaderValue
-                                   .Parse(file.ContentDisposition)
-                                   .FileName
-                                   .Trim('"');
-
-                string folder = _hostingEnvironment.WebRootPath + $@"\uploaded\excels";
-                if (!Directory.Exists(folder))
+                if (sourceId == targetId)
                 {
-                    Directory.CreateDirectory(folder);
+                    return new BadRequestResult();
                 }
-                string filePath = Path.Combine(folder, filename);
-
-                using (FileStream fs = System.IO.File.Create(filePath))
+                else
                 {
-                    file.CopyTo(fs);
-                    fs.Flush();
+                    _productCategoryRepository.UpdateParentId(sourceId, targetId, items);
+                    _productCategoryRepository.Save();
+                    return new OkResult();
                 }
-                _productRepository.ImportExcel(filePath, categoryId);
-                _productRepository.Save();
-                return new OkObjectResult(filePath);
             }
-            return new NoContentResult();
         }
+
         [HttpPost]
-        public IActionResult ExportExcel()
+        public IActionResult ReOrder(int sourceId, int targetId)
         {
-            string sWebRootFolder = _hostingEnvironment.WebRootPath;
-            string directory = Path.Combine(sWebRootFolder, "export-files");
-            if (!Directory.Exists(directory))
+            if (!ModelState.IsValid)
             {
-                Directory.CreateDirectory(directory);
+                return new BadRequestObjectResult(ModelState);
             }
-            string sFileName = $"Product_{DateTime.Now:yyyyMMddhhmmss}.xlsx";
-            string fileUrl = $"{Request.Scheme}://{Request.Host}/export-files/{sFileName}";
-            FileInfo file = new FileInfo(Path.Combine(directory, sFileName));
-            if (file.Exists)
+            else
             {
-                file.Delete();
-                file = new FileInfo(Path.Combine(sWebRootFolder, sFileName));
+                if (sourceId == targetId)
+                {
+                    return new BadRequestResult();
+                }
+                else
+                {
+                    _productCategoryRepository.ReOrder(sourceId, targetId);
+                    _productCategoryRepository.Save();
+                    return new OkResult();
+                }
             }
-            var products = _productRepository.GetAll();
-            using (ExcelPackage package = new ExcelPackage(file))
-            {
-                // add a new worksheet to the empty workbook
-                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Products");
-                worksheet.Cells["A1"].LoadFromCollection(products, true, TableStyles.Light1);
-                worksheet.Cells.AutoFitColumns();
-                package.Save(); //Save the workbook.
-            }
-            return new OkObjectResult(fileUrl);
         }
+
+        #endregion
 
     }
 }

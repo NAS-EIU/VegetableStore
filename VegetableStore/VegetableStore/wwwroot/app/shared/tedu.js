@@ -124,6 +124,7 @@
     unflattern: function (arr) {
         var map = {};
         var roots = [];
+   
         for (var i = 0; i < arr.length; i += 1) {
             var node = arr[i];
             node.children = [];

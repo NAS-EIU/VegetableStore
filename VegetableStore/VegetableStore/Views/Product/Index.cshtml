@@ -1,4 +1,5 @@
 ﻿@model VegetableStore.Models.ViewModels.ListProductViewModel
+
 @{
     ViewData["Title"] = Model.Data.CurrentPage;
     ViewData["MetaKeyword"] = Model.Data.CurrentPage;
@@ -38,48 +39,7 @@
                 <div class="col-lg-3 col-md-8 col-12">
                     <div class="shop_sidebar">
                         <div class="block_categories">
-                            <div class="category_top_menu widget">
-                                <div class="widget_title">
-                                    <h3>categories</h3>
-                                </div>
-                                <ul class="shop_toggle">
-
-                                    <li class="has-sub">
-                                        <a href="#">Fresh Fruit </a>
-                                        <ul class="categorie_sub">
-                                            <li><a href="#">Cucumber</a></li>
-                                            <li><a href="#">Tomato</a></li>
-                                            <li><a href="#">Potato</a></li>
-                                            <li><a href="#">Onion</a></li>
-                                            <li><a href="#">Grocery</a></li>
-                                        </ul>
-
-                                    </li>
-
-                                    <li class="has-sub">
-                                        <a href="#">Flowers </a>
-                                        <ul class="categorie_sub">
-                                            <li><a href="#">Banana</a></li>
-                                            <li><a href="#">Orange</a></li>
-                                            <li><a href="#">Plum</a></li>
-                                            <li><a href="#">Sauces</a></li>
-                                            <li><a href="#">Organics</a></li>
-                                        </ul>
-
-                                    </li>
-
-                                    <li class="has-sub">
-                                        <a href="#">Organics </a>
-                                        <ul class="categorie_sub">
-                                            <li><a href="#">Dryfruits</a></li>
-                                            <li><a href="#">Flowers</a></li>
-                                            <li><a href="#">Organics</a></li>
-                                            <li><a href="#">Freshers</a></li>
-                                            <li><a href="#">Beverages</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
+                            @await Component.InvokeAsync("CategoryMenu")
                         </div>
                         <div class="search_filters_wrapper">
                             <div class="price_filter widget">

@@ -15,6 +15,18 @@ namespace VegetableStore.Models
             Products = new List<Product>();
         }
 
+        public ProductCategory(string name, string description, int? parentId, int? homeOrder, string image, bool? homeFlag, int sortOrder, Status status)
+        {
+            Name = name;
+            Description = description;
+            ParentId = parentId;
+            HomeOrder = homeOrder;
+            Image = image;
+            HomeFlag = homeFlag;
+            SortOrder = sortOrder;
+            Status = status;
+        }
+
         public ProductCategory(string name, string description, int? parentId, int? homeOrder, string image, bool? homeFlag, DateTime dateCreated, DateTime dateModified, int sortOrder, Status status)
         {
             Name = name;

@@ -20,12 +20,13 @@ namespace VegetableStore.Areas.Admin.Controllers
     {
         private IProductRepository _productRepository;        
         private readonly IHostingEnvironment _hostingEnvironment;
+        private IProductCategoryRepository _productCategoryRepository;
 
-        public ProductController(IProductRepository productRepository,            
-            IHostingEnvironment hostingEnvironment)
+        public ProductController(IProductRepository productRepository, IHostingEnvironment hostingEnvironment, IProductCategoryRepository productCategoryRepository)
         {
             _productRepository = productRepository;
             _hostingEnvironment = hostingEnvironment;
+            _productCategoryRepository = productCategoryRepository;
         }
 
         public IActionResult Index()
@@ -33,7 +34,12 @@ namespace VegetableStore.Areas.Admin.Controllers
             return View();
         }
 
-      
+        [HttpGet]
+        public IActionResult GetAllCategories()
+        {
+            var model = _productCategoryRepository.GetAll();
+            return new OkObjectResult(model);
+        }
         [HttpGet]
         public IActionResult GetAll()
         {

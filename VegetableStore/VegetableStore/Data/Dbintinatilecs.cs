@@ -101,21 +101,57 @@ namespace VegetableStore.Data
             }
             if (_context.Products.Count() == 0)
             {
-                _context.Products.AddRange(new List<Product>()
+                //_context.Products.AddRange(new List<Product>()
+                //{
+                //    new Product(){Name="Cà chua",DateCreated=DateTime.Now,Image="/uploaded/images/6.jpg",Price = 1000,Status = Status.Active},
+                //    new Product(){Name="Cam",DateCreated=DateTime.Now,Image="/uploaded/images/3.jpg",Price = 1000,Status = Status.Active},
+                //    new Product(){Name="Nho",DateCreated=DateTime.Now,Image="/uploaded/images/4.jpg",Price = 1000,Status = Status.Active},
+                //    new Product(){Name="Bơ",DateCreated=DateTime.Now,Image="/uploaded/images/7.jpg",Price = 1000,Status = Status.Active},
+                //    new Product(){Name="Chanh",DateCreated=DateTime.Now,Image="/uploaded/images/Lemon.jpg",Price = 1000,Status = Status.Active},
+                //    new Product(){Name="Sầu Riêng",DateCreated=DateTime.Now,Image="/uploaded/images/Durian.jpg",Price = 1000,Status = Status.Active},
+                //    new Product(){Name="Dưa Hấu",DateCreated=DateTime.Now,Image="/uploaded/images/watermelon.jpg",Price = 1000,Status = Status.Active},
+                //    new Product(){Name="Dâu",DateCreated=DateTime.Now,Image="/uploaded/images/strawberry.jpg",Price = 1000,Status = Status.Active},
+                //    new Product(){Name="Việt Quất",DateCreated=DateTime.Now,Image="/uploaded/images/blueberry.jpg",Price = 1000,Status = Status.Active},
+                //    new Product(){Name="Quýt",DateCreated=DateTime.Now,Image="/uploaded/images/tangerines.jpg",Price = 1000,Status = Status.Active},
+                //    new Product(){Name="Xoài",DateCreated=DateTime.Now,Image="/uploaded/images/mango.jpg",Price = 1000,Status = Status.Active},
+                //    new Product(){Name="Trái Thăng Long",DateCreated=DateTime.Now,Image="/uploaded/images/dragon.jpg",Price = 1000,Status = Status.Active}
+                //});
+            }
+            if (_context.ProductCategories.Count() == 0)
+            {
+                List<ProductCategory> listProductCategory = new List<ProductCategory>()
                 {
-                    new Product(){Name="Cà chua",DateCreated=DateTime.Now,Image="/uploaded/images/6.jpg",Price = 1000,Status = Status.Active},
-                    new Product(){Name="Cam",DateCreated=DateTime.Now,Image="/uploaded/images/3.jpg",Price = 1000,Status = Status.Active},
-                    new Product(){Name="Nho",DateCreated=DateTime.Now,Image="/uploaded/images/4.jpg",Price = 1000,Status = Status.Active},
-                    new Product(){Name="Bơ",DateCreated=DateTime.Now,Image="/uploaded/images/7.jpg",Price = 1000,Status = Status.Active},
-                    new Product(){Name="Chanh",DateCreated=DateTime.Now,Image="/uploaded/images/Lemon.jpg",Price = 1000,Status = Status.Active},
-                    new Product(){Name="Sầu Riêng",DateCreated=DateTime.Now,Image="/uploaded/images/Durian.jpg",Price = 1000,Status = Status.Active},
-                    new Product(){Name="Dưa Hấu",DateCreated=DateTime.Now,Image="/uploaded/images/watermelon.jpg",Price = 1000,Status = Status.Active},
-                    new Product(){Name="Dâu",DateCreated=DateTime.Now,Image="/uploaded/images/strawberry.jpg",Price = 1000,Status = Status.Active},
-                    new Product(){Name="Việt Quất",DateCreated=DateTime.Now,Image="/uploaded/images/blueberry.jpg",Price = 1000,Status = Status.Active},
-                    new Product(){Name="Quýt",DateCreated=DateTime.Now,Image="/uploaded/images/tangerines.jpg",Price = 1000,Status = Status.Active},
-                    new Product(){Name="Xoài",DateCreated=DateTime.Now,Image="/uploaded/images/mango.jpg",Price = 1000,Status = Status.Active},
-                    new Product(){Name="Trái Thăng Long",DateCreated=DateTime.Now,Image="/uploaded/images/dragon.jpg",Price = 1000,Status = Status.Active}
-                });
+                    new ProductCategory() { Name="Trái cây theo miền",ParentId = null,Status=Status.Active,SortOrder=0 },
+                    new ProductCategory() { Name="Miền Bắc",ParentId = 1,Status=Status.Active,SortOrder=1,
+                        Products = new List<Product>()
+                        {
+                            new Product(){Name = "Bưởi Đoan Hùng",DateCreated=DateTime.Now,Image="/uploaded/images/buoi-doan-hung (1).jpg",Price = 1000,Status = Status.Active},
+                            new Product(){Name = "Lê Đông Khê",DateCreated=DateTime.Now,Image="/uploaded/images/image.jpeg",Price = 11000,Status = Status.Active},
+                            new Product(){Name = "Na Đồng Bành",DateCreated=DateTime.Now,Image="/uploaded/images/na.jpg",Price = 12000,Status = Status.Active},
+                            new Product(){Name = "Vải Thiều",DateCreated=DateTime.Now,Image="/uploaded/images/vai.jpg",Price = 1000,Status = Status.Active}
+                        
+                        }
+                    },
+                    new ProductCategory() { Name="Miền Tây",ParentId = 1,Status=Status.Active ,SortOrder=2,
+                        Products = new List<Product>()
+                        {
+                            new Product(){Name = "Quả thanh trà",DateCreated=DateTime.Now,Image="/uploaded/images/thanhtra.jpg",Price = 12000,Status = Status.Active},
+                            new Product(){Name = "Sầu riêng Ri6",DateCreated=DateTime.Now,Image="/uploaded/images/saurieng.jpg",Price = 1000,Status = Status.Active},
+                            new Product(){Name = "Vú sữa Lò Rèn",DateCreated=DateTime.Now,Image="/uploaded/images/vu-sua.jpg",Price = 1000,Status = Status.Active},
+                            new Product(){Name = "Nhãn tím Sóc Trăng",DateCreated=DateTime.Now,Image="/uploaded/images/nhan (2).jpg",Price = 1000,Status = Status.Active}
+                        }},
+                    new ProductCategory() { Name="Miền Đông Nam Bộ",ParentId = 1,Status=Status.Active ,SortOrder=3,
+                        Products = new List<Product>()
+                        {
+                            new Product(){Name = "Thanh Long Bình Thuận",DateCreated=DateTime.Now,Image="/uploaded/images/dragon.jpg",Price = 1000,Status = Status.Active},
+                            new Product(){Name = "Sầu Riêng Khánh Sơn",DateCreated=DateTime.Now,Image="/uploaded/images/Durian.jpg",Price = 1000,Status = Status.Active},
+                            new Product(){Name = "Xoài tượng Bình Định",DateCreated=DateTime.Now,Image="/uploaded/images/mango.jpg",Price = 1000,Status = Status.Active},
+                            new Product(){Name = "Dưa hấu Bình Sơn",DateCreated=DateTime.Now,Image="/uploaded/images/watermelon.jpg",Price = 1000,Status = Status.Active}
+                            
+                        }}                    
+
+                };
+                _context.ProductCategories.AddRange(listProductCategory);
             }
             await _context.SaveChangesAsync();
         }

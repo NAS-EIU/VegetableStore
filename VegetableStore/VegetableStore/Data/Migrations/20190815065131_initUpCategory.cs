@@ -4,14 +4,15 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace VegetableStore.Migrations
 {
-    public partial class upcategory : Migration
+    public partial class initUpCategory : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<int>(
-                name: "ProductCategoryId",
+                name: "CategoryId",
                 table: "Products",
-                nullable: true);
+                nullable: false,
+                defaultValue: 0);
 
             migrationBuilder.CreateTable(
                 name: "ProductCategories",
@@ -36,34 +37,34 @@ namespace VegetableStore.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_ProductCategoryId",
+                name: "IX_Products_CategoryId",
                 table: "Products",
-                column: "ProductCategoryId");
+                column: "CategoryId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Products_ProductCategories_ProductCategoryId",
+                name: "FK_Products_ProductCategories_CategoryId",
                 table: "Products",
-                column: "ProductCategoryId",
+                column: "CategoryId",
                 principalTable: "ProductCategories",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                onDelete: ReferentialAction.Cascade);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Products_ProductCategories_ProductCategoryId",
+                name: "FK_Products_ProductCategories_CategoryId",
                 table: "Products");
 
             migrationBuilder.DropTable(
                 name: "ProductCategories");
 
             migrationBuilder.DropIndex(
-                name: "IX_Products_ProductCategoryId",
+                name: "IX_Products_CategoryId",
                 table: "Products");
 
             migrationBuilder.DropColumn(
-                name: "ProductCategoryId",
+                name: "CategoryId",
                 table: "Products");
         }
     }

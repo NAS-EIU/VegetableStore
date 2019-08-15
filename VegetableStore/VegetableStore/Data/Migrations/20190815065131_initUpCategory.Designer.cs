@@ -10,8 +10,8 @@ using VegetableStore.Data;
 namespace VegetableStore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190814153625_upcategory")]
-    partial class upcategory
+    [Migration("20190815065131_initUpCategory")]
+    partial class initUpCategory
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -266,6 +266,8 @@ namespace VegetableStore.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CategoryId");
+
                     b.Property<string>("Content");
 
                     b.Property<DateTime>("DateCreated");
@@ -284,8 +286,6 @@ namespace VegetableStore.Migrations
 
                     b.Property<decimal>("Price");
 
-                    b.Property<int?>("ProductCategoryId");
-
                     b.Property<int>("Status");
 
                     b.Property<string>("Tags")
@@ -293,7 +293,7 @@ namespace VegetableStore.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductCategoryId");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
                 });
@@ -389,9 +389,10 @@ namespace VegetableStore.Migrations
 
             modelBuilder.Entity("VegetableStore.Models.Product", b =>
                 {
-                    b.HasOne("VegetableStore.Models.ProductCategory")
+                    b.HasOne("VegetableStore.Models.ProductCategory", "ProductCategory")
                         .WithMany("Products")
-                        .HasForeignKey("ProductCategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("VegetableStore.Models.ProductImage", b =>
