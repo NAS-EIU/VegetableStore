@@ -1,5 +1,6 @@
 ﻿@inject IViewLocalizer Localizer
 @inject UserManager<AppUser> UserManager
+@inject SignInManager<AppUser> SignInManager
 <header class="header sticky-header">
     <div class="container-fluid">
         <div class="row">
@@ -10,7 +11,7 @@
                         <a href="index.html">
                             <img src="assets/img/logo/logo.png" alt="">
                         </a>
-                        
+
                     </div>
                     <div class="main_menu_inner">
 
@@ -66,7 +67,7 @@
                             </nav>
                         </div>
 
-                        
+
                     </div>
                     <div class="header_right_info d-flex">
                         <div class="search_box">
@@ -80,7 +81,7 @@
                         <vc:header-cart></vc:header-cart>
                         <div class="header_account">
                             <div class="account_inner">
-                                <span id="popup" style="display: none;position: absolute;background-color: lightgrey;top :3px" >@UserManager.GetUserName(User)</span>
+                                <span id="popup" style="display: none;position: absolute;background-color: lightgrey;top :3px">@UserManager.GetUserName(User)</span>
                                 <i>@UserManager.GetUserName(User)</i>
                                 <a href="#"><i class="ion-gear-b"></i></a>
 
@@ -106,7 +107,24 @@
                                         <ul>
                                             <li><a href="my-account.html">my account</a></li>
                                             <li><a href="checkout.html">Checkout</a></li>
-                                            <li><a href="/login.html" id="sign">Sign out</a></li>
+
+                                            @if (SignInManager.IsSignedIn(User))
+                                            {
+                                                <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
+                                                    <ul class="nav navbar-nav navbar-right">
+                                                      
+                                                        <li>
+                                                            <button type="submit" class="btn btn-link navbar-btn navbar-link">Sign out</button>
+                                                        </li>
+                                                    </ul>
+                                                </form>
+                                            }
+                                            else
+                                            {
+                                                <ul class="nav navbar-nav navbar-right">
+                                                    <li><a href="/login.html">Sign in</a></li>
+                                                </ul>
+                                            }
                                         </ul>
                                     </div>
                                 </div>
@@ -117,5 +135,5 @@
             </div>
         </div>
     </div>
-    
+
 </header>

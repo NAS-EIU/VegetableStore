@@ -530,8 +530,7 @@
     
     var name = $(".account_inner i")[0].innerText;
     if (name != "") {
-        document.getElementById("sign").href = "/index.html"
-        document.getElementById("sign").innerText = "Log out"
+     
         if (name.length > 20)
             $(".account_inner i")[0].innerText = name.slice(0, 17) + "...";
         
