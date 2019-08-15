@@ -11,7 +11,7 @@ namespace VegetableStore.Models.ViewModels
 
         public bool Available { set; get; }
 
-        public List<ProductViewModel> RelatedProducts { get; set; }
+        public List<ProductViewModel> HotProducts { get; set; }
 
         public List<ProductImageViewModel> ProductImages { set; get; }
 

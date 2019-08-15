@@ -58,5 +58,15 @@ namespace VegetableStore.Controllers
 
             return new OkObjectResult(model);
         }
+        [Route("{name}-p.{id}.html", Name = "ProductDetail")]
+        public IActionResult Details(int id)
+        {
+            ViewData["BodyClass"] = "product-page";
+            var model = new DetailViewModel();
+            model.Product = _productRepository.GetById(id);
+            model.HotProducts = _productRepository.GetHotProduct(4);
+             
+            return View(model);
+        }
     }
 }

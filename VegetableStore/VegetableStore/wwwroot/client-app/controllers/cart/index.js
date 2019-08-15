@@ -4,8 +4,7 @@
         sizes: [],
     }
     this.initialize = function () {
-    $.when(loadColors(),
-            loadSizes())
+    $.when()
     .then(function(){
             loadData();
             });
@@ -54,62 +53,7 @@
 
         });
 
-        $('body').on('change', '.ddlColorId', function (e) {
-            e.preventDefault();
-            var id = parseInt($(this).closest('tr').data('id'));
-            var colorId = $(this).val();
-            var q = $(this).closest('tr').find('.txtQuantity').first().val();
-            var sizeId = $(this).closest('tr').find('.ddlSizeId').first().val();
-
-            if (q > 0) {
-                $.ajax({
-                    url: '/Cart/UpdateCart',
-                    type: 'post',
-                    data: {
-                        productId: id,
-                        quantity: q,
-                        color:colorId,
-                        size:sizeId
-                    },
-                    success: function () {
-                        tedu.notify('Update quantity is successful', 'success');
-                        loadHeaderCart();
-                        loadData();
-                    }
-                });
-            } else {
-                tedu.notify('Your quantity is invalid', 'error');
-            }
-
-        });
-
-        $('body').on('change', '.ddlSizeId', function (e) {
-            e.preventDefault();
-            var id = parseInt($(this).closest('tr').data('id'));
-            var sizeId = $(this).val();
-            var q = parseInt($(this).closest('tr').find('.txtQuantity').first().val());
-            var colorId = parseInt($(this).closest('tr').find('.ddlColorId').first().val());
-            if (q > 0) {
-                $.ajax({
-                    url: '/Cart/UpdateCart',
-                    type: 'post',
-                    data: {
-                        productId: id,
-                        quantity: q,
-                        color:colorId,
-                        size:sizeId
-                    },
-                    success: function () {
-                        tedu.notify('Update quantity is successful', 'success');
-                        loadHeaderCart();
-                        loadData();
-                    }
-                });
-            } else {
-                tedu.notify('Your quantity is invalid', 'error');
-            }
-
-        });
+      
         $('#btnClearAll').on('click', function (e) {
             e.preventDefault();
             $.ajax({
@@ -192,9 +136,7 @@
                             ProductName: item.Product.Name,
                             Image: item.Product.Image,
                             Price: tedu.formatNumber(item.Price, 0),
-                            Quantity: item.Quantity,
-                            Colors: getColorOptions(item.Color == null? 0: item.Color.Id),
-                            Sizes:getSizeOptions(item.Size == null? "": item.Size.Id),
+                            Quantity: item.Quantity,                       
                             Amount: tedu.formatNumber(item.Price * item.Quantity, 0),
                             Url: '/' + item.Product.SeoAlias + "-p." + item.Product.Id + ".html"
                         });

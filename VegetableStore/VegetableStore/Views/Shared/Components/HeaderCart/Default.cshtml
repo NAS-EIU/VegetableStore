@@ -19,6 +19,7 @@
             {
                 @foreach (var item in Model)
                 {
+                    var url = "/" + item.Product.Name + "-" + "p." + item.Product.Id + ".html";
                     <div class="mini_cart_item">
                         <div class="mini_cart_img">
                             <a href="#">
@@ -27,7 +28,7 @@
                             </a>
                         </div>
                         <div class="cart_info">
-                            <h5><a href="product-details.html">@item.Product.Name</a></h5>
+                            <h5><a href="@url">@item.Product.Name</a></h5>
                             <span class="cart_price">$@item.Product.Price</span>
                         </div>
                         <div class="cart_remove">

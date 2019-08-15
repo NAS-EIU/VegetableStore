@@ -60,6 +60,24 @@ namespace VegetableStore.Repositories
         {
             return Mapper.Map<Product, ProductViewModel>(_productRepository.FindById(id));
         }
+        public List<ProductViewModel> GetRelatedProducts(int id, int top)
+        {
+            var product = _productRepository.FindById(id);
+            return _productRepository.FindAll(x => x.Status == Status.Active
+                && x.Id != id )
+            .OrderByDescending(x => x.DateCreated)
+            .Take(top)
+            .ProjectTo<ProductViewModel>()
+            .ToList();
+        }
+
+        public List<ProductViewModel> GetUpsellProducts(int top)
+        {
+            return _productRepository.FindAll(x => x.Price != null)
+               .OrderByDescending(x => x.DateModified)
+               .Take(top)
+               .ProjectTo<ProductViewModel>().ToList();
+        }
         public void ImportExcel(string filePath, int categoryId)
         {
             using (var package = new ExcelPackage(new FileInfo(filePath)))

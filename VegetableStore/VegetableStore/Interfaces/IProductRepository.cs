@@ -38,6 +38,8 @@ namespace VegetableStore.Interfaces
 
         List<ProductViewModel> GetHotProduct(int top);   
         bool CheckAvailability(int productId);
+        List<ProductViewModel> GetRelatedProducts(int id, int top);
 
+        List<ProductViewModel> GetUpsellProducts(int top);
     }
 }

@@ -94,19 +94,20 @@
             <div class="features_product_active owl-carousel">
                 @foreach (var item in Model.HotProducts)
                 {
+                    var url = "/" + item.Name + "-" + "p." + item.Id + ".html";
                     <div class="col-lg-2">
                         <div class="single__product">
                             <div class="single_product__inner">
                                 <span class="new_badge">new</span>
                                 <div class="product_img">
-                                    <a href="#">
+                                    <a href="@url">
                                         <img src="@item.Image" alt="">
                                     </a>
                                 </div>
                                 <div class="product__content text-center">
                                     <div class="produc_desc_info">
                                         <div class="product_title">
-                                            <h4><a href="product-details.html">@item.Name</a></h4>
+                                            <h4><a href="@url">@item.Name</a></h4>
                                         </div>
                                         <div class="product_price">
                                             <p>$@item.Price</p>
@@ -116,7 +117,7 @@
                                         <ul>
                                             <li><a href="#" class="cart-order" data-id="@item.Id"><i class="ion-android-cart"></i></a></li>
                                             <li><a class="cart-fore" href="#" data-id="@item.Id" data-toggle="modal" data-target="#my_modal" title="Quick View"><i class="ion-android-open"></i></a></li>
-                                            <li><a href="product-details.html" data-id="@item.Id"><i class="ion-clipboard"></i></a></li>
+                                            <li><a href="@url" data-id="@item.Id"><i class="ion-clipboard"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -234,6 +235,7 @@
                     <div class="features_product_active owl-carousel">
                         @foreach (var item in Model.TopSellProducts)
                         {
+                            var url = "/" + item.Name + "-" + "p." + item.Id + ".html";
                             <div class="col-lg-2">
                                 <div class="single__product">
                                     <div class="single_product__inner">
@@ -256,7 +258,7 @@
                                                 <ul>
                                                     <li><a href="#"class="cart-order"data-id="@item.Id"><i class="ion-android-cart" ></i></a></li>
                                                     <li><a class="cart-fore" href="#" data-id="@item.Id" data-toggle="modal" data-target="#my_modal" title="Quick View"><i class="ion-android-open"></i></a></li>
-                                                    <li><a href="product-details.html" data-id="@item.Id"><i class="ion-clipboard"></i></a></li>
+                                                    <li><a href="@url" data-id="@item.Id"><i class="ion-clipboard"></i></a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -322,15 +324,16 @@
                 <div class=" features_product_active best_selling_product_list owl-carousel">
                     @foreach (var item in Model.HotProducts)
                     {
+                        var url = "/" + item.Name + "-" + "p." + item.Id + ".html";
                         <div class="best_selling_product">
                             <div class=" single_small_product mb-30">
                                 <div class="product_thumb">
-                                    <a href="#">
+                                    <a href="@url">
                                         <img src="@item.Image" alt="">
                                     </a>
                                 </div>
                                 <div class="product_content">
-                                    <h4><a href="product-details.html">@item.Name</a></h4>
+                                    <h4><a href="@url">@item.Name</a></h4>
                                     <div class="product_ratting">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>

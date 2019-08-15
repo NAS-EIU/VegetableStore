@@ -1,11 +1,17 @@
 ﻿@model SearchResultViewModel
 @{
-    ViewData["Title"] = "Search results of " + (Model.Data.CurrentPage ==1 ? Model.Keyword : Model.Keyword + " - Page " + Model.Data.CurrentPage);
+    ViewData["Title"] = "Search results of " + (Model.Data.CurrentPage == 1 ? Model.Keyword : Model.Keyword + " - Page " + Model.Data.CurrentPage);
     ViewData["MetaKeyword"] = "Search results of " + (Model.Data.CurrentPage == 1 ? Model.Keyword : Model.Keyword + " - Page " + Model.Data.CurrentPage);
     ViewData["MetaDescription"] = "Search results of " + (Model.Data.CurrentPage == 1 ? Model.Keyword : Model.Keyword + " - Page " + Model.Data.CurrentPage);
 }
 <!-- Breadcrumbs -->
-
+@section Scripts{
+    <script src="~/client-app/controllers/product/details.js" asp-append-version="true"></script>
+    <script>
+        var ProductDetail = new ProductDetailController();
+        ProductDetail.initialize();
+    </script>
+}
 <div class="breadcrumbs">
     <div class="container">
         <div class="row">
@@ -71,13 +77,14 @@
                                 <div class="row">
                                     @foreach (var item in Model.Data.Results)
                                     {
+                                        var url = "/" + item.Name + "-" + "p." + item.Id + ".html";
                                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                                             <div class="single__product">
                                                 <div class="single_product__inner">
                                                     <span class="new_badge">new</span>
                                                     <span class="discount_price">-5%</span>
                                                     <div class="product_img">
-                                                        <a href="#">
+                                                        <a href="@url" title="@item.Name">
                                                             <img src="@item.Image" alt="">
                                                         </a>
                                                     </div>
@@ -92,10 +99,10 @@
                                                         </div>
                                                         <div class="product__hover">
                                                             <ul>
-                                                                <li><a href="#"><i class="ion-android-cart"></i></a></li>
-                                                                <li><a class="cart-fore" href="#" data-toggle="modal" data-target="#my_modal" title="Quick View"><i class="ion-android-open"></i></a></li>
+                                                                <li><a href="#" class="cart-order"><i class="ion-android-cart"></i></a></li>
+                                                                <li><a class="cart-fore" href="#"data-id="@item.Id" data-toggle="modal" data-target="#my_modal" title="Quick View"><i class="ion-android-open"></i></a></li>
 
-                                                                <li><a href="product-details.html"><i class="ion-clipboard" data-id="@item.Id"></i></a></li>
+                                                                <li><a href="/@url" data-id="@item.Id"><i class="ion-clipboard"></i></a></li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -144,7 +151,7 @@
                                                         </div>
                                                         <div class="product_cart_icone">
                                                             <ul>
-                                                                <li><a href="#"><i class="ion-android-cart"></i></a></li>
+                                                                <li><a href="#"data-id="@item.Id"><i class="ion-android-cart"></i></a></li>
                                                                 <li><a class="cart-fore" href="#" data-id="@item.Id" data-toggle="modal" data-target="#my_modal" title="Quick View"><i class="ion-android-open"></i></a></li>
 
                                                                 <li><a href="product-details.html"><i class="ion-clipboard" data-id="@item.Id"></i></a></li>
@@ -171,9 +178,8 @@
     <!--Brand logo start-->
     <!--Brand logo end-->
     <!-- footer start -->
-
-    @Html.Partial("_modalView.cshtml")
     <!-- footer end -->
 
 </div>
 <!-- Main Container End -->
+@Html.Partial("_modalView.cshtml")

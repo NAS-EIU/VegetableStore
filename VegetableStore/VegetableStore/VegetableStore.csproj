@@ -34,6 +34,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Areas\Admin\Views\ProductCategory\Index.cshtml" />
+    <None Include="Areas\Admin\Views\ProductCategory\_AddEditModal.cshtml" />
     <None Include="Views\Account\AccessDenied.cshtml" />
     <None Include="Views\Account\ConfirmEmail.cshtml" />
     <None Include="Views\Account\ExternalLogin.cshtml" />
@@ -69,6 +71,7 @@
     <None Include="wwwroot\app\shared\tedu.js" />
     <None Include="wwwroot\bundled\site-admin.min.js" />
     <None Include="wwwroot\bundled\site-client.min.js" />
+    <None Include="wwwroot\app\controllers\product-category\index.js" />
     <None Include="wwwroot\lib\animate.css\gulpfile.js" />
     <None Include="wwwroot\lib\animate.css\LICENSE" />
     <None Include="wwwroot\lib\DateJS\build\date-af-ZA.js" />
