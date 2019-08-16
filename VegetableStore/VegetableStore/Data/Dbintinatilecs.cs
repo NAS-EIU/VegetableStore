@@ -146,8 +146,8 @@ namespace VegetableStore.Data
                             new Product(){Name = "Sầu Riêng Khánh Sơn",DateCreated=DateTime.Now,Image="/uploaded/images/Durian.jpg",Price = 1000,Status = Status.Active,Month=10},
                             new Product(){Name = "Xoài tượng Bình Định",DateCreated=DateTime.Now,Image="/uploaded/images/mango.jpg",Price = 1000,Status = Status.Active,Month=11},
                             new Product(){Name = "Dưa hấu Bình Sơn",DateCreated=DateTime.Now,Image="/uploaded/images/watermelon.jpg",Price = 1000,Status = Status.Active,Month=12}                            
-                        }}                    
-
+                        }},
+                    new ProductCategory() { Name="Trái cây theo mùa",ParentId = null,Status=Status.Active,SortOrder=0 }
                 };
                 _context.ProductCategories.AddRange(listProductCategory);
             }
