@@ -15,7 +15,7 @@
                     <ul class="categorie_sub">
                         @foreach (var subItem in Model.Where(x => x.ParentId == item.Id))
                         {
-                            <li><a href="/@subItem.Name-c.@(subItem.Id).html">@item.Name</a></li>
+                            <li><a href="/@subItem.Name-c.@(subItem.Id).html">@subItem.Name</a></li>
                         }
                     </ul>
                 </li>
