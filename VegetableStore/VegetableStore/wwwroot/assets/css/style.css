@@ -75,14 +75,6 @@
 .main_menu_inner .menu nav > ul > li {
   padding: 23px 0;
 }
-input[type="radio"] {
-    cursor: pointer;
-    height: inherit;
-    left: 3px;
-    position: absolute;
-    top: 13px;
-    width: 20px;
-}
 .menu nav > ul > li > a{
     background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
     color: #363f4d;

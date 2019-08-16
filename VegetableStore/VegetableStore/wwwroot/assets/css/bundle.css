@@ -225,26 +225,23 @@ textarea {
          button
 *************************/
 .button {
-    background-color: #f8f9fa;
-    border: 1px solid #9c9c9c;
-    border-radius: 0px;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    color: #9c9c9c;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.4px;
-    overflow: hidden;
-    padding: 12px 30px;
-    position: relative;
-    text-transform: uppercase;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid #9c9c9c;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  color: #9c9c9c;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  overflow: hidden;
+  padding: 12px 30px;
+  position: relative;
+  text-transform: uppercase;
 }
-    .button:hover {
-        border: 1px solid #78a206;
-        color: #78a206
-    }
+.button:hover{border:1px solid #fff;color:#fff}
 
 
 
