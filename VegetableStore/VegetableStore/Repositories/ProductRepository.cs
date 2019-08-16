@@ -108,12 +108,14 @@ namespace VegetableStore.Repositories
                 }
             }
         }
-        public PagedResult<ProductViewModel> GetAllPaging(string keyword, int page, int pageSize)
+        public PagedResult<ProductViewModel> GetAllPaging(int? categoryId,string keyword, int page, int pageSize)
         {
             var query = _productRepository.FindAll(x => x.Status == Status.Active);
             if (!string.IsNullOrEmpty(keyword))
                 query = query.Where(x => x.Name.Contains(keyword));
-            
+            if (categoryId.HasValue)
+                query = query.Where(x => x.CategoryId == categoryId.Value);
+
             int totalRow = query.Count();
 
             query = query.OrderByDescending(x => x.DateCreated)

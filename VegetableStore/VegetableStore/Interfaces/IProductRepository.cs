@@ -11,7 +11,7 @@ namespace VegetableStore.Interfaces
     {
         List<ProductViewModel> GetAll();
 
-        PagedResult<ProductViewModel> GetAllPaging(string keyword, int page, int pageSize);
+        PagedResult<ProductViewModel> GetAllPaging(int? categoryId,string keyword, int page, int pageSize);
 
         ProductViewModel Add(ProductViewModel product);
 

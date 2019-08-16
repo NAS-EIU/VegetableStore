@@ -33,7 +33,7 @@ namespace VegetableStore.Controllers
                 pageSize = _configuration.GetValue<int>("PageSize");
             products.PageSize = pageSize;
             products.SortType = sortBy;
-            products.Data = _productRepository.GetAllPaging("", page, pageSize.Value);
+            products.Data = _productRepository.GetAllPaging(null,"", page, pageSize.Value);
             return View(products);
         }
         [Route("search.html")]
@@ -47,7 +47,7 @@ namespace VegetableStore.Controllers
 
                 result.PageSize = pageSize;
                 result.SortType = sortBy;
-                result.Data = _productRepository.GetAllPaging(keyword, page, pageSize.Value);
+                result.Data = _productRepository.GetAllPaging(null,keyword, page, pageSize.Value);
                 result.Keyword = keyword;
 
                 return View(result);
@@ -71,7 +71,7 @@ namespace VegetableStore.Controllers
 
             catalog.PageSize = pageSize;
             catalog.SortType = sortBy;
-            catalog.Data = _productRepository.GetAllPaging( string.Empty, page, pageSize.Value);
+            catalog.Data = _productRepository.GetAllPaging(id, string.Empty, page, pageSize.Value);
             catalog.Category = _productCategoryRepository.GetById(id);
 
             return View(catalog);
