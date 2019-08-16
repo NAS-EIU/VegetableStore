@@ -278,6 +278,8 @@ namespace VegetableStore.Migrations
                     b.Property<string>("Image")
                         .HasMaxLength(255);
 
+                    b.Property<int>("Month");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255);

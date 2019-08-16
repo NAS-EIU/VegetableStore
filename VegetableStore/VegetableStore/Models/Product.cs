@@ -28,7 +28,20 @@ namespace VegetableStore.Models
             Status = status;
         }
 
-        public Product(string name, int categoryId, string image, decimal price, string description, string content, string tags, DateTime dateCreated, DateTime dateModified, Status status)
+        public Product(string name, int categoryId, string image, decimal price, int month, string description, string content, string tags, Status status)
+        {
+            Name = name;
+            CategoryId = categoryId;
+            Image = image;
+            Price = price;
+            Month = month;
+            Description = description;
+            Content = content;
+            Tags = tags;
+            Status = status;
+        }
+
+        public Product(string name, int categoryId, string image, int month,decimal price, string description, string content, string tags, DateTime dateCreated, DateTime dateModified, Status status)
         {
             Name = name;
             CategoryId = categoryId;
@@ -40,6 +53,7 @@ namespace VegetableStore.Models
             DateCreated = dateCreated;
             DateModified = dateModified;
             Status = status;
+            Month = month;
         }
 
         [StringLength(255)]
@@ -48,6 +62,7 @@ namespace VegetableStore.Models
         [ForeignKey("CategoryId")]
         public virtual ProductCategory ProductCategory { set; get; }
         [Required]
+        public int Month { get; set; }
         public int CategoryId { get; set; }
         [StringLength(255)]
         public string Image { get; set; }
@@ -59,7 +74,7 @@ namespace VegetableStore.Models
         public string Description { get; set; }
 
         public string Content { get; set; }
-
+        
         [StringLength(255)]
         public string Tags { get; set; }        
         public DateTime DateCreated { set; get; }

@@ -10,8 +10,8 @@ using VegetableStore.Data;
 namespace VegetableStore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190815065131_initUpCategory")]
-    partial class initUpCategory
+    [Migration("20190816060747_initUpdate")]
+    partial class initUpdate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -279,6 +279,8 @@ namespace VegetableStore.Migrations
 
                     b.Property<string>("Image")
                         .HasMaxLength(255);
+
+                    b.Property<int>("Month");
 
                     b.Property<string>("Name")
                         .IsRequired()

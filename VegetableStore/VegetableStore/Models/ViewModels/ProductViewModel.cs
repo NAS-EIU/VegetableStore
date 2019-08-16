@@ -21,7 +21,7 @@ namespace VegetableStore.Models.ViewModels
 
         [StringLength(255)]
         public string Image { get; set; }
-
+        public int Month { get; set; }
         [Required]
         [DefaultValue(0)]
         public decimal Price { get; set; }

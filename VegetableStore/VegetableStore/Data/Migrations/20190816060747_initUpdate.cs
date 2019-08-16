@@ -4,12 +4,18 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace VegetableStore.Migrations
 {
-    public partial class initUpCategory : Migration
+    public partial class initUpdate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<int>(
                 name: "CategoryId",
+                table: "Products",
+                nullable: false,
+                defaultValue: 0);
+
+            migrationBuilder.AddColumn<int>(
+                name: "Month",
                 table: "Products",
                 nullable: false,
                 defaultValue: 0);
@@ -65,6 +71,10 @@ namespace VegetableStore.Migrations
 
             migrationBuilder.DropColumn(
                 name: "CategoryId",
+                table: "Products");
+
+            migrationBuilder.DropColumn(
+                name: "Month",
                 table: "Products");
         }
     }

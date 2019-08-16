@@ -180,7 +180,7 @@
 
             var price = $('#txtPriceM').val();
     
-
+            var month = $('#txtMonth').val();
             var image = $('#txtImageM').val();
 
             var tags = $('#txtTagM').val();
@@ -200,7 +200,7 @@
                     CategoryId: categoryId,
                     Image: image,
                     Price: price,
- 
+                    Month: month,
                     Description: description,
                     Content: content,
                     HomeFlag: showHome,
@@ -273,7 +273,7 @@
   
 
                 $('#txtPriceM').val(data.Price);
-  
+                $('#txtMonth').val(data.Month);
 
                 $('#txtImageM').val(data.Image);
 
@@ -331,19 +331,10 @@
         $('#hidIdM').val(0);
         $('#txtNameM').val('');
         initTreeDropDownCategory('');
-
         $('#txtDescM').val('');
-
-
         $('#txtPriceM').val('0');
-
-
-
         $('#txtImageM').val('');
-
         $('#txtTagM').val('');
-
-
         //CKEDITOR.instances.txtContentM.setData('');
         $('#ckStatusM').prop('checked', true);
         $('#ckHotM').prop('checked', false);
@@ -389,6 +380,7 @@
                     render += Mustache.render(template, {
                         Id: item.Id,
                         Name: item.Name,
+                        Month: item.Month,
                         Image: item.Image == null ? '<img src="/admin-side/images/user.png" width=25' : '<img src="' + item.Image + '" width=25 />',
                         CategoryName: item.ProductCategory.Name,
                         Price: tedu.formatNumber(item.Price, 0),
