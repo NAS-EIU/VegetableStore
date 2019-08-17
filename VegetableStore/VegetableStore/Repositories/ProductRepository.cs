@@ -56,6 +56,7 @@ namespace VegetableStore.Repositories
         {
             return _productRepository.FindAll().ProjectTo<ProductViewModel>().ToList();
         }
+      
         public ProductViewModel GetById(int id)
         {
             return Mapper.Map<Product, ProductViewModel>(_productRepository.FindById(id));
@@ -115,6 +116,35 @@ namespace VegetableStore.Repositories
                 query = query.Where(x => x.Name.Contains(keyword));
             if (categoryId.HasValue)
                 query = query.Where(x => x.CategoryId == categoryId.Value);
+
+            int totalRow = query.Count();
+
+            query = query.OrderByDescending(x => x.DateCreated)
+                .Skip((page - 1) * pageSize).Take(pageSize);
+
+            var data = query.ProjectTo<ProductViewModel>().ToList();
+
+            var paginationSet = new PagedResult<ProductViewModel>()
+            {
+                Results = data,
+                CurrentPage = page,
+                RowCount = totalRow,
+                PageSize = pageSize
+            };
+            return paginationSet;
+        }
+
+        public PagedResult<ProductViewModel> GetAllByMonth(int? categoryId, int month, int page, int pageSize)
+        {
+            month = DateTime.Today.Month;
+            var query = _productRepository.FindAll(x => x.Status == Status.Active);
+            if (month < 4)
+                query = query.Where(x => x.Month < 4);
+            else if (month < 7)
+                query = query.Where(x => x.Month < 7 && x.Month > 3);
+            else if (month < 10)
+                query = query.Where(x => x.Month < 10 && x.Month > 6);
+            else query = query.Where(x => x.Month > 9);
 
             int totalRow = query.Count();
 

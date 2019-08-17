@@ -33,12 +33,12 @@ namespace VegetableStore.Controllers
                 pageSize = _configuration.GetValue<int>("PageSize");
             products.PageSize = pageSize;
             products.SortType = sortBy;
-            products.Data = _productRepository.GetAllPaging(null,"", page, pageSize.Value);
+            products.Data = _productRepository.GetAllPaging(null, "", page, pageSize.Value);
             return View(products);
         }
         [Route("search.html")]
         public IActionResult Search(string keyword, int? pageSize, string sortBy, int page = 1)
-        {           
+        {
             if (keyword != "")
             {
                 var result = new SearchResultViewModel();
@@ -47,7 +47,7 @@ namespace VegetableStore.Controllers
 
                 result.PageSize = pageSize;
                 result.SortType = sortBy;
-                result.Data = _productRepository.GetAllPaging(null,keyword, page, pageSize.Value);
+                result.Data = _productRepository.GetAllPaging(null, keyword, page, pageSize.Value);
                 result.Keyword = keyword;
 
                 return View(result);
@@ -65,17 +65,21 @@ namespace VegetableStore.Controllers
         public IActionResult Catalog(int id, int? pageSize, string sortBy, int page = 1)
         {
             var catalog = new ListProductViewModel();
-            
+
             if (pageSize == null)
                 pageSize = _configuration.GetValue<int>("PageSize");
 
             catalog.PageSize = pageSize;
             catalog.SortType = sortBy;
-            catalog.Data = _productRepository.GetAllPaging(id, string.Empty, page, pageSize.Value);
+            if (id == 5)
+                catalog.Data = _productRepository.GetAllByMonth(id, 0, page, pageSize.Value);
+            else
+                catalog.Data = _productRepository.GetAllPaging(id, string.Empty, page, pageSize.Value);
             catalog.Category = _productCategoryRepository.GetById(id);
 
             return View(catalog);
         }
+
         [Route("{name}-p.{id}.html", Name = "ProductDetail")]
         public IActionResult Details(int id)
         {
@@ -83,7 +87,7 @@ namespace VegetableStore.Controllers
             var model = new DetailViewModel();
             model.Product = _productRepository.GetById(id);
             model.HotProducts = _productRepository.GetHotProduct(4);
-             
+
             return View(model);
         }
     }
