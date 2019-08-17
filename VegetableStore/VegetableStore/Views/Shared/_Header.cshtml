@@ -19,14 +19,14 @@
                             <nav>
                                 <ul>
                                     <li class="active">
-                                        <a href="/">Home</a>
+                                        <a href="/">Trang chủ</a>
                                     </li>
                                     <li><a href="about.html">about us </a> </li>
-                                    <li><a href="/products.html">shop</a>  </li>
+                                    <li><a href="/products.html">Mua sắm</a>  </li>
                                     <li>
-                                        <a href="blog.html">Blog </a>
+                                        <a href="blog.html">Blog</a>
                                     </li>
-                                    <li class="mega_parent">
+                                    @*<li class="mega_parent">
                                         <a href="#">Pages <i class="fa fa-angle-down"></i></a>
                                         <ul class="mega_menu">
                                             <li class="mega_item">
@@ -61,8 +61,7 @@
                                                 </ul>
                                             </li>
                                         </ul>
-                                    </li>
-                                    <li><a href="#">vegetable</a></li>
+                                    </li>*@
                                 </ul>
                             </nav>
                         </div>
@@ -73,7 +72,7 @@
                         <div class="search_box">
                             <div class="search_inner">
                                 <form method="get" action="/search.html">
-                                    <input type="text" placeholder="Search our catalog" name="keyword">
+                                    <input type="text" placeholder="Tìm kiếm ..." name="keyword">
                                     <button class="btn-search" type="submit"><i class="ion-ios-search"></i></button>
                                 </form>
                             </div>
@@ -82,7 +81,7 @@
                         <div class="header_account">
                             <div class="account_inner">
                                 @*<span id="popup" style="display: none;position: absolute;background-color: lightgrey;top :3px">@UserManager.GetUserName(User)</span>*@
-                                <i title="">@UserManager.GetUserName(User)</i>
+                                <i title="@UserManager.GetUserName(User)">@UserManager.GetUserName(User)</i>
                                 <a href="#"><i class="ion-gear-b"></i></a>
 
                             </div>
@@ -92,7 +91,7 @@
                                         <ul>
                                             <li><a href="#"><img src="assets/img/1.jpg" alt="English"><span class="expand-more">English</span></a></li>
 
-                                            <li><a href="#"><img src="assets/img/banner/frances2.jpg" alt="Language"><span class="expand-more">Français</span> </a></li>
+                                            <li><a href="#"><img src="assets/img/banner/frances2.jpg" alt="Language"><span class="expand-more">Tiếng Việt</span> </a></li>
 
                                         </ul>
 
@@ -100,13 +99,13 @@
                                     <div class="currency-selector-wrapper">
                                         <ul>
                                             <li><a href="#">EUR $</a></li>
-                                            <li><a href="#">USD $</a></li>
+                                            <li><a href="#">VND $</a></li>
                                         </ul>
                                     </div>
                                     <div class="user_info_top">
                                         <ul>
-                                            <li><a href="my-account.html">my account</a></li>
-                                            <li><a href="checkout.html">Checkout</a></li>
+                                            <li><a href="my-account.html">@UserManager.GetUserName(User)</a></li>
+                                            <li><a href="checkout.html">Thanh toán</a></li>
 
                                             @if (SignInManager.IsSignedIn(User))
                                             {
@@ -114,7 +113,7 @@
                                                     <ul class="nav navbar-nav navbar-right">
                                                       
                                                         <li>
-                                                            <button type="submit" class="btn btn-link navbar-btn navbar-link">Sign out</button>
+                                                            <button type="submit" class="btn btn-link navbar-btn navbar-link">Đăng xuất</button>
                                                         </li>
                                                     </ul>
                                                 </form>
@@ -122,7 +121,7 @@
                                             else
                                             {
                                                 <ul class="nav navbar-nav navbar-right">
-                                                    <li><a href="/login.html">Sign in</a></li>
+                                                    <li><a href="/login.html">Đăng nhập</a></li>
                                                 </ul>
                                             }
                                         </ul>
