@@ -19,7 +19,7 @@
     <div class="row align-items-center">
         <div class="col-lg-4 col-md-6 col-sm-6">
             <div class="total_item_shop">
-                Showing @Model.FirstRowOnPage-@Model.LastRowOnPage of @Model.RowCount item(s)
+                Sản phẩm @Model.FirstRowOnPage-@Model.LastRowOnPage trong @Model.RowCount sản phẩm
             </div>
         </div>
         <div class="col-lg-6 offset-lg-2 col-md-6 col-sm-6">
@@ -29,11 +29,11 @@
                 <ul>
                     @if (Model.CurrentPage == startIndex)
                     {
-                        <li class="prev"><a href="#"><i class="zmdi zmdi-chevron-left"></i> Previous</a></li>
+                        <li class="prev"><a href="#"><i class="zmdi zmdi-chevron-left"></i> Trước</a></li>
                     }
                     else
                     {
-                        <li class="prev"><a href="@urlTemplate.Replace("{0}", (Model.CurrentPage-1).ToString())"><i class="zmdi zmdi-chevron-left"></i>Previous</a></li>
+                        <li class="prev"><a href="@urlTemplate.Replace("{0}", (Model.CurrentPage-1).ToString())"><i class="zmdi zmdi-chevron-left"></i>Trước</a></li>
 
                     }
                     @for (var i = startIndex; i <= finishIndex; i++)
@@ -52,11 +52,11 @@
 
                     @if (Model.CurrentPage == finishIndex)
                     {
-                        <li class="next"><a href="#"> Next <i class="zmdi zmdi-chevron-right"></i></a></li>
+                        <li class="next"><a href="#"> Sau <i class="zmdi zmdi-chevron-right"></i></a></li>
                     }
                     else
                     {
-                        <li class="next"><a href="@urlTemplate.Replace("{0}", (Model.CurrentPage+1).ToString())"> Next <i class="zmdi zmdi-chevron-right"></i></a></li>
+                        <li class="next"><a href="@urlTemplate.Replace("{0}", (Model.CurrentPage+1).ToString())"> Sau <i class="zmdi zmdi-chevron-right"></i></a></li>
                     }
 
                 </ul>
