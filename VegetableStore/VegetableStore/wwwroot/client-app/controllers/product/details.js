@@ -51,10 +51,10 @@ function loadDetails(that) {
                 $('#Pname').text(data.Name);
                 $('#imgeoneM').attr('src', data.Image);
                 $('.cart-order').data('id', data.Id);
-                $('#cart_description').text(data.Description);
+                $('.cart_description').text(data.Description);
                 var price = "$" + data.Price;
                 $('.regular_price').text(price);
-                $('#cart-plus-minus-box').val('1');
+                $('.cart-plus-minus-box').val('1');
                 $('#my_modal').modal('show');
                 tedu.stopLoading();
 
@@ -66,3 +66,10 @@ function loadDetails(that) {
         });
     }
 }
+$(document).ready(function () {
+   
+    $('.comments_advices li').click(function () {
+        var a = document.getElementById("reviews")
+        a.click();
+    });
+})

@@ -47,7 +47,7 @@
                 <div class="product__details_content">
                     <div class="demo_product">
                         <h2>@product.Name</h2>
-                        <p>Reference: demo_10</p>
+                        <p>Nguồn: demo_10</p>
                     </div>
                     <div class="product_comments_block">
                         <div class="comments_note clearfix">
@@ -60,12 +60,12 @@
                         <div class="comments_advices">
                             <ul>
                                 <li>
-                                    <a href="#">
+                                    <a href="#reviews">
                                         <i class="fa fa-comment-o" aria-hidden="true"></i>
-                                        Read reviews (<span>1</span>)
+                                        Nhận xét (<span>1</span>)
                                     </a>
                                 </li>
-                                <li><a href="#"><i class="fa fa-pencil"></i>Read reviews </a></li>
+                                
                             </ul>
                         </div>
                     </div>
@@ -83,24 +83,24 @@
 
                             </div>
                             <div class="quickview_plus_minus">
-                                <span class="control_label">Quantity</span>
+                                <span class="control_label">Số lượng</span>
                                 <div class="quickview_plus_minus_inner">
                                     <div class="cart-plus-minus">
                                         <input type="text" value="01" name="qtybutton" class="cart-plus-minus-box">
                                     </div>
                                     <div class="add_button">
-                                        <button type="submit" class="cart-order" data-id="@product.Id"> Add to cart</button>
+                                        <button type="submit" class="cart-order" data-id="@product.Id"> Thêm vào giỏ</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="product-availability">
                                 <span id="availability">
                                     <i class="zmdi zmdi-check"></i>
-                                    In stock
+                                    Còn hàng
                                 </span>
                             </div>
                             <div class="social-sharing">
-                                <span>Share</span>
+                                <span>Chia sẽ</span>
                                 <ul>
                                     <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                                     <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
@@ -141,13 +141,13 @@
                 <div class="product_tab_button">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li>
-                            <a class=" tav_past active" id="home-tab" data-toggle="tab" href="#Description" role="tab" aria-controls="Description" aria-selected="true">Description</a>
+                            <a class=" tav_past active" id="descript" data-toggle="tab" href="#Description" role="tab" aria-controls="Description" aria-selected="true">Mô tả</a>
                         </li>
                         <li>
-                            <a class=" tav_past" id="profile-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="false">Information</a>
+                            <a class=" tav_past" id="infomation" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="false">Thông tin</a>
                         </li>
                         <li>
-                            <a class=" tav_past" id="contact-tab" data-toggle="tab" href="#Reviews" role="tab" aria-controls="Reviews" aria-selected="false">Reviews</a>
+                            <a class=" tav_past" id="reviews" data-toggle="tab" href="#Reviews" role="tab" aria-controls="Reviews" aria-selected="false">Nhận xét</a>
                         </li>
                     </ul>
                 </div>
@@ -228,7 +228,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="section_title text-left">
-                    <h3> Related Product </h3>
+                    <h3> Sản phẩm liên quan </h3>
                 </div>
             </div>
         </div>
