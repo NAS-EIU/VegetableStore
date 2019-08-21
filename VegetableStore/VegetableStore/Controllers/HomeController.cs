@@ -56,6 +56,12 @@ namespace VegetableStore.Controllers
             return View();
         }
 
+        public IActionResult Gop()
+        {
+
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

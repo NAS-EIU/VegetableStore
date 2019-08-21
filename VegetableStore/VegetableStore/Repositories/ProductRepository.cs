@@ -162,6 +162,29 @@ namespace VegetableStore.Repositories
             };
             return paginationSet;
         }
+        public PagedResult<ProductViewModel> GetAllBySlice(int? categoryId,  int page, int pageSize)
+        {
+           
+            var query = _productRepository.FindAll(x => x.Status == Status.Active);
+
+            if (categoryId.HasValue)
+                query = query.Where(x => x.CategoryId == categoryId.Value);
+            int totalRow = query.Count();
+
+            query = query.OrderByDescending(x => x.DateCreated)
+                .Skip((page - 1) * pageSize).Take(pageSize);
+
+            var data = query.ProjectTo<ProductViewModel>().ToList();
+
+            var paginationSet = new PagedResult<ProductViewModel>()
+            {
+                Results = data,
+                CurrentPage = page,
+                RowCount = totalRow,
+                PageSize = pageSize
+            };
+            return paginationSet;
+        }
         public void Save()
         {
             _unitOfWork.Commit();
