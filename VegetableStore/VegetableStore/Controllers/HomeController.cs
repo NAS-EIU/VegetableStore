@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
 using VegetableStore.Interfaces;
 using VegetableStore.Models;
@@ -14,12 +15,14 @@ namespace VegetableStore.Controllers
     public class HomeController : Controller
     {
         private IProductRepository _productRepository;
+        IConfiguration _configuration;
         private readonly IStringLocalizer<HomeController> _localizer;
 
-        public HomeController(IProductRepository productRepository, IStringLocalizer<HomeController> localizer)
+        public HomeController(IProductRepository productRepository, IStringLocalizer<HomeController> localizer, IConfiguration configuration)
         {
             _productRepository = productRepository;
             _localizer = localizer;
+            _configuration = configuration;
         }
 
         public IActionResult Index()
@@ -56,10 +59,15 @@ namespace VegetableStore.Controllers
             return View();
         }
 
-        public IActionResult Gop()
+        public IActionResult Gop(int id, int? pageSize, string sortBy, int page = 1)
         {
-
-            return View();
+            var gop = new ListProductViewModel();
+            if (pageSize == null)
+                pageSize = _configuration.GetValue<int>("PageSize");
+            gop.PageSize = pageSize;
+            gop.SortType = sortBy;
+            gop.Data = _productRepository.GetAllByGop(7, page, pageSize.Value);
+            return View(gop);
         }
 
         public IActionResult Privacy()

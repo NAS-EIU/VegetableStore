@@ -15,7 +15,7 @@ namespace VegetableStore.Interfaces
 
         PagedResult<ProductViewModel> GetAllByMonth(int? categoryId, int month, int page, int pageSize);
         PagedResult<ProductViewModel> GetAllBySlice(int? categoryId,  int page, int pageSize);
-
+        PagedResult<ProductViewModel> GetAllByGop(int? categoryId, int page, int pageSize);
         ProductViewModel Add(ProductViewModel product);
 
         void Update(ProductViewModel product);

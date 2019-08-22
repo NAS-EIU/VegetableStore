@@ -45,7 +45,7 @@ namespace VegetableStore.Data
             }
             if (!_userManager.Users.Any())
             {
-                var c=await _userManager.CreateAsync(new AppUser()
+                var c = await _userManager.CreateAsync(new AppUser()
                 {
                     UserName = "admin",
                     FullName = "Administrator",
@@ -56,8 +56,8 @@ namespace VegetableStore.Data
                     Status = Status.Active
                 }, "Admin@123");
                 var user = await _userManager.FindByNameAsync("admin");
-                var rs=await _userManager.AddToRoleAsync(user, "Admin");
-                await _userManager.AddClaimAsync(user, new Claim("FullName",user.FullName));
+                var rs = await _userManager.AddToRoleAsync(user, "Admin");
+                await _userManager.AddClaimAsync(user, new Claim("FullName", user.FullName));
                 await _userManager.AddClaimAsync(user, new Claim("Email", user.Email));
                 if (rs.Succeeded)
                 {
@@ -128,7 +128,7 @@ namespace VegetableStore.Data
                             new Product(){Name = "Bưởi Đoan Hùng",DateCreated=DateTime.Now,Image="/uploaded/images/buoi-doan-hung (1).jpg",Price = 1000,Status = Status.Active,Month=1},
                             new Product(){Name = "Lê Đông Khê",DateCreated=DateTime.Now,Image="/uploaded/images/image.jpeg",Price = 11000,Status = Status.Active,Month=2},
                             new Product(){Name = "Na Đồng Bành",DateCreated=DateTime.Now,Image="/uploaded/images/na.jpg",Price = 12000,Status = Status.Active,Month=3},
-                            new Product(){Name = "Vải Thiều",DateCreated=DateTime.Now,Image="/uploaded/images/vai.jpg",Price = 1000,Status = Status.Active,Month=4}                  
+                            new Product(){Name = "Vải Thiều",DateCreated=DateTime.Now,Image="/uploaded/images/vai.jpg",Price = 1000,Status = Status.Active,Month=4}
                         }
                     },
                     new ProductCategory() { Name="Miền Tây",ParentId = 2,Status=Status.Active ,SortOrder=2,
@@ -145,10 +145,12 @@ namespace VegetableStore.Data
                             new Product(){Name = "Thanh Long Bình Thuận",DateCreated=DateTime.Now,Image="/uploaded/images/dragon.jpg",Price = 1000,Status = Status.Active,Month=9},
                             new Product(){Name = "Sầu Riêng Khánh Sơn",DateCreated=DateTime.Now,Image="/uploaded/images/Durian.jpg",Price = 1000,Status = Status.Active,Month=10},
                             new Product(){Name = "Xoài tượng Bình Định",DateCreated=DateTime.Now,Image="/uploaded/images/mango.jpg",Price = 1000,Status = Status.Active,Month=11},
-                            new Product(){Name = "Dưa hấu Bình Sơn",DateCreated=DateTime.Now,Image="/uploaded/images/watermelon.jpg",Price = 1000,Status = Status.Active,Month=12}                            
+                            new Product(){Name = "Dưa hấu Bình Sơn",DateCreated=DateTime.Now,Image="/uploaded/images/watermelon.jpg",Price = 1000,Status = Status.Active,Month=12}
                         }},
                     new ProductCategory() { Name="Trái cây theo mùa",ParentId = null,Status=Status.Active,SortOrder=0 },
                     new ProductCategory() { Name="Trái cây xắt sẵn",ParentId = null,Status=Status.Active,SortOrder=0 }
+                    ,
+                    new ProductCategory() { Name="Mua gộp",ParentId = null,Status=Status.Active,SortOrder=0 }
                 };
                 _context.ProductCategories.AddRange(listProductCategory);
             }

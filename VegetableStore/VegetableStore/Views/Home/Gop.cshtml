@@ -1,4 +1,4 @@
-﻿
+﻿@model VegetableStore.Models.ViewModels.ListProductViewModel
 @{
     ViewData["Title"] = "Mua Gộp";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,63 +9,24 @@
 <div class="blog_list_area">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="single_blog_list">
-                    <div class="blog__thumb">
-                        <a href="blog-details.html"><img style="width:270px;height:200px" src="~/images/vaithieu.jpg" alt=""></a>
-                    </div>
-                    <div class="post__content">
-                        <h3><a href="blog-details.html">Vải thiều Hải Dương.</a></h3>
-                        <ul>
-                            <li><a href="blog-details.html">Read More</a></li>
-                            <li class="post_date">July 10, 2018</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="single_blog_list">
-                    <div class="blog__thumb">
-                        <a href="blog-details.html"><img style="width:270px;height:200px" src="~/images/xoaithai.jpg" alt=""></a>
-                    </div>
-                    <div class="post__content">
-                        <h3><a href="blog-details.html">Xoài Thái.</a></h3>
-                        <ul>
-                            <li><a href="blog-details.html">Read More</a></li>
-                            <li class="post_date">July 10, 2018</li>
-                        </ul>
+            @foreach (var item in Model.Data.Results)
+            {
+                var url = "/" + item.Name + "-" + "p." + item.Id + ".html";
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="single_blog_list">
+                        <div class="blog__thumb">
+                            <a href="@url"><img style="width:270px;height:200px" src="@item.Image" alt=""></a>
+                        </div>
+                        <div class="post__content">
+                            <h3><a href="@url">@item.Name</a></h3>
+                            <ul>
+                                <li><a href="@url">Read More</a></li>
+                                <li class="post_date">@item.DateCreated</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="single_blog_list">
-                    <div class="blog__thumb">
-                        <a href="blog-details.html"><img style="width:270px;height:200px" src="~/images/daosapa.jpg" alt=""></a>
-                    </div>
-                    <div class="post__content">
-                        <h3><a href="blog-details.html">Đào Sapa.</a></h3>
-                        <ul>
-                            <li><a href="blog-details.html">Read More</a></li>
-                            <li class="post_date">July 10, 2018</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="single_blog_list">
-                    <div class="blog__thumb">
-                        <a href="blog-details.html"><img style="width:270px;height:200px" src="~/images/nhanthai.jpg" alt=""></a>
-                    </div>
-                    <div class="post__content">
-                        <h3><a href="blog-details.html">Nhãn Thái.</a></h3>
-                        <ul>
-                            <li><a href="blog-details.html">Read More</a></li>
-                            <li class="post_date">July 10, 2018</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-           
+            }
         </div>
     </div>
 </div>
