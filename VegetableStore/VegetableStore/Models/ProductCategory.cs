@@ -1,18 +1,18 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 using VegetableStore.Models.Enums;
 
-namespace VegetableStore.Models
+namespace VegetableStore.Models.ViewModels
 {
     [Table("ProductCategories")]
     public class ProductCategory : DomainEntity<int>
     {
   
 
-        public ProductCategory(string name, string description, int? parentId, int? homeOrder, string image, bool? homeFlag, int sortOrder, Status status)
+        public ProductCategory(string name,string description, int? parentId,int? homeOrder,
+            string image,bool? homeFlag,int sortOrder,Status status)
         {
             Name = name;
             Description = description;
@@ -23,21 +23,6 @@ namespace VegetableStore.Models
             SortOrder = sortOrder;
             Status = status;
         }
-
-        public ProductCategory(string name, string description, int? parentId, int? homeOrder, string image, bool? homeFlag, DateTime dateCreated, DateTime dateModified, int sortOrder, Status status)
-        {
-            Name = name;
-            Description = description;
-            ParentId = parentId;
-            HomeOrder = homeOrder;
-            Image = image;
-            HomeFlag = homeFlag;
-            DateCreated = dateCreated;
-            DateModified = dateModified;
-            SortOrder = sortOrder;
-            Status = status;
-        }
-
         public string Name { get; set; }
 
         public string Description { get; set; }
@@ -54,5 +39,7 @@ namespace VegetableStore.Models
         public DateTime DateModified { set; get; }
         public int SortOrder { set; get; }
         public Status Status { set; get; }
+
+        public virtual ICollection<Product> Products { set; get; }
     }
 }
