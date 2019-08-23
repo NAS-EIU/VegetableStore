@@ -26,6 +26,5 @@ namespace VegetableStore.Models.ViewModels
         public DateTime DateModified { set; get; }
         public int SortOrder { set; get; }
         public Status Status { set; get; }
-        public ICollection<ProductViewModel> Products { set; get; }
     }
 }

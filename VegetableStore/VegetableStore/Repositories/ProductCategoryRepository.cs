@@ -63,24 +63,24 @@ namespace VegetableStore.Repositories
             return Mapper.Map<ProductCategory, ProductCategoryViewModel>(_productCategoryRepository.FindById(id));
         }
 
-        public List<ProductCategoryViewModel> GetHomeCategories(int top)
-        {
-            var query = _productCategoryRepository
-                .FindAll(x => x.HomeFlag == true, c => c.Products)
-                  .OrderBy(x => x.HomeOrder)
-                  .Take(top).ProjectTo<ProductCategoryViewModel>();
+        //public List<ProductCategoryViewModel> GetHomeCategories(int top)
+        //{
+        //    var query = _productCategoryRepository
+        //        .FindAll(x => x.HomeFlag == true, c => c.Products)
+        //          .OrderBy(x => x.HomeOrder)
+        //          .Take(top).ProjectTo<ProductCategoryViewModel>();
 
-            var categories = query.ToList();
-            foreach (var category in categories)
-            {
-                //category.Products = _productRepository
-                //    .FindAll(x => x.HotFlag == true && x.CategoryId == category.Id)
-                //    .OrderByDescending(x => x.DateCreated)
-                //    .Take(5)
-                //    .ProjectTo<ProductViewModel>().ToList();
-            }
-            return categories;
-        }
+        //    var categories = query.ToList();
+        //    foreach (var category in categories)
+        //    {
+        //        //category.Products = _productRepository
+        //        //    .FindAll(x => x.HotFlag == true && x.CategoryId == category.Id)
+        //        //    .OrderByDescending(x => x.DateCreated)
+        //        //    .Take(5)
+        //        //    .ProjectTo<ProductViewModel>().ToList();
+        //    }
+        //    return categories;
+        //}
 
         public void ReOrder(int sourceId, int targetId)
         {

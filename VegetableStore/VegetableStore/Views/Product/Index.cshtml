@@ -94,6 +94,8 @@
                                     @foreach (var item in Model.Data.Results)
                                     {
                                         var url = "/" + item.Name + "-" + "p." + item.Id + ".html";
+                                        var urls = "/" + item.Name + "-" + "s." + item.Id + ".html";
+
                                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
 
                                             <div class="single__product">
@@ -117,9 +119,13 @@
                                                         <div class="product__hover">
                                                             <ul>
                                                                 <li><a href="#"><i class="ion-android-cart" data-id="@item.Id"></i></a></li>
-                                                                <li><a class="cart-fore" href="#" data-id="@item.Id" data-toggle="modal" data-target="#my_modal" title="Quick View"><i class="ion-android-open"></i></a></li>
-
-                                                                <li><a href="@url" data-id="@item.Id"><i class="ion-clipboard"></i></a></li>
+                                                                <li><a class="cart-fore" href="@url" data-id="@item.Id" data-toggle="modal" data-target="#my_modal" title="Quick View"><i class="ion-android-open"></i></a></li>
+                                                                @if (item.CategoryId == 7)
+                                                                {
+                                                                    <li><a href="@urls" data-id="@item.Id"><i class="ion-clipboard"></i></a></li>}
+                                                                else
+                                                                {
+                                                                    <li><a href="@url" data-id="@item.Id"><i class="ion-clipboard"></i></a></li>}
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -135,7 +141,7 @@
                                 {
                                     var url = "/" + item.Name + "-" + "p." + item.Id + ".html";
                                     <div class="tab_product_bottom_wrapper">
-                                        <div class="row">  
+                                        <div class="row">
                                             <div class="col-lg-4 col-md-5 col-sm-5">
                                                 <div class="single_product__inner inner_shop">
                                                     <span class="new_badge">new</span>
@@ -155,7 +161,7 @@
                                                             <h4><a href="@url">@item.Name</a></h4>
                                                         </div>
                                                         <div class="product_price price_shop">
-                                                            
+
                                                             <p>@item.Price</p>
                                                         </div>
                                                         <div class="product_content_shop">
@@ -168,9 +174,9 @@
                                                         </div>
                                                         <div class="product_cart_icone">
                                                             <ul>
-                                                                <li><a class="cart-order"><i  data-id="@item.Id" class="ion-android-cart"></i></a></li>
-                                                                <li><a class="cart-fore" href="#" data-id="@item.Id" data-toggle="modal" data-target="#my_modal" title="Quick View"><i class="ion-android-open"></i></a></li>
-                                                                <li><a href="product-details.html" data-id="@item.Id"><i class="ion-clipboard"></i></a></li>
+                                                                <li><a class="cart-order"><i data-id="@item.Id" class="ion-android-cart"></i></a></li>
+                                                                <li><a class="cart-fore" href="@url" data-id="@item.Id" data-toggle="modal" data-target="#my_modal" title="Quick View"><i class="ion-android-open"></i></a></li>
+                                                                <li><a href="@url" data-id="@item.Id"><i class="ion-clipboard"></i></a></li>
                                                             </ul>
                                                         </div>
                                                     </div>

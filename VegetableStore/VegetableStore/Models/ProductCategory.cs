@@ -10,10 +10,7 @@ namespace VegetableStore.Models
     [Table("ProductCategories")]
     public class ProductCategory : DomainEntity<int>
     {
-        public ProductCategory()
-        {
-            Products = new List<Product>();
-        }
+  
 
         public ProductCategory(string name, string description, int? parentId, int? homeOrder, string image, bool? homeFlag, int sortOrder, Status status)
         {
@@ -57,6 +54,5 @@ namespace VegetableStore.Models
         public DateTime DateModified { set; get; }
         public int SortOrder { set; get; }
         public Status Status { set; get; }
-        public virtual ICollection<Product> Products { set; get; }
     }
 }
