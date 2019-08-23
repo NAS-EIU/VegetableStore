@@ -14,13 +14,13 @@ namespace VegetableStore.AutoMapp
             {
                 cfg.AddProfile<ViewModelToDomainMappingProfile>();
                 cfg.AddProfile<DomainToViewModelMappingProfile>();
-                
+                cfg.AllowNullCollections = true;
             });
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile<ViewModelToDomainMappingProfile>();
                 cfg.AddProfile<DomainToViewModelMappingProfile>();
-                
+                cfg.AllowNullCollections = true;
             });
             return config;
         }
