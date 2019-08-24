@@ -16,10 +16,14 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20190729161301_initlized.cs" />
     <Compile Remove="Data\Migrations\20190729161301_initlized.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190731150138_initilized.cs" />
+    <Compile Remove="Data\Migrations\20190731150138_initilized.Designer.cs" />
     <Compile Remove="Data\Migrations\20190814153625_upcategory.cs" />
     <Compile Remove="Data\Migrations\20190814153625_upcategory.Designer.cs" />
     <Compile Remove="Data\Migrations\20190815065131_initUpCategory.cs" />
     <Compile Remove="Data\Migrations\20190815065131_initUpCategory.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190816060747_initUpdate.cs" />
+    <Compile Remove="Data\Migrations\20190816060747_initUpdate.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Data\Migrations\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\js\" />

@@ -13,14 +13,14 @@ namespace VegetableStore.Models
         }
 
         public AppUser(Guid id, string fullName, string userName,
-            string email, string phoneNumber, string avatar, Status status)
+            string email, string phoneNumber, string address, Status status)
         {
             Id = id;
             FullName = fullName;
             UserName = userName;
             Email = email;
             PhoneNumber = phoneNumber;
-            Avatar = avatar;
+            Address = address;
             Status = status;
         }
 
@@ -30,7 +30,7 @@ namespace VegetableStore.Models
 
         public decimal Balance { get; set; }
 
-        public string Avatar { get; set; }
+        public string Address { get; set; }
 
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }

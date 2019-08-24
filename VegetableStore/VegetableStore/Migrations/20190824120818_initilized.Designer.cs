@@ -10,8 +10,8 @@ using VegetableStore.Data;
 namespace VegetableStore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190816060747_initUpdate")]
-    partial class initUpdate
+    [Migration("20190824120818_initilized")]
+    partial class initilized
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -124,7 +124,7 @@ namespace VegetableStore.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<string>("Avatar");
+                    b.Property<string>("Address");
 
                     b.Property<decimal>("Balance");
 

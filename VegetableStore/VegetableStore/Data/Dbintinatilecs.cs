@@ -6,7 +6,6 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using VegetableStore.Models;
 using VegetableStore.Models.Enums;
-using VegetableStore.Models.ViewModels;
 
 namespace VegetableStore.Data
 {
@@ -120,41 +119,68 @@ namespace VegetableStore.Data
             }
             if (_context.ProductCategories.Count() == 0)
             {
+                List<ProductCategory> listProductCategory = new List<ProductCategory>()
+                {
+                    new ProductCategory() { Name = "Trái cây theo miền", ParentId = null, Status = Status.Active, SortOrder = 0 },
+                    new ProductCategory()
+                    {
+                        Name = "Miền Bắc",
+                        ParentId = 2,
+                        Status = Status.Active,
+                        SortOrder = 1,
+                        Products = new List<Product>()
+                        {
+                            new Product(){Name = "Bưởi Đoan Hùng",DateCreated=DateTime.Now,Image="/uploaded/images/buoi-doan-hung (1).jpg",Price = 1000,Status = Status.Active,Month=1},
+                            new Product(){Name = "Lê Đông Khê",DateCreated=DateTime.Now,Image="/uploaded/images/image.jpeg",Price = 11000,Status = Status.Active,Month=2},
+                            new Product(){Name = "Na Đồng Bành",DateCreated=DateTime.Now,Image="/uploaded/images/na.jpg",Price = 12000,Status = Status.Active,Month=3},
+                            new Product(){Name = "Vải Thiều",DateCreated=DateTime.Now,Image="/uploaded/images/vai.jpg",Price = 1000,Status = Status.Active,Month=4}
+                        }
+                    },
+                    new ProductCategory()
+                    {
+                        Name = "Miền Tây",
+                        ParentId = 2,
+                        Status = Status.Active,
+                        SortOrder = 2,
+                        Products = new List<Product>()
+                        {
+                            new Product(){Name = "Quả thanh trà",DateCreated=DateTime.Now,Image="/uploaded/images/thanhtra.jpg",Price = 12000,Status = Status.Active,Month=5},
+                            new Product(){Name = "Sầu riêng Ri6",DateCreated=DateTime.Now,Image="/uploaded/images/saurieng.jpg",Price = 1000,Status = Status.Active,Month=6},
+                            new Product(){Name = "Vú sữa Lò Rèn",DateCreated=DateTime.Now,Image="/uploaded/images/vu-sua.jpg",Price = 1000,Status = Status.Active,Month=7},
+                            new Product(){Name = "Nhãn tím Sóc Trăng",DateCreated=DateTime.Now,Image="/uploaded/images/nhan (2).jpg",Price = 1000,Status = Status.Active,Month=8}
+                        }
+                    },
+                    new ProductCategory()
+                    {
+                        Name = "Miền Đông Nam Bộ",
+                        ParentId = 2,
+                        Status = Status.Active,
+                        SortOrder = 3,
+                        Products = new List<Product>()
+                        {
+                            new Product(){Name = "Thanh Long Bình Thuận",DateCreated=DateTime.Now,Image="/uploaded/images/dragon.jpg",Price = 1000,Status = Status.Active,Month=9},
+                            new Product(){Name = "Sầu Riêng Khánh Sơn",DateCreated=DateTime.Now,Image="/uploaded/images/Durian.jpg",Price = 1000,Status = Status.Active,Month=10},
+                            new Product(){Name = "Xoài tượng Bình Định",DateCreated=DateTime.Now,Image="/uploaded/images/mango.jpg",Price = 1000,Status = Status.Active,Month=11},
+                            new Product(){Name = "Dưa hấu Bình Sơn",DateCreated=DateTime.Now,Image="/uploaded/images/watermelon.jpg",Price = 1000,Status = Status.Active,Month=12}
+                        }
+                    },
+                    new ProductCategory() { Name = "Trái cây theo mùa", ParentId = null, Status = Status.Active, SortOrder = 0 },
+                    new ProductCategory()
+                    {
+                        Name = "Trái cây xắt sẵn",
+                        ParentId = null,
+                        Status = Status.Active,
+                        SortOrder = 0,
+                        Products=new List<Product>()
+                        {
+                            new Product(){Name = "Đào Sapa",DateCreated=DateTime.Now,Image="/uploaded/images/daosapa.jpg",Price = 1000,Status = Status.Active,Month=9},
+                            new Product(){Name = "Nhãn Thái",DateCreated=DateTime.Now,Image="/uploaded/images/nhanthai.jpg",Price = 1000,Status = Status.Active,Month=10},
+                            new Product(){Name = "Vải Thiều",DateCreated=DateTime.Now,Image="/uploaded/images/vaithieu.jpg",Price = 1000,Status = Status.Active,Month=11},
+                            new Product(){Name = "Xoài Thái",DateCreated=DateTime.Now,Image="/uploaded/images/xoaithai.jpg",Price = 1000,Status = Status.Active,Month=12}
+                        }
+                    }
+                };
 
-
-                List<ProductCategory> listProductCategory = new List<ProductCategory>() { };
-                //{
-                //    new ProductCategory() { Name="Trái cây theo miền",ParentId = null,Status=Status.Active,SortOrder=0 },
-                //    new ProductCategory() { Name="Miền Bắc",ParentId = 2,Status=Status.Active,SortOrder=1,
-                //        Products = new List<Product>()
-                //        {
-                //            new Product(){Name = "Bưởi Đoan Hùng",DateCreated=DateTime.Now,Image="/uploaded/images/buoi-doan-hung (1).jpg",Price = 1000,Status = Status.Active,Month=1},
-                //            new Product(){Name = "Lê Đông Khê",DateCreated=DateTime.Now,Image="/uploaded/images/image.jpeg",Price = 11000,Status = Status.Active,Month=2},
-                //            new Product(){Name = "Na Đồng Bành",DateCreated=DateTime.Now,Image="/uploaded/images/na.jpg",Price = 12000,Status = Status.Active,Month=3},
-                //            new Product(){Name = "Vải Thiều",DateCreated=DateTime.Now,Image="/uploaded/images/vai.jpg",Price = 1000,Status = Status.Active,Month=4}
-                //        }
-                //    },
-                //    new ProductCategory() { Name="Miền Tây",ParentId = 2,Status=Status.Active ,SortOrder=2,
-                //        Products = new List<Product>()
-                //        {
-                //            new Product(){Name = "Quả thanh trà",DateCreated=DateTime.Now,Image="/uploaded/images/thanhtra.jpg",Price = 12000,Status = Status.Active,Month=5},
-                //            new Product(){Name = "Sầu riêng Ri6",DateCreated=DateTime.Now,Image="/uploaded/images/saurieng.jpg",Price = 1000,Status = Status.Active,Month=6},
-                //            new Product(){Name = "Vú sữa Lò Rèn",DateCreated=DateTime.Now,Image="/uploaded/images/vu-sua.jpg",Price = 1000,Status = Status.Active,Month=7},
-                //            new Product(){Name = "Nhãn tím Sóc Trăng",DateCreated=DateTime.Now,Image="/uploaded/images/nhan (2).jpg",Price = 1000,Status = Status.Active,Month=8}
-                //        }},
-                //    new ProductCategory() { Name="Miền Đông Nam Bộ",ParentId = 2,Status=Status.Active ,SortOrder=3,
-                //        Products = new List<Product>()
-                //        {
-                //            new Product(){Name = "Thanh Long Bình Thuận",DateCreated=DateTime.Now,Image="/uploaded/images/dragon.jpg",Price = 1000,Status = Status.Active,Month=9},
-                //            new Product(){Name = "Sầu Riêng Khánh Sơn",DateCreated=DateTime.Now,Image="/uploaded/images/Durian.jpg",Price = 1000,Status = Status.Active,Month=10},
-                //            new Product(){Name = "Xoài tượng Bình Định",DateCreated=DateTime.Now,Image="/uploaded/images/mango.jpg",Price = 1000,Status = Status.Active,Month=11},
-                //            new Product(){Name = "Dưa hấu Bình Sơn",DateCreated=DateTime.Now,Image="/uploaded/images/watermelon.jpg",Price = 1000,Status = Status.Active,Month=12}
-                //        }},
-                //    new ProductCategory() { Name="Trái cây theo mùa",ParentId = null,Status=Status.Active,SortOrder=0 },
-                //    new ProductCategory() { Name="Trái cây xắt sẵn",ParentId = null,Status=Status.Active,SortOrder=0 }
-                //    ,
-                //    new ProductCategory() { Name="Mua gộp",ParentId = null,Status=Status.Active,SortOrder=0 }
-                
                 _context.ProductCategories.AddRange(listProductCategory);
             }
             await _context.SaveChangesAsync();

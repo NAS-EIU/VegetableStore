@@ -230,7 +230,7 @@ namespace VegetableStore.Controllers
                 PhoneNumber = model.PhoneNumber,
                 BirthDay = model.BirthDay,
                 Status = Status.Active,
-                Avatar = string.Empty
+                Address = model.Address
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
