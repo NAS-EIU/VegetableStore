@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using VegetableStore.Models;
 using VegetableStore.Models.Enums;
+using VegetableStore.Models.ViewModels;
 
 namespace VegetableStore.Data
 {
@@ -119,6 +120,8 @@ namespace VegetableStore.Data
             }
             if (_context.ProductCategories.Count() == 0)
             {
+
+
                 List<ProductCategory> listProductCategory = new List<ProductCategory>() { };
                 //{
                 //    new ProductCategory() { Name="Trái cây theo miền",ParentId = null,Status=Status.Active,SortOrder=0 },
