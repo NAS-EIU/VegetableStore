@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using VegetableStore.Models.Enums;
 
-namespace VegetableStore.Models.ViewModels
+namespace VegetableStore.Models
 {
     [Table("ProductCategories")]
     public class ProductCategory : DomainEntity<int>
     {
-  
+        public ProductCategory()
+        {
+        }
 
         public ProductCategory(string name,string description, int? parentId,int? homeOrder,
             string image,bool? homeFlag,int sortOrder,Status status)

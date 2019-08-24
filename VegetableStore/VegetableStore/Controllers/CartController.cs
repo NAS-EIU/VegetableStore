@@ -33,7 +33,12 @@ namespace VegetableStore.Controllers
         {
             return View();
         }
-
+        [Route("myaccount.html", Name = "MyAccount")]
+        [HttpGet]
+        public IActionResult MyAccount()
+        {
+            return View();
+        }
         [Route("checkout.html", Name = "Checkout")]
         [HttpGet]
         public IActionResult Checkout()

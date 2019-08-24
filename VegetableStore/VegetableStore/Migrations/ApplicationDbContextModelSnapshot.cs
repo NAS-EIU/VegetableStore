@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VegetableStore.Data;
 
 namespace VegetableStore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190731150138_initilized")]
-    partial class initilized
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -124,7 +122,7 @@ namespace VegetableStore.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<string>("Avatar");
+                    b.Property<string>("Address");
 
                     b.Property<decimal>("Balance");
 
@@ -266,6 +264,8 @@ namespace VegetableStore.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CategoryId");
+
                     b.Property<string>("Content");
 
                     b.Property<DateTime>("DateCreated");
@@ -277,6 +277,8 @@ namespace VegetableStore.Migrations
 
                     b.Property<string>("Image")
                         .HasMaxLength(255);
+
+                    b.Property<int>("Month");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -291,7 +293,40 @@ namespace VegetableStore.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("VegetableStore.Models.ProductCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
+
+                    b.Property<string>("Description");
+
+                    b.Property<bool?>("HomeFlag");
+
+                    b.Property<int?>("HomeOrder");
+
+                    b.Property<string>("Image");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int?>("ParentId");
+
+                    b.Property<int>("SortOrder");
+
+                    b.Property<int>("Status");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductCategories");
                 });
 
             modelBuilder.Entity("VegetableStore.Models.ProductImage", b =>
@@ -349,6 +384,14 @@ namespace VegetableStore.Migrations
                     b.HasOne("VegetableStore.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("VegetableStore.Models.Product", b =>
+                {
+                    b.HasOne("VegetableStore.Models.ProductCategory", "ProductCategory")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
