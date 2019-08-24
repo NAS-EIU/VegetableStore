@@ -1,4 +1,5 @@
 ﻿@model VegetableStore.Models.ViewModels.DetailViewModel
+@inject UserManager<AppUser> UserManager
 @{
     ViewData["Title"] = Model.Product.Name;
     var product = Model.Product;
@@ -32,18 +33,19 @@
 
 
                     <div class="blog_leave_area">
-                        <h3>Để lại bình luận</h3>
+                        <h3>Để lại thông tin</h3>
                         <form action="#">
+
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="blog_leave_form mb-20">
-                                        <input placeholder="Tên *" type="text">
+                                        <input placeholder="Tên *" type="text">@UserManager.GetUserName(User)
                                     </div>
                                     <div class="blog_leave_form mb-20">
-                                        <input placeholder="Email *" type="Email">
+                                        <input placeholder="Địa chỉ *" type="Email">@UserManager.Users.FirstOrDefault(x=>x.)
                                     </div>
                                     <div class="blog_leave_form mb-20">
-                                        <input placeholder="Địa chỉ" type="text">
+                                        <input placeholder="Số điện thoại" type="text">@User.
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
