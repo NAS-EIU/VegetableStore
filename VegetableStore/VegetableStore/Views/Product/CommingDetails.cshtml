@@ -42,10 +42,10 @@
                                         <input placeholder="Tên *" type="text">@UserManager.GetUserName(User)
                                     </div>
                                     <div class="blog_leave_form mb-20">
-                                        <input placeholder="Địa chỉ *" type="Email">@UserManager.Users.FirstOrDefault(x=>x.)
+                                        <input placeholder="Địa chỉ *" type="text">@UserManager.Users.FirstOrDefault(x=>x.UserName== UserManager.GetUserName(User)).Address
                                     </div>
                                     <div class="blog_leave_form mb-20">
-                                        <input placeholder="Số điện thoại" type="text">@User.
+                                        <input placeholder="Số điện thoại" type="text">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="blog_leave_btn">
-                                        <button type="submit">Đăng ký</button>
+                                        <button type="submit">Đặt trước</button>
                                     </div>
                                 </div>
                             </div>
