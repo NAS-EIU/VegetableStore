@@ -11,9 +11,9 @@
                 <nav>
                     <ul>
                         <li>
-                            <a href="/">Home ></a>
+                            <a href="/">Trang chủ ></a>
                         </li>
-                        <li>Register</li>
+                        <li>Tạo tài khoản</li>
                     </ul>
                 </nav>
             </div>
@@ -33,7 +33,7 @@
                                 <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
                                     <div class="row">
                                         <div class="col-lg-6 col-sm-6 col-md-6">
-                                            <label>Full Name:</label>
+                                            <label>Họ tên:</label>
                                             <div class="input-text">
                                                 <input type="text" asp-for="FullName" name="fullName" class="form-control">
                                             </div>
@@ -45,37 +45,37 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-sm-6 col-md-6">
-                                            <label>User Name:</label>
+                                            <label>Tên người dùng:</label>
                                             <div class="input-text">
                                                 <input type="text" asp-for="UserName" name="userName" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-sm-6 col-md-6">
-                                            <label>Password:</label>
+                                            <label>Mật khẩu:</label>
                                             <div class="input-text">
                                                 <input type="password" asp-for="Password" name="password" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-sm-6 col-md-6">
-                                            <label>Confirm Password:</label>
+                                            <label>Xác nhận mật khẩu:</label>
                                             <div class="input-text">
                                                 <input type="password" asp-for="ConfirmPassword" name="confirmPassword" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-sm-6 col-md-6">
-                                            <label>DOB:</label>
+                                            <label>Ngày sinh:</label>
                                             <div class="input-text">
                                                 <input type="date" asp-for="BirthDay" name="birthDay" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-sm-6 col-md-6">
-                                            <label>Phone Number:</label>
+                                            <label>Số điện thoại:</label>
                                             <div class="input-text">
                                                 <input type="text" name="phoneNumber" asp-for="PhoneNumber" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-sm-6 col-md-6">
-                                            <label>Address:</label>
+                                            <label>Địa chỉ:</label>
                                             <div class="input-text">
                                                 <input type="text" name="address" asp-for="Address" class="form-control">
                                             </div>
@@ -83,7 +83,7 @@
                                     </div>
                                     <div class="col-xs-12">
                                         <div class="submit-text">
-                                            <button type="submit" class="button"><i class="fa fa-user"></i>&nbsp; <span>Register</span></button>
+                                            <button type="submit" class="button"><i class="fa fa-user"></i>&nbsp; <span>Tạo tài khoản</span></button>
                                         </div>
                                     </div>
                             </form>
