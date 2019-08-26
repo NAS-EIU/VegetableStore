@@ -89,6 +89,14 @@
 .main_menu_inner .menu nav > ul > li:hover > a, .main_menu_inner .menu nav > ul > li.active > a {
   color: #78a206;
 }
+input[type="radio"] {
+    cursor: pointer;
+    height: inherit;
+    left: 3px;
+    position: absolute;
+    top: 13px;
+    width: 20px;
+}
 /* 2.1 dropdownmenu css here */
 .main_menu_inner .menu nav ul li ul.sub_menu {
   background: #ffffff none repeat scroll 0 0;
@@ -810,6 +818,14 @@
   position: absolute;
   width: 100%;
   z-index: 9;
+}
+input[type="radio"] {
+    cursor: pointer;
+    height: inherit;
+    left: 3px;
+    position: absolute;
+    top: 13px;
+    width: 20px;
 }
 .single__product:hover .product__hover{
     margin-top: 0;
@@ -3578,6 +3594,14 @@ span.control_labels {
 	text-transform: capitalize;
 	font-size: 16px;
     padding: 8px 30px;
+}
+input[type="radio"] {
+    cursor: pointer;
+    height: inherit;
+    left: 3px;
+    position: absolute;
+    top: 13px;
+    width: 20px;
 }
 .card-body2 {
   border-top: 1px solid #dddddd;
