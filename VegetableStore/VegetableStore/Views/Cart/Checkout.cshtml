@@ -1,4 +1,5 @@
 ﻿@model CheckoutViewModel
+@inject UserManager<AppUser> UserManager
 @{
     ViewData["Title"] = "Checkout";
 }
@@ -25,115 +26,127 @@
 <!--breadcrumb area end-->
 <!--Checkout page section-->
 <div class="Checkout_page_section">
-    <div class="container">
-        @if (ViewData["Success"] != null)
-        {
-            if ((bool)ViewData["Success"] == true)
+    @if (UserManager.GetUserName(User) != null)
+    {
+        <div class="container">
+            @if (ViewData["Success"] != null)
             {
-                <div class="alert alert-success">
-                    Thank you for your order. We are going to confirm your order soon.
-                </div>
+                if ((bool)ViewData["Success"] == true)
+                {
+                    <div class="alert alert-success">
+                        Thank you for your order. We are going to confirm your order soon.
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-danger">
+                        Have an error in order progress. Please contact to administrator.
+                    </div>
+                }
             }
             else
             {
-                <div class="alert alert-danger">
-                    Have an error in order progress. Please contact to administrator.
-                </div>
-            }
-        }
-        else
-        {
-            <form class="checkout-form" action="/checkout.html" method="post">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <div>
-                            <h3>Billing Details</h3>
-                            <div class="row">
+                <form action="/checkout.html" method="post">
+                    <div class="checkout-form">
+                        <div class="row">
+                            @Html.AntiForgeryToken()
+                            <div class="col-lg-6 col-md-6">
+                                <div>
+                                    <h3>Billing Details</h3>
+                                    <div class="row">
 
-                                <div class="col-12 mb-30">
-                                    <label for="b_f_name">Full Name <span>*</span></label>
-                                    <input id="b_f_name" class="input form-control" type="text" asp-for="CustomerName">
-                                </div>
+                                        <div class="col-12 mb-30">
+                                            <label for="b_f_name">Full Name <span>*</span></label>
+                                            <input id="b_f_name" class="input form-control" type="text" asp-for="CustomerName">
+                                        </div>
 
-                                <div class="col-12 mb-30">
-                                    <label>Address <span>*</span></label>
-                                    <input placeholder="Street address" type="text">
-                                </div>
-                                <div class="col-12 mb-30">
-                                    <label for="b_city">Town / City <span>*</span></label>
-                                    <input id="b_city" placeholder="Town / City" type="text">
-                                </div>
-                                <div class="col-lg-6 mb-30">
-                                    <label for="b_email">Email Address <span>*</span></label>
-                                    <input id="b_email" type="text" asp-for="CustomerAddress">
-                                </div>
-                                <div class="col-lg-6 mb-30">
-                                    <label>Phone   <span>*</span></label>
-                                    <input placeholder="Phone Number" type="text" asp-for="CustomerMobile">
-                                </div>
-                                <div class="col-12">
-                                    <div class="order-notes">
-                                        <label for="order_note">Order Notes</label>
-                                        <textarea id="order_note" type="text" asp-for="CustomerMessage"></textarea>
+                                        <div class="col-12 mb-30">
+                                            <label>Address <span>*</span></label>
+                                            <input placeholder="Street address" type="text">
+                                        </div>
+                                        <div class="col-12 mb-30">
+                                            <label for="b_city">Town / City <span>*</span></label>
+                                            <input id="b_city" placeholder="Town / City" type="text">
+                                        </div>
+                                        <div class="col-lg-6 mb-30">
+                                            <label for="b_email">Email Address <span>*</span></label>
+                                            <input id="b_email" type="text" asp-for="CustomerAddress">
+                                        </div>
+                                        <div class="col-lg-6 mb-30">
+                                            <label>Phone   <span>*</span></label>
+                                            <input placeholder="Phone Number" type="text" asp-for="CustomerMobile">
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="order-notes">
+                                                <label for="order_note">Order Notes</label>
+                                                <textarea id="order_note" type="text" asp-for="CustomerMessage"></textarea>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
+                            <div class="col-lg-6 col-md-6">
 
-                        <div class="order-wrapper">
-                            <h3>Your order</h3>
-                            <div class="order-table table-responsive mb-30">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th class="product-name">Product</th>
-                                            <th class="product-total">Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (var item in Model.Carts)
+                                <div class="order-wrapper">
+                                    <h3>Your order</h3>
+                                    <div class="order-table table-responsive mb-30">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th class="product-name">Product</th>
+                                                    <th class="product-total">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.Carts)
+                                                {
+                                                    <tr>
+                                                        <td class="product-name">@item.Product.Name <strong> × @item.Quantity</strong></td>
+                                                        <td class="amount"> $@((item.Price * item.Quantity).ToString("N0"))</td>
+                                                    </tr>
+                                                }
+
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th>Cart Subtotal</th>
+                                                    <td>$@Model.Carts.Sum(x => x.Quantity * x.Price).ToString("N0")</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Order Total</th>
+                                                    <td><strong>$@Model.Carts.Sum(x => x.Quantity * x.Price).ToString("N0")</strong></td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                    <div class="payment-method">
+                                        @for (int i = 0; i < Model.PaymentMethods.Count(); i++)
                                         {
-                                            <tr>
-                                                <td class="product-name">@item.Product.Name <strong> × @item.Quantity</strong></td>
-                                                <td class="amount"> $@((item.Price * item.Quantity).ToString("N0"))</td>
-                                            </tr>
+                                            <div class="panel-default">
+                                                <label class="righ_10" asp-for="@Model.PaymentMethods[i].Value">
+                                                    <input type="radio" name="paymentMethod" asp-for="PaymentMethod" value="@Model.PaymentMethods[i].Value">
+                                                    @Model.PaymentMethods[i].Name
+                                                </label>
+                                            </div>
+
                                         }
-
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Cart Subtotal</th>
-                                            <td>$@Model.Carts.Sum(x => x.Quantity * x.Price).ToString("N0")</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Order Total</th>
-                                            <td><strong>$@Model.Carts.Sum(x => x.Quantity * x.Price).ToString("N0")</strong></td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                            <div class="payment-method">
-                                @for (int i = 0; i < Model.PaymentMethods.Count(); i++)
-                                {
-                                    <div class="panel-default">
-                                        <label class="righ_10" asp-for="@Model.PaymentMethods[i].Value">
-                                            <input type="radio" name="paymentMethod" asp-for="PaymentMethod" value="@Model.PaymentMethods[i].Value">
-                                            @Model.PaymentMethods[i].Name
-                                        </label>
+                                        <div class="order-button">
+                                            <button type="submit" class="button pull-right">Place order</button>
+                                        </div>
                                     </div>
-
-                                }
-                                <div class="order-button">
-                                    <button type="submit" class="button pull-right">Place order</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-success">
+            Hãy đăng nhập
+        </div>
+    }
 
-        }
-    </div>
 </div>
