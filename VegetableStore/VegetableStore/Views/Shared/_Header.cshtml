@@ -8,8 +8,8 @@
                 <div class="header_wrapper_inner">
                     
                     <div class="logo col-xs-12">
-                        <a href="index.html">
-                            <img src="assets/img/logo/logo.png" alt="">
+                        <a href="/">
+                            <img src="assets/img/logo/logo.png" alt="" style="width:200px;height:40px">
                         </a>
 
                     </div>
@@ -69,10 +69,10 @@
                                     <div class="user_info_top">
                                         <ul>
                                             @*@if (SignInManager.IsSignedIn(User))
-                                            {
-                                                <li><a href="myaccount.html">myaccount</a></li>
-                                            }*@
-                                            <li><a href="myaccount.html">myaccount</a></li>
+        {
+            <li><a href="myaccount.html">myaccount</a></li>
+        }*@
+                                            <li><a href="myaccount.html">Thông tin cá nhân</a></li>
                                             <li><a href="checkout.html">Thanh toán</a></li>
 
                                             @if (SignInManager.IsSignedIn(User))
@@ -80,7 +80,7 @@
                                                 <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
                                                     <ul class="nav navbar-nav navbar-right">
 
-                                                        <li>
+                                                        <li class="nav navbar-nav navbar-right">
                                                             <button type="submit" class="btn btn-link navbar-btn navbar-link">Đăng xuất</button>
                                                         </li>
                                                     </ul>
@@ -90,6 +90,9 @@
                                             {
                                                 <li class="nav navbar-nav navbar-right">
                                                     <a href="/login.html">Đăng nhập</a>
+                                                </li>
+                                                <li class="nav navbar-nav navbar-right">
+                                                    <a href="/register.html">Đăng kí</a>
                                                 </li>
                                             }
                                         </ul>

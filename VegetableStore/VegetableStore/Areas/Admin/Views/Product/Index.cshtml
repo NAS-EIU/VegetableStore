@@ -29,29 +29,29 @@
 }
 <div class="page-title">
     <div class="title_left">
-        <h3>Products <small>List products</small></h3>
+        <h3>Sản phẩm</h3>
     </div>
 
     <div class="title_right">
         <div class="col-md-3 col-sm-5 col-xs-12 form-group pull-right">
 
             <div class="input-group">
-                <input type="text" id="txtKeyword" class="form-control" placeholder="Search for...">
+                <input type="text" id="txtKeyword" class="form-control" placeholder="Tìm kiếm...">
                 <span class="input-group-btn">
-                    <button class="btn btn-primary" id="btnSearch" type="button">Go!</button>
+                    <button class="btn btn-primary" id="btnSearch" type="button">Tìm !</button>
                 </span>
             </div>
         </div>
         <div class="col-md-3 col-sm-12  form-group pull-right">
             <select class="form-control" id="ddlCategorySearch">
-                <option>--Select category--</option>
+                <option>--Chọn danh mục--</option>
             </select>
         </div>
         <div class="col-md-6 col-sm-12  form-group pull-right">
-            <button id="btnCreate" class="btn btn-success">Create</button>
-            <a class="btn btn-danger" href="~/templates/ProductImportTemplate.xlsx">Template</a>
-            <button class="btn btn-primary" id="btn-import" type="button"><i class="fa fa-file-excel-o"></i></button>
-            <button class="btn btn-default" id="btn-export" type="button"><i class="fa fa-forward"></i></button>
+            <button id="btnCreate" class="btn btn-success">Tạo</button>
+            @*<a class="btn btn-danger" href="~/templates/ProductImportTemplate.xlsx">Tải bản mẫu về</a>
+            <button class="btn btn-primary" id="btn-import" type="button"><i class="fa fa-file-excel-o">Tải bản mẫu lên</i></button>*@
+            <button class="btn btn-default" id="btn-export" type="button"><i class="fa fa-file-excel-o"></i> Tải về</button>
 
         </div>
     </div>
@@ -66,11 +66,11 @@
                     <thead>
                         <tr>
                            
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Image</th>
-                            <th>Created Date</th>
-                            <th>Status</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Giá</th>
+                            <th>Hình ảnh</th>
+                            <th>Ngày tạo</th>
+                            <th>Tình trạng</th>
                             <th width="20%">#</th>
                         </tr>
                     </thead>
