@@ -93,7 +93,15 @@
             <div class="features_product_active owl-carousel">
                 @foreach (var item in Model.HotProducts)
                 {
-                    var url = "/" + item.Name + "-" + "p." + item.Id + ".html";
+                    var url = "";
+                    if (item.CategoryId != 7)
+                    {
+                        url = "/" + item.Name + "-" + "p." + item.Id + ".html";
+                    }
+                    else
+                    {
+                        url = "/" + item.Name + "-" + "s." + item.Id + ".html";
+                    }
                     <div class="col-lg-2">
                         <div class="single__product">
                             <div class="single_product__inner">

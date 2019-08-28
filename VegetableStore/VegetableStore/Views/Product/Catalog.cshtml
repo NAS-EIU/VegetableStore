@@ -93,7 +93,15 @@
                                 <div class="row">
                                     @foreach (var item in Model.Data.Results)
                                     {
-                                        var url = "/" + item.Name + "-" + "p." + item.Id + ".html";
+                                        var url = "";
+                                        if (item.CategoryId != 7)
+                                        {
+                                            url = "/" + item.Name + "-" + "p." + item.Id + ".html";
+                                        }
+                                        else
+                                        {
+                                            url = "/" + item.Name + "-" + "s." + item.Id + ".html";
+                                        }
                                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
 
                                             <div class="single__product">
