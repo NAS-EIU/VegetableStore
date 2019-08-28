@@ -71,7 +71,7 @@ namespace VegetableStore.Controllers
 
             catalog.PageSize = pageSize;
             catalog.SortType = sortBy;
-            if (id == 5)
+            if (id == 1)
                 catalog.Data = _productRepository.GetAllByMonth(id, 0, page, pageSize.Value);
             else if (id == 6)
                 catalog.Data = _productRepository.GetAllBySlice(id, page, pageSize.Value);

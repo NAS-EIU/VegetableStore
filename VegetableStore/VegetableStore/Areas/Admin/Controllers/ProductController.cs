@@ -50,6 +50,7 @@ namespace VegetableStore.Areas.Admin.Controllers
         public IActionResult GetAllPaging(int? categoryId, string keyword, int page, int pageSize)
         {
             var model = _productRepository.GetAllPaging(categoryId, keyword, page, pageSize);
+         
             return new OkObjectResult(model);
         }
 

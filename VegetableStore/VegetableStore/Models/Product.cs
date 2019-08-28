@@ -17,19 +17,19 @@ namespace VegetableStore.Models
         {
         }
 
-        public Product(string name, int categoryId, string image, decimal price, string description, string content, string tags, Status status)
+        public Product(string name, int categoryId, string image, decimal price, string description, string tags, Status status)
         {
             Name = name;
             CategoryId = categoryId;
             Image = image;
             Price = price;
             Description = description;
-            Content = content;
+            //Content = content;
             Tags = tags;
             Status = status;
         }
 
-        public Product(string name, int categoryId, string image, decimal price, int month, string description, string content, string tags, Status status)
+        public Product(string name, int categoryId, string image, decimal price, int month, string description, string tags, Status status)
         {
             Name = name;
             CategoryId = categoryId;
@@ -37,19 +37,19 @@ namespace VegetableStore.Models
             Price = price;
             Month = month;
             Description = description;
-            Content = content;
+            //Content = content;
             Tags = tags;
             Status = status;
         }
 
-        public Product(string name, int categoryId, string image, int month,decimal price, string description, string content, string tags, DateTime dateCreated, DateTime dateModified, Status status)
+        public Product(string name, int categoryId, string image, int month,decimal price, string description, string tags, DateTime dateCreated, DateTime dateModified, Status status)
         {
             Name = name;
             CategoryId = categoryId;
             Image = image;
             Price = price;
             Description = description;
-            Content = content;
+            //Content = content;
             Tags = tags;
             DateCreated = dateCreated;
             DateModified = dateModified;
@@ -90,7 +90,7 @@ namespace VegetableStore.Models
         [StringLength(255)]
         public string Description { get; set; }
 
-        public string Content { get; set; }
+        //public string Content { get; set; }
         
         [StringLength(255)]
         public string Tags { get; set; }        

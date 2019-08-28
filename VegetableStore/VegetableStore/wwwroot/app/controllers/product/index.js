@@ -186,7 +186,7 @@
             var tags = $('#txtTagM').val();
  
 
-            var content = CKEDITOR.instances.txtContent.getData();
+            //var content = CKEDITOR.instances.txtContent.getData();
             var status = $('#ckStatusM').prop('checked') == true ? 1 : 0;
             var hot = $('#ckHotM').prop('checked');
             var showHome = $('#ckShowHomeM').prop('checked');
@@ -202,7 +202,7 @@
                     Price: price,
                     Month: month,
                     Description: description,
-                    Content: content,
+                    //Content: content,
                     HomeFlag: showHome,
                     HotFlag: hot,
                     Tags: tags,
@@ -280,7 +280,7 @@
                 $('#txtTagM').val(data.Tags);
 
 
-                CKEDITOR.instances.txtContent.setData(data.Content);
+                //CKEDITOR.instances.txtContent.setData(data.Content);
                 $('#ckStatusM').prop('checked', data.Status == 1);
                 $('#ckHotM').prop('checked', data.HotFlag);
                 $('#ckShowHomeM').prop('checked', data.HomeFlag);

@@ -99,7 +99,7 @@ namespace VegetableStore.Repositories
                     decimal.TryParse(workSheet.Cells[i, 5].Value.ToString(), out var promotionPrice);
 
 
-                    product.Content = workSheet.Cells[i, 6].Value.ToString();
+                    //product.Content = workSheet.Cells[i, 6].Value.ToString();
 
 
 
