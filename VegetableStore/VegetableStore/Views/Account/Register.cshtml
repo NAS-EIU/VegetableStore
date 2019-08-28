@@ -33,51 +33,57 @@
                                 <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
                                     <div class="row">
                                         <div class="col-lg-6 col-sm-6 col-md-6">
-                                            <label>Họ tên:</label>
+                                            <label>Họ tên:</label> <span asp-validation-for="@Model.FullName" class="text-danger"></span>
+
                                             <div class="input-text">
-                                                <input type="text" asp-for="FullName" name="fullName" class="form-control">
+
+                                                <input type="text" asp-for="@Model.FullName" name="FullName" class="form-control">
+
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-sm-6 col-md-6">
-                                            <label>Email:</label>
+                                            <label>Email:</label><span asp-validation-for="@Model.Email" class="text-danger"></span>
                                             <div class="input-text">
-                                                <input type="text" asp-for="Email" name="email" class="form-control">
+                                                
+                                                <input type="text" asp-for="@Model.Email" name="Email" class="form-control">
+
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-sm-6 col-md-6">
-                                            <label>Tên người dùng:</label>
+                                            <label>Tên người dùng:</label> <span asp-validation-for="@Model.UserName" class="text-danger"></span>
                                             <div class="input-text">
-                                                <input type="text" asp-for="UserName" name="userName" class="form-control">
+                                                <input type="text" asp-for="@Model.UserName" name="UserName" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-sm-6 col-md-6">
-                                            <label>Mật khẩu:</label>
+                                            <label>Mật khẩu:</label> <span asp-validation-for="@Model.Password" class="text-danger"></span>
                                             <div class="input-text">
-                                                <input type="password" asp-for="Password" name="password" class="form-control">
+                                                <input type="password" asp-for="@Model.Password" name="Password" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-sm-6 col-md-6">
-                                            <label>Xác nhận mật khẩu:</label>
+                                            <label>Xác nhận mật khẩu:</label> <span asp-validation-for="@Model.ConfirmPassword" class="text-danger"></span>
                                             <div class="input-text">
-                                                <input type="password" asp-for="ConfirmPassword" name="confirmPassword" class="form-control">
+                                                <input type="password" asp-for="@Model.ConfirmPassword" name="ConfirmPassword" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-sm-6 col-md-6">
-                                            <label>Ngày sinh:</label>
+                                            <label>Ngày sinh:</label> <span asp-validation-for="@Model.BirthDay" class="text-danger"></span>
                                             <div class="input-text">
-                                                <input type="date" asp-for="BirthDay" name="birthDay" class="form-control">
+                                                <input type="date" asp-for="@Model.BirthDay" name="BirthDay" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-sm-6 col-md-6">
-                                            <label>Số điện thoại:</label>
+                                            <label>Số điện thoại:</label> <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
                                             <div class="input-text">
-                                                <input type="text" name="phoneNumber" asp-for="PhoneNumber" class="form-control">
+                                                <input type="text" name="PhoneNumber" asp-for="@Model.PhoneNumber" class="form-control">
+                                                
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-sm-6 col-md-6">
-                                            <label>Địa chỉ:</label>
+                                            <label>Địa chỉ:</label> <span asp-validation-for="@Model.Address" class="text-danger"></span>
                                             <div class="input-text">
-                                                <input type="text" name="address" asp-for="Address" class="form-control">
+                                                <input type="text" name="Address" asp-for="@Model.Address" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -86,8 +92,8 @@
                                             <button type="submit" class="button"><i class="fa fa-user"></i>&nbsp; <span>Tạo tài khoản</span></button>
                                         </div>
                                     </div>
-                            </form>
-                        </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
