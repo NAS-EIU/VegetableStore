@@ -76,6 +76,7 @@ namespace VegetableStore.Models
         [StringLength(255)]
         [Required]
         public string Name { get; set; }
+        [ForeignKey("CategoryId")]
         public virtual ProductCategory ProductCategory { set; get; }
         [Required]
         public int Month { get; set; }

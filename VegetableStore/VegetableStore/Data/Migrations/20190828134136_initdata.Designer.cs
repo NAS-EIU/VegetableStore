@@ -3,19 +3,21 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VegetableStore.Data;
 
 namespace VegetableStore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190828134136_initdata")]
+    partial class initdata
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
+                .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -286,8 +288,6 @@ namespace VegetableStore.Migrations
 
                     b.Property<decimal>("Price");
 
-                    b.Property<int?>("ProductCategoryId");
-
                     b.Property<int>("Status");
 
                     b.Property<string>("Tags")
@@ -295,7 +295,7 @@ namespace VegetableStore.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductCategoryId");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
                 });
@@ -393,7 +393,8 @@ namespace VegetableStore.Migrations
                 {
                     b.HasOne("VegetableStore.Models.ProductCategory", "ProductCategory")
                         .WithMany("Products")
-                        .HasForeignKey("ProductCategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("VegetableStore.Models.ProductImage", b =>
