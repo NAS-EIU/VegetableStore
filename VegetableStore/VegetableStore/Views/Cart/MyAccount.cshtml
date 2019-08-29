@@ -1,4 +1,10 @@
-﻿<div class="breadcrumb_container">
+﻿@model List<BillViewModel>
+@inject UserManager<AppUser> UserManager
+@{
+    var username = UserManager.GetUserName(User).ToString();
+    var bills = Model.Where(x => x.CustomerId.ToString() == UserManager.GetUserId(User).ToString());
+}
+<div class="breadcrumb_container">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
@@ -21,7 +27,7 @@
                     <ul role="tablist" class="nav flex-column dashboard-list">
                         <li><a href="#dashboard" data-toggle="tab" class="nav-link active">Bảng điều khiển</a></li>
                         <li> <a href="#orders" data-toggle="tab" class="nav-link">Đặt hàng</a></li>
-                      @*  <li><a href="#downloads" data-toggle="tab" class="nav-link">Downloads</a></li>*@
+                        @*  <li><a href="#downloads" data-toggle="tab" class="nav-link">Downloads</a></li>*@
                         <li><a href="#address" data-toggle="tab" class="nav-link">Địa chỉ</a></li>
                         <li><a href="#account-details" data-toggle="tab" class="nav-link">Thông tin tài khoản</a></li>
                         <li><a href="#" class="nav-link" onclick="logout()">Đăng xuất</a></li>
@@ -41,27 +47,26 @@
                                     <thead>
                                         <tr>
                                             <th>Order</th>
-                                            <th>Date</th>
+                                            <th>Name</th>
                                             <th>Status</th>
                                             <th>Total</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>May 10, 2018</td>
-                                            <td><span class="success">Completed</span></td>
-                                            <td>$25.00 for 1 item </td>
-                                            <td><a href="cart.html" class="view">view</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>May 10, 2018</td>
-                                            <td>Processing</td>
-                                            <td>$17.00 for 1 item </td>
-                                            <td><a href="cart.html" class="view">view</a></td>
-                                        </tr>
+
+                                        @foreach (var item in bills)
+                                        {
+                                            <tr>
+                                                <td>@item.Id</td>
+                                                <td>@item.DateCreated</td>
+                                                <td><span class="success">@item.BillStatus</span></td>
+                                                <td> $@item.BillDetails.Sum(x => x.Quantity * x.Price).ToString("N0") for @item.BillDetails.Count(x => x.BillId == item.Id) items </td>
+                                                <td><a href="cart.html" class="view">view</a></td>
+                                            </tr>
+                                        }
+
+
                                     </tbody>
                                 </table>
                             </div>
@@ -101,12 +106,7 @@
                             <a href="#" class="view">Edit</a>
                             <p><strong>Bobby Jackson</strong></p>
                             <address>
-                                House #15<br>
-                                Road #1<br>
-                                Block #C <br>
-                                Banasree <br>
-                                Dhaka <br>
-                                1212
+
                             </address>
                             <p>Bangladesh</p>
                         </div>

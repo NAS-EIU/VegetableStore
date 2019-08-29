@@ -2,6 +2,8 @@
 @inject UserManager<AppUser> UserManager
 @{
     ViewData["Title"] = "Checkout";
+    var user = UserManager.Users.First(x => x.UserName == UserManager.GetUserName(User));
+
 }
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
@@ -49,7 +51,7 @@
                 <form action="/checkout.html" method="post">
                     <div class="checkout-form">
                         <div class="row">
-                            @Html.AntiForgeryToken()
+                            @
                             <div class="col-lg-6 col-md-6">
                                 <div>
                                     <h3>Billing Details</h3>
@@ -57,24 +59,20 @@
 
                                         <div class="col-12 mb-30">
                                             <label for="b_f_name">Full Name <span>*</span></label>
-                                            <input id="b_f_name" class="input form-control" type="text" asp-for="CustomerName">
+                                            <input id="b_f_name" type="text" asp-for="CustomerName" value="@user.FullName">
                                         </div>
 
                                         <div class="col-12 mb-30">
-                                            <label>Address <span>*</span></label>
-                                            <input placeholder="Street address" type="text">
-                                        </div>
-                                        <div class="col-12 mb-30">
-                                            <label for="b_city">Town / City <span>*</span></label>
-                                            <input id="b_city" placeholder="Town / City" type="text">
+                                            <label for="b_f_address">Address <span>*</span></label>
+                                            <input id="b_f_address" type="text" asp-for="CustomerAddress" value="@user.Address">
                                         </div>
                                         <div class="col-lg-6 mb-30">
-                                            <label for="b_email">Email Address <span>*</span></label>
-                                            <input id="b_email" type="text" asp-for="CustomerAddress">
+                                            <label for="b_email">Email Address</label>
+                                            <input id="b_email" type="text" value="@user.Email">
                                         </div>
                                         <div class="col-lg-6 mb-30">
                                             <label>Phone   <span>*</span></label>
-                                            <input placeholder="Phone Number" type="text" asp-for="CustomerMobile">
+                                            <input placeholder="Phone Number" type="text" asp-for="CustomerMobile" value="@user.PhoneNumber">
                                         </div>
                                         <div class="col-12">
                                             <div class="order-notes">
@@ -101,8 +99,8 @@
                                                 @foreach (var item in Model.Carts)
                                                 {
                                                     <tr>
-                                                        <td class="product-name">@item.Product.Name <strong> × @item.Quantity</strong></td>
-                                                        <td class="amount"> $@((item.Price * item.Quantity).ToString("N0"))</td>
+                                                        <td class="product-name">@ <strong> × @</strong></td>
+                                                        <td class="amount"> $@( )</td>
                                                     </tr>
                                                 }
 
@@ -110,11 +108,11 @@
                                             <tfoot>
                                                 <tr>
                                                     <th>Cart Subtotal</th>
-                                                    <td>$@Model.Carts.Sum(x => x.Quantity * x.Price).ToString("N0")</td>
+                                                    <td>$@</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Order Total</th>
-                                                    <td><strong>$@Model.Carts.Sum(x => x.Quantity * x.Price).ToString("N0")</strong></td>
+                                                    <td><strong>$@</strong></td>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -125,7 +123,7 @@
                                             <div class="panel-default">
                                                 <label class="righ_10" asp-for="@Model.PaymentMethods[i].Value">
                                                     <input type="radio" name="paymentMethod" asp-for="PaymentMethod" value="@Model.PaymentMethods[i].Value">
-                                                    @Model.PaymentMethods[i].Name
+                                                    @
                                                 </label>
                                             </div>
 

@@ -36,8 +36,10 @@
                                             <div class="quickview_plus_minus">
                                                 <span class="control_label">Quantity</span>
                                                 <div class="quickview_plus_minus_inner">
-                                                    <div class="cart-plus-minus">
-                                                        <input type="text" name="qtybutton" value="1" class="cart-plus-minus-box">
+                                                    <div class="def-number-input number-input safari_only">
+                                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
+                                                        <input class="quantity" min="0" name="quantity" value="1" type="number">
+                                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
                                                     </div>
                                                     <div class="add_button add_modal">
                                                         <button type="submit" class="cart-order"> Add to cart</button>

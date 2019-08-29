@@ -7,7 +7,7 @@
         $('body').on('click', '.cart-order', function (e) {
             e.preventDefault();
             var id = $(this).data('id');
-            var quantity = $('.cart-plus-minus-box').val();
+            var quantity = $('.quantity').val();
             $.ajax({
                 url: '/Cart/AddToCart',
                 type: 'post',
@@ -16,7 +16,7 @@
                     quantity: quantity == null ? 1 : quantity
                 },
                 success: function (response) {
-                    $('.cart-plus-minus-box').val('1');
+                    $('.quantity').val('1');
                     //tedu.notify(resources["AddCartOK"], 'success');
                     loadHeaderCart();
                 }
