@@ -51,7 +51,7 @@
                 <form action="/checkout.html" method="post">
                     <div class="checkout-form">
                         <div class="row">
-                            @
+                            @Html.AntiForgeryToken()
                             <div class="col-lg-6 col-md-6">
                                 <div>
                                     <h3>Billing Details</h3>
@@ -99,8 +99,8 @@
                                                 @foreach (var item in Model.Carts)
                                                 {
                                                     <tr>
-                                                        <td class="product-name">@ <strong> × @</strong></td>
-                                                        <td class="amount"> $@( )</td>
+                                                        <td class="product-name">@item.Product.Name <strong> × @item.Quantity</strong></td>
+                                                        <td class="amount"> $@((item.Price * item.Quantity).ToString("N0"))</td>
                                                     </tr>
                                                 }
 
@@ -108,11 +108,11 @@
                                             <tfoot>
                                                 <tr>
                                                     <th>Cart Subtotal</th>
-                                                    <td>$@</td>
+                                                    <td>$@Model.Carts.Sum(x => x.Quantity * x.Price).ToString("N0")</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Order Total</th>
-                                                    <td><strong>$@</strong></td>
+                                                    <td><strong>$@Model.Carts.Sum(x => x.Quantity * x.Price).ToString("N0")</strong></td>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -123,7 +123,7 @@
                                             <div class="panel-default">
                                                 <label class="righ_10" asp-for="@Model.PaymentMethods[i].Value">
                                                     <input type="radio" name="paymentMethod" asp-for="PaymentMethod" value="@Model.PaymentMethods[i].Value">
-                                                    @
+                                                    @Model.PaymentMethods[i].Name
                                                 </label>
                                             </div>
 
