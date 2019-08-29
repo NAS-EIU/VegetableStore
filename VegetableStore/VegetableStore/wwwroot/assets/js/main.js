@@ -529,5 +529,8 @@
          $('#cat_toggle > ul > li.has-sub > a,.shop_toggle li.has-sub > a').append('<span class="holder"></span>');
     
 
-
+    
 })(jQuery);
+function logout() {
+    $(".logout").click();
+}

@@ -55,7 +55,7 @@
                                         <ul>
                                             <li><a href="#"><img src="assets/img/1.jpg" ><span class="expand-more">English</span></a></li>
 
-                                            <li><a href="#"><img src="assets/img/banner/frances2.jpg" ><span class="expand-more">Tiếng Việt</span> </a></li>
+                                            <li><a href="#"><img src="~/assets/img/vietnam.jpg" ><span class="expand-more">Tiếng Việt</span> </a></li>
 
                                         </ul>
 
@@ -74,11 +74,11 @@
 
                                             @if (SignInManager.IsSignedIn(User))
                                             {
-                                                <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
+                                                <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" method="post" id="logoutForm" class="navbar-right ">
                                                     <ul class="nav navbar-nav navbar-right">
 
-                                                        <li class="nav navbar-nav navbar-right">
-                                                            <button type="submit" class="btn btn-link navbar-btn navbar-link">Đăng xuất</button>
+                                                        <li class="nav navbar-nav navbar-right ">
+                                                            <button type="submit" class="btn btn-link navbar-btn navbar-link" id="logout">Đăng xuất</button>
                                                         </li>
                                                     </ul>
                                                 </form>
