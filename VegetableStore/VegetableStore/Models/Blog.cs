@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using VegetableStore.Models.Enums;
 
 namespace VegetableStore.Models
 {
+    [Table("Blogs")]
     public class Blog: DomainEntity<int>
     {
         public Blog(string title, string image, string content, string tags, Status status)
