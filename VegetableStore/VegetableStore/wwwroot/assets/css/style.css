@@ -217,7 +217,16 @@ input[type="radio"] {
     -moz-appearance: textfield;
     appearance: textfield;
 }
+.kg {
+    padding-bottom: 15px;
+    padding-top: 15px;
+    padding-left: 5px;
+    color: forestgreen;
+}
 
+input.quantity {
+    height: 49px;
+}
 .number-input input[type=number]::-webkit-inner-spin-button,
 .number-input input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
