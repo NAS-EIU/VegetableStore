@@ -8,7 +8,7 @@ using VegetableStore.Models.Enums;
 
 namespace VegetableStore.Models
 {
-    public class Blog
+    public class Blog: DomainEntity<int>
     {
         public Blog(string title, string image, string content, string tags, Status status)
         {
