@@ -27,6 +27,9 @@ namespace VegetableStore.AutoMapp
             CreateMap<ProductCategoryViewModel, ProductCategory>()
                 .ConstructUsing(c => new ProductCategory(c.Name, c.Description, c.ParentId, c.HomeOrder, c.Image, c.HomeFlag,
                 c.SortOrder, c.Status));
+            CreateMap<BlogViewModel, Blog>()
+           .ConstructUsing(c => new Blog(c.Title,  c.Image,  
+            c.Content, c.Tags, c.Status));
         }
         
     }
