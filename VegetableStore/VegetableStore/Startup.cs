@@ -88,6 +88,7 @@ namespace VegetableStore
             services.AddTransient(typeof(IRepository<,>), typeof(EFRepository<,>));
             services.AddTransient<IProductCategoryRepository, ProductCategoryRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddTransient<IBlogRepository, BlogRepository>();
             services.AddTransient<Dbintinatilecs>();
             services.Configure<RequestLocalizationOptions>(
              opts =>
