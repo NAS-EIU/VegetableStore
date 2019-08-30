@@ -93,7 +93,7 @@ function loadDetails(that) {
                 $('.cart_description').text(data.Description);
                 var price = "$" + data.Price;
                 $('.regular_price').text(price);
-                $('.cart-plus-minus-box').val('1');
+                $('.quantity').val('1');
                 $('#my_modal').modal('show');
                 tedu.stopLoading();
 

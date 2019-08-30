@@ -2,6 +2,8 @@
 @inject UserManager<AppUser> UserManager
 @{
     ViewData["Title"] = "Checkout";
+    var user = UserManager.Users.First(x => x.UserName == UserManager.GetUserName(User));
+
 }
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
@@ -57,24 +59,20 @@
 
                                         <div class="col-12 mb-30">
                                             <label for="b_f_name">Full Name <span>*</span></label>
-                                            <input id="b_f_name" class="input form-control" type="text" asp-for="CustomerName">
+                                            <input id="b_f_name" type="text" asp-for="CustomerName" value="@user.FullName">
                                         </div>
 
                                         <div class="col-12 mb-30">
-                                            <label>Address <span>*</span></label>
-                                            <input placeholder="Street address" type="text">
-                                        </div>
-                                        <div class="col-12 mb-30">
-                                            <label for="b_city">Town / City <span>*</span></label>
-                                            <input id="b_city" placeholder="Town / City" type="text">
+                                            <label for="b_f_address">Address <span>*</span></label>
+                                            <input id="b_f_address" type="text" asp-for="CustomerAddress" value="@user.Address">
                                         </div>
                                         <div class="col-lg-6 mb-30">
-                                            <label for="b_email">Email Address <span>*</span></label>
-                                            <input id="b_email" type="text" asp-for="CustomerAddress">
+                                            <label for="b_email">Email Address</label>
+                                            <input id="b_email" type="text" value="@user.Email">
                                         </div>
                                         <div class="col-lg-6 mb-30">
                                             <label>Phone   <span>*</span></label>
-                                            <input placeholder="Phone Number" type="text" asp-for="CustomerMobile">
+                                            <input placeholder="Phone Number" type="text" asp-for="CustomerMobile" value="@user.PhoneNumber">
                                         </div>
                                         <div class="col-12">
                                             <div class="order-notes">
