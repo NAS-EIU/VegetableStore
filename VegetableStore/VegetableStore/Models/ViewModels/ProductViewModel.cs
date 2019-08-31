@@ -28,6 +28,8 @@ namespace VegetableStore.Models.ViewModels
         public ProductCategoryViewModel ProductCategory { set; get; }
         [StringLength(255)]
         public string Description { get; set; }
+        public int Quality { get; set; }
+        public int Vote { get; set; }
         [StringLength(255)]
         public string Tags { get; set; }
         public string Content { get; set; }
