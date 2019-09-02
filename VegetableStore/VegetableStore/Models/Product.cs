@@ -17,61 +17,19 @@ namespace VegetableStore.Models
         {
         }
 
-        public Product(string name, int categoryId, string image, decimal price, string description, string tags, Status status)
-        {
-            Name = name;
-            CategoryId = categoryId;
-            Image = image;
-            Price = price;
-            Description = description;
-            //Content = content;
-            Tags = tags;
-            Status = status;
-        }
-
-        public Product(string name, int categoryId, string image, decimal price, int month, string description, string tags, Status status)
+        public Product(string name, int categoryId, string image, decimal price, int month, int quality, int vote, string description, string tags, Status status)
         {
             Name = name;
             CategoryId = categoryId;
             Image = image;
             Price = price;
             Month = month;
+            Quality = quality;
+            Vote = vote;
             Description = description;
-            //Content = content;
             Tags = tags;
             Status = status;
         }
-
-        public Product(string name, int categoryId, string image, int month,decimal price, string description, string tags, DateTime dateCreated, DateTime dateModified, Status status)
-        {
-            Name = name;
-            CategoryId = categoryId;
-            Image = image;
-            Price = price;
-            Description = description;
-            //Content = content;
-            Tags = tags;
-            DateCreated = dateCreated;
-            DateModified = dateModified;
-            Status = status;
-            Month = month;
-        }
-
-        //public Product(string name, int month, int categoryId, string image, decimal price, string description, string content, string tags, DateTime dateCreated, DateTime dateModified, DateTime dateEnd, Status status)
-        //{
-        //    Name = name;
-        //    Month = month;
-        //    CategoryId = categoryId;
-        //    Image = image;
-        //    Price = price;
-        //    Description = description;
-        //    Content = content;
-        //    Tags = tags;
-        //    DateCreated = dateCreated;
-        //    DateModified = dateModified;
-        //    DateEnd = dateEnd;
-        //    Status = status;
-        //}
 
         [StringLength(255)]
         [Required]
@@ -97,7 +55,8 @@ namespace VegetableStore.Models
         public DateTime DateCreated { set; get; }
         public DateTime DateModified { set; get; }
         //public DateTime DateEnd { set; get; }
-
+        public int Quality { get; set; }
+        public int Vote { get; set; }
         public Status Status { set; get; }
     }
 

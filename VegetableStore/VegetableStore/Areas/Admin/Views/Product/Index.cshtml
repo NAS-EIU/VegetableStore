@@ -49,8 +49,6 @@
         </div>
         <div class="col-md-6 col-sm-12  form-group pull-right">
             <button id="btnCreate" class="btn btn-success">Tạo</button>
-            @*<a class="btn btn-danger" href="~/templates/ProductImportTemplate.xlsx">Tải bản mẫu về</a>
-            <button class="btn btn-primary" id="btn-import" type="button"><i class="fa fa-file-excel-o">Tải bản mẫu lên</i></button>*@
             <button class="btn btn-default" id="btn-export" type="button"><i class="fa fa-file-excel-o"></i> Tải về</button>
 
         </div>
@@ -65,11 +63,13 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                           
+
                             <th>Tên sản phẩm</th>
                             <th>Giá</th>
                             <th>Hình ảnh</th>
                             <th>Ngày tạo</th>
+                            <th>Số lượng</th>
+                            <th>Lượt mua</th>
                             <th>Tình trạng</th>
                             <th width="20%">#</th>
                         </tr>
@@ -103,12 +103,14 @@
 </div>
 <script id="table-template" type="x-tmpl-mustache">
     <tr>
-        
+
         <td>{{Name}}</td>
 
         <td>{{Price}}</td>
         <td>{{{Image}}}</td>
         <td>{{CreatedDate}}</td>
+        <td>{{Quantity}}</td>
+        <td>{{Vote}}</td>
         <td>{{{Status}}}</td>
         <th scope="row">
             <a class="btn  btn-sm btn-edit" data-id="{{Id}}"><i class="fa fa-pencil"></i></a>
