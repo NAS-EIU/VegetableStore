@@ -242,14 +242,14 @@ namespace VegetableStore.Repositories
         }
         public List<ProductViewModel> GetLastest(int top)
         {
-            return _productRepository.FindAll(x => x.Status == Status.Active).OrderByDescending(x => x.DateCreated)
+            return _productRepository.FindAll(x => x.Status == Status.Active && x.CategoryId == 6 ).OrderByDescending(x => x.DateCreated)
                 .Take(top).ProjectTo<ProductViewModel>().ToList();
         }
 
         public List<ProductViewModel> GetHotProduct(int top)
         {
             return _productRepository.FindAll(x => x.Status == Status.Active)
-                .OrderByDescending(x => x.DateCreated)
+                .OrderByDescending(x => x.Vote)
                 .Take(top)
                 .ProjectTo<ProductViewModel>()
                 .ToList();

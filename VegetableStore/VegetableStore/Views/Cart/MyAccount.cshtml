@@ -10,8 +10,8 @@
             <div class="col-12">
                 <nav>
                     <ul>
-                        <li><a href="#">Home</a> ></li>
-                        <li>Thông tin cá nhân</li>
+                        <li><a href="#">Trang chủ</a> ></li>
+                        <li>Tài khoản</li>
                     </ul>
                 </nav>
             </div>
@@ -27,7 +27,6 @@
                     <ul role="tablist" class="nav flex-column dashboard-list">
                         <li><a href="#dashboard" data-toggle="tab" class="nav-link active">Bảng điều khiển</a></li>
                         <li> <a href="#orders" data-toggle="tab" class="nav-link">Đặt hàng</a></li>
-                        @*  <li><a href="#downloads" data-toggle="tab" class="nav-link">Downloads</a></li>*@
                         <li><a href="#address" data-toggle="tab" class="nav-link">Địa chỉ</a></li>
                         <li><a href="#account-details" data-toggle="tab" class="nav-link">Thông tin tài khoản</a></li>
                         <li><a href="#" class="nav-link" onclick="logout()">Đăng xuất</a></li>
@@ -46,11 +45,11 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Order</th>
-                                            <th>Name</th>
-                                            <th>Status</th>
-                                            <th>Total</th>
-                                            <th>Actions</th>
+                                            <th>Đơn hàng</th>
+                                            <th>Ngày tạo</th>
+                                            <th>Trạng thái</th>
+                                            <th>Tổng cộng</th>
+                                            <th>Hủy</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -62,7 +61,7 @@
                                                 <td>@item.DateCreated</td>
                                                 <td><span class="success">@item.BillStatus</span></td>
                                                 <td> $@item.BillDetails.Sum(x => x.Quantity * x.Price).ToString("N0") for @item.BillDetails.Count(x => x.BillId == item.Id) items </td>
-                                                <td><a href="cart.html" class="view">view</a></td>
+                                                <td><a  class="remove">X</a></td>
                                             </tr>
                                         }
 

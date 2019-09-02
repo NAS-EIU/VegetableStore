@@ -84,6 +84,15 @@ namespace VegetableStore.Repositories
         {
             var order = _orderRepository.FindById(billId);
             order.BillStatus = status;
+            if (status == BillStatus.Completed)
+            {
+                foreach(var item in order.BillDetails)
+                {
+                    var product = item.Product;
+                    product.Quality -= item.Quantity;
+                    _productRepository.Update(product);
+                }
+            }
             _orderRepository.Update(order);
         }
 
@@ -142,7 +151,11 @@ namespace VegetableStore.Repositories
                 .FindAll(x => x.BillId == billId, c => c.Bill, c => c.Product)
                 .ProjectTo<BillDetailViewModel>().ToList();
         }
-
+        public void RemoveBill(int id)
+        {
+            var bill = _orderRepository.FindById(id);
+            _orderRepository.Remove(bill);
+        }
        
         public BillDetailViewModel CreateDetail(BillDetailViewModel billDetailVm)
         {
