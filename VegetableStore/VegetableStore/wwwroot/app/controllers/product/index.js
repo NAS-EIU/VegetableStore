@@ -71,11 +71,11 @@
                 data: data,
                 success: function (path) {
                     $('#txtImageM').val(path);
-                    tedu.notify('Upload image succesful!', 'success');
+                    tedu.notify('Tải ảnh thành công', 'success');
 
                 },
                 error: function () {
-                    tedu.notify('There was error uploading files!', 'error');
+                    tedu.notify('Có lỗi khi tải ảnh', 'error');
                 }
             });
         });
@@ -140,7 +140,7 @@
                     tedu.stopLoading();
                 },
                 error: function () {
-                    tedu.notify('Has an error in progress', 'error');
+                    tedu.notify('Có lỗi', 'error');
                     tedu.stopLoading();
                 }
             });
@@ -177,7 +177,8 @@
 
             var description = $('#txtDescM').val();
 
-
+            var quantity = $('#txtQuanity').val();
+            var vote = $('#txtVote').val();
             var price = $('#txtPriceM').val();
     
             var month = $('#txtMonth').val();
@@ -202,11 +203,11 @@
                     Price: price,
                     Month: month,
                     Description: description,
-                    //Content: content,
+                    Quantity: quantity,
+                    Vote: vote,
                     HomeFlag: showHome,
                     HotFlag: hot,
                     Tags: tags,
-   
                     Status: status,
    
                 },
@@ -215,7 +216,7 @@
                     tedu.startLoading();
                 },
                 success: function (response) {
-                    tedu.notify('Update product successful', 'success');
+                    tedu.notify('Cập nhật thành công', 'success');
                     $('#modal-add-edit').modal('hide');
                     resetFormMaintainance();
 
@@ -223,7 +224,7 @@
                     loadData(true);
                 },
                 error: function () {
-                    tedu.notify('Has an error in save product progress', 'error');
+                    tedu.notify('Có lỗi trong quá trình lưu', 'error');
                     tedu.stopLoading();
                 }
             });
@@ -232,7 +233,7 @@
     }
 
     function deleteProduct(id) {
-        tedu.confirm('Are you sure to delete?', function () {
+        tedu.confirm('Bạn có muôn xóa ?', function () {
             $.ajax({
                 type: "POST",
                 url: "/Admin/Product/Delete",
@@ -242,7 +243,7 @@
                     tedu.startLoading();
                 },
                 success: function (response) {
-                    tedu.notify('Delete successful', 'success');
+                    tedu.notify('Xóa thành công', 'success');
                     tedu.stopLoading();
                     loadData();
                 },
@@ -278,7 +279,8 @@
                 $('#txtImageM').val(data.Image);
 
                 $('#txtTagM').val(data.Tags);
-
+                $('#txtQuanity').val(data.Quantity);
+                $('#txtVote').val(data.Vote);
 
                 //CKEDITOR.instances.txtContent.setData(data.Content);
                 $('#ckStatusM').prop('checked', data.Status == 1);
@@ -382,6 +384,8 @@
                         Name: item.Name,
                         Month: item.Month,
                         Image: item.Image == null ? '<img src="/admin-side/images/user.png" width=25' : '<img src="' + item.Image + '" width=25 />',
+                        Quantity: item.Quanlity,
+                        Vote: item.Vote,                      
                         CategoryName: item.ProductCategory.Name,
                         Price: tedu.formatNumber(item.Price, 0),
                         CreatedDate: tedu.dateTimeFormatJson(item.DateCreated),
