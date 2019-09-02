@@ -64,6 +64,13 @@ namespace VegetableStore.Data
 
                 }
             }
+            if (_context.Blogs.Count() == 0)
+            {
+                _context.Blogs.AddRange(new List<Blog>()
+                {
+                    new Blog(){Title ="test1",Image="/uploaded/images/buoi-doan-hung (1).jpg",Content="day la blog test",Tags="blog",Status = Status.Active}
+                });
+            }
             if (_context.Functions.Count() == 0)
             {
                 _context.Functions.AddRange(new List<Function>()

@@ -19,6 +19,6 @@ namespace VegetableStore.Models.ViewModels
 
         public List<ProductViewModel> LastestProducts { get; set; }
 
-        
+        public BlogViewModel Blog { get; set; }
     }
 }
