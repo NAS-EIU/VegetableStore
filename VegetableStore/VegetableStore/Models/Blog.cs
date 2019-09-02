@@ -12,6 +12,10 @@ namespace VegetableStore.Models
     [Table("Blogs")]
     public class Blog: DomainEntity<int>
     {
+        public Blog()
+        {
+        }
+
         public Blog(string title, string image, string content, string tags, Status status)
         {
             Title = title;

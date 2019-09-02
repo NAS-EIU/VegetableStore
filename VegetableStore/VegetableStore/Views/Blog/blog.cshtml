@@ -2,31 +2,45 @@
 @{
     ViewData["Title"] = "blog";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var item = Model.Data.Results[0];
 }
 
 <h2>blog</h2>
 
-@*<div class="blog_list_area">
+<div class="blog_details_area">
     <div class="container">
         <div class="row">
-            @foreach (var item in Model.Data.Results)
-            {
-                var url = "/" + item.Name + "-" + "s." + item.Id + ".html";
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="single_blog_list">
-                        <div class="blog__thumb">
-                            <a href="@url"><img style="width:270px;height:200px" src="@item.Image" alt=""></a>
-                        </div>
-                        <div class="post__content">
-                            <h3><a href="@url">@item.Name</a></h3>
-                            <ul>
-                                <li><a href="@url">Read More</a></li>
-                                <li class="post_date">@item.DateCreated</li>
-                            </ul>
-                        </div>
+            <div class="col-lg-3 col-md-8">
+                <div class="blog_details_left">
+                    <div class="blog_left_sidebar mb-50">
+                        <h3>Recent Posts</h3>
+                        @foreach (var items in Model.Data.Results)
+                        {
+                            var url = "/"  + "blog" + "-" + items.Id + ".html";
+                            <div class="recent_post mb-30">
+                                <div class="recent_post_title">
+                                    <a href="@url"><img src="@items.Image" alt=""></a>
+                                </div>
+                                <div class="recent_post_content">
+                                    <h4><a href="@url">@items.Title</a></h4>
+                                    <span class="post_date">@items.DateModified</span>
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
-            }
+            </div>
+            <div class="col-lg-9 col-md-12">
+                <div class="blog_details_info">
+                    <h3>@item.Title</h3>
+                    <div class="blog_details_img">
+                        <img src="@item.Image" style=" display: block; margin-left: auto; margin-right: auto; width:50%" alt="">
+                    </div>
+                    <div class="post_excerpt">
+                        <p>@item.Content</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>*@
+</div>

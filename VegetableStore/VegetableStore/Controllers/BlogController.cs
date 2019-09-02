@@ -32,5 +32,14 @@ namespace VegetableStore.Controllers
             products.Data = _blogRepository.GetAllPaging( page, pageSize.Value);
             return View(products);
         }
+
+        [Route("blog-{id}.html", Name = "blogDetail")]
+        public IActionResult BlogDetails(int id)
+        {
+            ViewData["BodyClass"] = "blog-page";
+            var model = new DetailViewModel();
+            model.Blog = _blogRepository.GetById(id);
+            return View(model);
+        }
     }
 }
