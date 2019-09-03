@@ -12,6 +12,8 @@ using VegetableStore.Models.ViewModels;
 using VegetableStore.Utilities;
 using VegetableStore.Extensions;
 using VegetableStore.Models.Enums;
+using Microsoft.AspNetCore.Identity;
+using VegetableStore.Models;
 
 namespace VegetableStore.Controllers
 {
@@ -20,12 +22,14 @@ namespace VegetableStore.Controllers
         IProductRepository _productRepository;
         IBillRepository _billRepository;
         IConfiguration _configuration;
+        UserManager<AppUser> UserManager;
 
-        public CartController(IProductRepository productRepository, IBillRepository billRepository, IConfiguration configuration)
+        public CartController(IProductRepository productRepository, IBillRepository billRepository, IConfiguration configuration, UserManager<AppUser> userManager)
         {
             _productRepository = productRepository;
             _billRepository = billRepository;
             _configuration = configuration;
+            UserManager = userManager;
         }
 
         [Route("cart.html", Name = "Cart")]
@@ -37,7 +41,8 @@ namespace VegetableStore.Controllers
         [HttpGet]
         public IActionResult MyAccount()
         {
-            return View();
+            var model = _billRepository.GetBills();
+            return View(model);
         }
         public IActionResult RemoveBill(int Billid)
         {
@@ -96,7 +101,7 @@ namespace VegetableStore.Controllers
                     };
                     if (User.Identity.IsAuthenticated == true)
                     {
-                        billViewModel.CustomerId = Guid.Parse(User.GetSpecificClaim("UserId"));
+                        billViewModel.CustomerId = Guid.Parse(UserManager.GetUserId(User));
                     }
                     _billRepository.Create(billViewModel);
                     try

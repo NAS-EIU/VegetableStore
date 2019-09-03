@@ -95,7 +95,18 @@ namespace VegetableStore.Repositories
             }
             _orderRepository.Update(order);
         }
-
+        public List<BillViewModel> GetBills()
+        {
+            var bill = _orderRepository.FindAll();
+            var billVm = Mapper.Map<List<Bill>, List<BillViewModel>>(bill.ToList());
+            foreach(var item in billVm)
+            {
+                var billDetailVm = _orderDetailRepository.FindAll(x => x.BillId == item.Id).ProjectTo<BillDetailViewModel>().ToList();
+                item.BillDetails = billDetailVm;
+            }
+            
+            return billVm;
+        }
      
 
         public void Save()

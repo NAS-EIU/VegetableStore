@@ -56,7 +56,7 @@ namespace VegetableStore.Repositories
         {
             return _productRepository.FindAll().ProjectTo<ProductViewModel>().ToList();
         }
-      
+
         public ProductViewModel GetById(int id)
         {
             return Mapper.Map<Product, ProductViewModel>(_productRepository.FindById(id));
@@ -65,7 +65,7 @@ namespace VegetableStore.Repositories
         {
             var product = _productRepository.FindById(id);
             return _productRepository.FindAll(x => x.Status == Status.Active
-                && x.Id != id )
+                && x.Id != id)
             .OrderByDescending(x => x.DateCreated)
             .Take(top)
             .ProjectTo<ProductViewModel>()
@@ -109,7 +109,7 @@ namespace VegetableStore.Repositories
                 }
             }
         }
-        public PagedResult<ProductViewModel> GetAllPaging(int? categoryId,string keyword, int page, int pageSize)
+        public PagedResult<ProductViewModel> GetAllPaging(int? categoryId, string keyword, int page, int pageSize)
         {
             var query = _productRepository.FindAll(x => x.Status == Status.Active);
             if (!string.IsNullOrEmpty(keyword))
@@ -162,9 +162,9 @@ namespace VegetableStore.Repositories
             };
             return paginationSet;
         }
-        public PagedResult<ProductViewModel> GetAllBySlice(int? categoryId,  int page, int pageSize)
+        public PagedResult<ProductViewModel> GetAllBySlice(int? categoryId, int page, int pageSize)
         {
-           
+
             var query = _productRepository.FindAll(x => x.Status == Status.Active);
 
             if (categoryId.HasValue)
@@ -218,7 +218,7 @@ namespace VegetableStore.Repositories
 
 
             var product = Mapper.Map<ProductViewModel, Product>(productVm);
-          
+
             _productRepository.Update(product);
         }
         public List<ProductImageViewModel> GetImages(int productId)
@@ -242,13 +242,13 @@ namespace VegetableStore.Repositories
         }
         public List<ProductViewModel> GetLastest(int top)
         {
-            return _productRepository.FindAll(x => x.Status == Status.Active && x.CategoryId == 6 ).OrderByDescending(x => x.DateCreated)
+            return _productRepository.FindAll(x => x.Status == Status.Active && x.CategoryId == 7).OrderByDescending(x => x.DateCreated)
                 .Take(top).ProjectTo<ProductViewModel>().ToList();
         }
 
         public List<ProductViewModel> GetHotProduct(int top)
         {
-            return _productRepository.FindAll(x => x.Status == Status.Active)
+            return _productRepository.FindAll(x => x.Status == Status.Active && x.CategoryId != 1 && x.CategoryId != 7)
                 .OrderByDescending(x => x.Vote)
                 .Take(top)
                 .ProjectTo<ProductViewModel>()
@@ -264,7 +264,7 @@ namespace VegetableStore.Repositories
         }
         public bool CheckAvailability(int productId)
         {
-            var quantity = _productQuantityRepository.FindSingle(x =>  x.ProductId == productId);
+            var quantity = _productQuantityRepository.FindSingle(x => x.ProductId == productId);
             if (quantity == null)
                 return false;
             return quantity.Quantity > 0;

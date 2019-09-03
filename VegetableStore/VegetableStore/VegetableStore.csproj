@@ -7,13 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="wwwroot\uploaded\images\20190729\**" />
-    <Content Remove="wwwroot\uploaded\images\20190729\**" />
-    <EmbeddedResource Remove="wwwroot\uploaded\images\20190729\**" />
-    <None Remove="wwwroot\uploaded\images\20190729\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Remove="Data\Migrations\20190824120818_initilized.cs" />
     <Compile Remove="Data\Migrations\20190824120818_initilized.Designer.cs" />
     <Compile Remove="Data\Migrations\20190824145827_sa.cs" />
@@ -37,7 +30,7 @@
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\js\" />
-    <Folder Include="wwwroot\uploaded\images\20190815\" />
+    <Folder Include="wwwroot\uploaded\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -56,6 +49,21 @@
     <None Include="Views\Account\ResetPassword.cshtml" />
     <None Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <None Include="Views\Account\SignedOut.cshtml" />
+    <None Include="Views\Cart\Checkout.cshtml" />
+    <None Include="Views\Cart\Index.cshtml" />
+    <None Include="Views\Cart\MyAccount.cshtml" />
+    <None Include="Views\Home\About.cshtml" />
+    <None Include="Views\Home\Contact.cshtml" />
+    <None Include="Views\Home\Gop.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Home\Privacy.cshtml" />
+    <None Include="Views\Home\_modalView.cshtml" />
+    <None Include="Views\Product\Catalog.cshtml" />
+    <None Include="Views\Product\CommingDetails.cshtml" />
+    <None Include="Views\Product\Details.cshtml" />
+    <None Include="Views\Product\Index.cshtml" />
+    <None Include="Views\Product\Search.cshtml" />
+    <None Include="Views\Product\_modalView.cshtml" />
     <None Include="Views\Shared\Components\Brand\Default.cshtml" />
     <None Include="Views\Shared\Components\CategoryMenu\Default.cshtml" />
     <None Include="Views\Shared\Components\HeaderCart\Default.cshtml" />
@@ -1006,12 +1014,6 @@
     <None Include="wwwroot\lib\nprogress\Notes.md" />
     <None Include="wwwroot\lib\nprogress\nprogress.js" />
     <None Include="wwwroot\lib\nprogress\Readme.md" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Update="Views\Home\_modalView.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
   </ItemGroup>
 
 </Project>

@@ -137,6 +137,7 @@ namespace VegetableStore.Data
                         SortOrder = 1,
                         Products = new List<Product>()
                         {
+                            new Product(){Name = "Đào Sapa",DateCreated=DateTime.Now,Image="/uploaded/images/daosapa.jpg",Quality=100,Vote=20,Price = 1000,Status = Status.Active,Month=9},
                             new Product(){Name = "Bưởi Đoan Hùng",DateCreated=DateTime.Now,Image="/uploaded/images/buoi-doan-hung (1).jpg",Quality=100,Vote=10,Price = 1000,Status = Status.Active,Month=1},
                             new Product(){Name = "Lê Đông Khê",DateCreated=DateTime.Now,Image="/uploaded/images/image.jpeg",Price = 11000,Quality=100,Vote=20,Status = Status.Active,Month=2},
                             new Product(){Name = "Na Đồng Bành",DateCreated=DateTime.Now,Image="/uploaded/images/na.jpg",Price = 12000,Quality=100,Vote=13,Status = Status.Active,Month=3},
@@ -165,6 +166,7 @@ namespace VegetableStore.Data
                         SortOrder = 3,
                         Products = new List<Product>()
                         {
+                            new Product(){Name = "Vải Thiều",DateCreated=DateTime.Now,Image="/uploaded/images/vaithieu.jpg",Quality=100,Vote=13,Price = 1000,Status = Status.Active,Month=11},
                             new Product(){Name = "Thanh Long Bình Thuận",DateCreated=DateTime.Now,Image="/uploaded/images/dragon.jpg",Quality=100,Vote=13,Price = 1000,Status = Status.Active,Month=9},
                             new Product(){Name = "Sầu Riêng Khánh Sơn",DateCreated=DateTime.Now,Image="/uploaded/images/Durian.jpg",Quality=100,Vote=100,Price = 1000,Status = Status.Active,Month=10},
                             new Product(){Name = "Xoài tượng Bình Định",DateCreated=DateTime.Now,Image="/uploaded/images/mango.jpg",Quality=100,Vote=40,Price = 1000,Status = Status.Active,Month=11},
@@ -180,19 +182,20 @@ namespace VegetableStore.Data
                         SortOrder = 0,
                         Products=new List<Product>()
                         {
-                            new Product(){Name = "Đào Sapa",DateCreated=DateTime.Now,Image="/uploaded/images/daosapa.jpg",Price = 1000,Status = Status.Active,Month=9},
-                            new Product(){Name = "Nhãn Thái",DateCreated=DateTime.Now,Image="/uploaded/images/nhanthai.jpg",Price = 1000,Status = Status.Active,Month=10},
-                            new Product(){Name = "Vải Thiều",DateCreated=DateTime.Now,Image="/uploaded/images/vaithieu.jpg",Price = 1000,Status = Status.Active,Month=11},
-                            new Product(){Name = "Xoài Thái",DateCreated=DateTime.Now,Image="/uploaded/images/xoaithai.jpg",Price = 1000,Status = Status.Active,Month=12}
+                            new Product(){Name = "Ổi cắt sẵn",DateCreated=DateTime.Now,Image="/uploaded/images/oi-cat-san (2).jpg",Quality=100,Vote=13,Price = 1000,Status = Status.Active},
+                            new Product(){Name = "Mận cắt sẵn",DateCreated=DateTime.Now,Image="/uploaded/images/man-cat-san.jpg",Quality=100,Vote=20,Price = 1000,Status = Status.Active},
+                            new Product(){Name = "Trái cây hỗn hợp",DateCreated=DateTime.Now,Image="/uploaded/images/trai-cay-hon-hop.jpg",Quality=100,Vote=50,Price = 1000,Status = Status.Active},
+                            new Product(){Name = "Táo cắt sẵn",DateCreated=DateTime.Now,Image="/uploaded/images/tccs-tao-lon",Quality=100,Vote=40,Price = 1000,Status = Status.Active},
+                            new Product(){Name = "Mit cắt sẵn",DateCreated=DateTime.Now,Image="/uploaded/images/tccs-mit",Quality=100,Vote=33,Price = 1000,Status = Status.Active}
                         }
                     },
                     new ProductCategory() { Name = "Giỏ trái cây", ParentId = null, Status = Status.Active, SortOrder = 0 ,
                         Products=new List<Product>()
                         {
-                            new Product(){Name = "Giỏ trái cây 1",DateCreated=DateTime.Now,Image="/uploaded/images/daosapa.jpg",Price = 1000,Status = Status.Active,Month=9},
-                            new Product(){Name = "Giỏ trái cây 2",DateCreated=DateTime.Now,Image="/uploaded/images/nhanthai.jpg",Price = 1000,Status = Status.Active,Month=10},
-                            new Product(){Name = "Giỏ trái cây 3",DateCreated=DateTime.Now,Image="/uploaded/images/vaithieu.jpg",Price = 1000,Status = Status.Active,Month=11},
-                            new Product(){Name = "Giỏ trái cây 4",DateCreated=DateTime.Now,Image="/uploaded/images/xoaithai.jpg",Price = 1000,Status = Status.Active,Month=12}
+                            new Product(){Name = "Giỏ trái cây 1",DateCreated=DateTime.Now,Image="/uploaded/images/gio-trai-cay-1.jpg",Quality=100,Vote=13,Price = 100000,Status = Status.Active,Month=9},
+                            new Product(){Name = "Giỏ trái cây 2",DateCreated=DateTime.Now,Image="/uploaded/images/gio-trai-cay-2.jpg",Quality=100,Vote=20,Price = 160000,Status = Status.Active,Month=10},
+                            new Product(){Name = "Giỏ trái cây 3",DateCreated=DateTime.Now,Image="/uploaded/images/gio-trai-cay-3.jpg",Quality=100,Vote=25,Price = 9000000,Status = Status.Active,Month=11},
+                            new Product(){Name = "Giỏ trái cây 4",DateCreated=DateTime.Now,Image="/uploaded/images/gio-trai-cay-4.jpg",Quality=100,Vote=60,Price = 1000000,Status = Status.Active,Month=12}
                         }
                     }
                 };

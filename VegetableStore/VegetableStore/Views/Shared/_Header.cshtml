@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="header_wrapper_inner">
-                    
+
                     <div class="logo col-xs-12">
                         <a href="/">
                             <img src="assets/img/logo/logo.png" alt="" style="width:200px;height:40px">
@@ -52,36 +52,23 @@
                             </div>
                             <div class="content-setting-dropdown">
                                 <div class="language-selector-wrapper">
-                                    <div class="language-selector">
-                                        <ul>
-                                            <li><a href="#"><img src="assets/img/1.jpg" ><span class="expand-more">English</span></a></li>
 
-                                            <li><a href="#"><img src="~/assets/img/vietnam.jpg" ><span class="expand-more">Tiếng Việt</span> </a></li>
-
-                                        </ul>
-
-                                    </div>
-                                    <div class="currency-selector-wrapper">
-                                        <ul>
-                                            <li><a href="#">EUR $</a></li>
-                                            <li><a href="#">VND $</a></li>
-                                        </ul>
-                                    </div>
                                     <div class="user_info_top">
                                         <ul>
-                                 
-                                            <li><a href="myaccount.html">Thông tin cá nhân</a></li>
-                                            <li><a href="checkout.html">Thanh toán</a></li>
+
+
 
                                             @if (SignInManager.IsSignedIn(User))
                                             {
+                                                <li><a href="myaccount.html">Thông tin cá nhân</a></li>
+                                                <li><a href="checkout.html">Thanh toán</a></li>
                                                 <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" method="post" id="logoutForm" class="navbar-right ">
-                                                    <ul class="nav navbar-nav navbar-right">
+                                                    <div class="nav navbar-nav navbar-right">
 
-                                                        <li class="nav navbar-nav navbar-right ">
+                                                        <div class="nav navbar-nav navbar-right ">
                                                             <button type="submit" class="btn btn-link navbar-btn navbar-link" id="logout">Đăng xuất</button>
-                                                        </li>
-                                                    </ul>
+                                                        </div>
+                                                    </div>
                                                 </form>
                                             }
                                             else

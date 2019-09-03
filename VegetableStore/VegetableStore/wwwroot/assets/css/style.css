@@ -54,19 +54,23 @@
 .organic_food_wrapper {
     padding: 0 60px;
 }
+
+button.button.pull-right {
+    margin-top: 40px
+}
 .header_wrapper_inner {
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  position: relative;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    position: relative;
 }
 .menu nav ul li {
   display: inline-block;
@@ -97,24 +101,38 @@ input[type="radio"] {
     top: 13px;
     width: 20px;
 }
+.product_page_tab{
+    padding-top:30px;
+    padding-bottom:30px;
+}
+.product_tab_img {
+    border: 1px solid #1ad21a;
+    height: 470px;
+    width: 468px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.table_primary_block{
+    padding-top:30px;
+}
 /* 2.1 dropdownmenu css here */
 .main_menu_inner .menu nav ul li ul.sub_menu {
-  background: #ffffff none repeat scroll 0 0;
-  -webkit-box-shadow: 0 3px 9.3px 0.7px rgba(0, 0, 0, 0.15);
-  box-shadow: 0 3px 9.3px 0.7px rgba(0, 0, 0, 0.15);
-  opacity: 0;
-  padding: 10px 0;
-  position: absolute;
-  top: 100%;
-  -webkit-transform: scaleY(0);
-  transform: scaleY(0);
-  -webkit-transform-origin: 0 0 0;
-  transform-origin: 0 0 0;
-  -webkit-transition: all 500ms linear 0s;
-  transition: all 500ms linear 0s;
-  visibility: hidden;
-  width: 220px;
-  z-index: 99;
+    background: #ffffff none repeat scroll 0 0;
+    -webkit-box-shadow: 0 3px 9.3px 0.7px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 3px 9.3px 0.7px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    padding: 10px 0;
+    position: absolute;
+    top: 100%;
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+    -webkit-transform-origin: 0 0 0;
+    transform-origin: 0 0 0;
+    -webkit-transition: all 500ms linear 0s;
+    transition: all 500ms linear 0s;
+    visibility: hidden;
+    width: 220px;
+    z-index: 99;
 }
 .main_menu_inner .menu nav ul li:last-child a {
   padding-right: 0;
@@ -944,7 +962,7 @@ input[type="radio"] {
   top: 5px;
   z-index: 1;
 }
-.single__product span.discount_price {
+.single__product span.number {
   left: auto;
   right: 5px;
 }

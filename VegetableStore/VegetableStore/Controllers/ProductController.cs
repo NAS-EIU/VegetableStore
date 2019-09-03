@@ -26,18 +26,34 @@ namespace VegetableStore.Controllers
         }
 
         [Route("products.html")]
-        public IActionResult Index(int? pageSize, string sortBy, int page = 1)
+        public IActionResult Index(int? pageSize, string drop, int page = 1)
         {
             var products = new ListProductViewModel();
             if (pageSize == null)
                 pageSize = _configuration.GetValue<int>("PageSize");
             products.PageSize = pageSize;
-            products.SortType = sortBy;
+            products.SortType = drop;
             products.Data = _productRepository.GetAllPaging(null, "", page, pageSize.Value);
+            if (drop == "hightolow")
+            {
+                products.Data.Results = products.Data.Results.OrderByDescending(x => x.Price).ToList();
+            }
+            if (drop == "lowtohigh")
+            {
+                products.Data.Results = products.Data.Results.OrderByDescending(x => x.Price).Reverse().ToList();
+            }
+            if (drop == "atoz")
+            {
+                products.Data.Results = products.Data.Results.OrderByDescending(x => x.Name).Reverse().ToList();
+            }
+            if (drop == "ztoa")
+            {
+                products.Data.Results = products.Data.Results.OrderByDescending(x => x.Name).ToList();
+            }
             return View(products);
         }
         [Route("search.html")]
-        public IActionResult Search(string keyword, int? pageSize, string sortBy, int page = 1)
+        public IActionResult Search(string keyword, int? pageSize, string drop, int page = 1)
         {
             if (keyword != "")
             {
@@ -46,10 +62,25 @@ namespace VegetableStore.Controllers
                     pageSize = _configuration.GetValue<int>("PageSize");
 
                 result.PageSize = pageSize;
-                result.SortType = sortBy;
+                result.SortType = drop;
                 result.Data = _productRepository.GetAllPaging(null, keyword, page, pageSize.Value);
                 result.Keyword = keyword;
-
+                if (drop == "hightolow")
+                {
+                    result.Data.Results = result.Data.Results.OrderByDescending(x => x.Price).ToList();
+                }
+                if (drop == "lowtohigh")
+                {
+                    result.Data.Results = result.Data.Results.OrderByDescending(x => x.Price).Reverse().ToList();
+                }
+                if (drop == "atoz")
+                {
+                    result.Data.Results = result.Data.Results.OrderByDescending(x => x.Name).Reverse().ToList();
+                }
+                if (drop == "ztoa")
+                {
+                    result.Data.Results = result.Data.Results.OrderByDescending(x => x.Name).ToList();
+                }
                 return View(result);
             }
             return View();
@@ -62,7 +93,7 @@ namespace VegetableStore.Controllers
             return new OkObjectResult(model);
         }
         [Route("{name}-c.{id}.html")]
-        public IActionResult Catalog(int id, int? pageSize, string sortBy, int page = 1)
+        public IActionResult Catalog(int id, int? pageSize, string drop, int page = 1)
         {
             var catalog = new ListProductViewModel();
 
@@ -70,15 +101,29 @@ namespace VegetableStore.Controllers
                 pageSize = _configuration.GetValue<int>("PageSize");
 
             catalog.PageSize = pageSize;
-            catalog.SortType = sortBy;
-            if (id == 1)
+            catalog.SortType = drop;
+            if (id == 6)
                 catalog.Data = _productRepository.GetAllByMonth(id, 0, page, pageSize.Value);
-            else if (id == 6)
-                catalog.Data = _productRepository.GetAllBySlice(id, page, pageSize.Value);
+
             else
                 catalog.Data = _productRepository.GetAllPaging(id, string.Empty, page, pageSize.Value);
             catalog.Category = _productCategoryRepository.GetById(id);
-
+            if (drop == "hightolow")
+            {
+                catalog.Data.Results = catalog.Data.Results.OrderByDescending(x => x.Price).ToList();
+            }
+            if (drop == "lowtohigh")
+            {
+                catalog.Data.Results = catalog.Data.Results.OrderByDescending(x => x.Price).Reverse().ToList();
+            }
+            if (drop == "atoz")
+            {
+                catalog.Data.Results = catalog.Data.Results.OrderByDescending(x => x.Name).Reverse().ToList();
+            }
+            if (drop == "ztoa")
+            {
+                catalog.Data.Results = catalog.Data.Results.OrderByDescending(x => x.Name).ToList();
+            }
             return View(catalog);
         }
 

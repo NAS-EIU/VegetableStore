@@ -32,16 +32,8 @@
 <div class="table_primary_block pt-100">
     <div class="container">
         <div class="row">
-            <div class="col-lg-5 col-md-5 col-sm-12">
-                <div class="product-flags">
-                    <div class="tab-content">
-                        <div class="tab-pane fade show active" id="tabone" role="tabpanel">
-                            <div class="product_tab_img">
-                                <a href="#"><img src="@product.Image" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-lg-5 col-md-5 col-sm-12 product_tab_img">
+                <a href="#"><img src="@product.Image" alt="" style="height:467.5px;width:470px;"></a>
             </div>
             <div class="col-lg-7 col-md-7 col-sm-12">
                 <div class="product__details_content">
@@ -70,7 +62,7 @@
                         </div>
                     </div>
                     <div class="current_price">
-                        <span>$@product.Price</span>
+                        <span>@product.Price vnđ</span>
                     </div>
                     <div class="product_information">
                         <div id="product_description_short">
@@ -85,20 +77,35 @@
                             <div class="quickview_plus_minus">
                                 <span class="control_label">Số lượng</span>
                                 <div class="quickview_plus_minus_inner">
-                                    <div class="cart-plus-minus">
-                                        <input type="text" value="01" name="qtybutton" class="cart-plus-minus-box">
+                                    <div class="def-number-input number-input safari_only">
+                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
+                                        <input class="quantity" min="0" name="quantity" value="1" type="number">
+                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
                                     </div>
+                                    <div class="kg"><strong>/KG</strong></div>
                                     <div class="add_button">
                                         <button type="submit" class="cart-order" data-id="@product.Id"> Thêm vào giỏ</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="product-availability">
-                                <span id="availability">
-                                    <i class="zmdi zmdi-check"></i>
-                                    Còn hàng
-                                </span>
+                                @if (product.Quality == 0)
+                                {
+                                    <span id="availability">
+                                        <i class="zmdi zmdi-check"></i>
+                                        Còn hàng
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span id="availability">
+                                        <i class="zmdi zmdi-block"style="color:orangered"></i>
+                                        Hết hàng
+                                    </span>
+                                }
+
                             </div>
+    
                             <div class="social-sharing">
                                 <span>Chia sẽ</span>
                                 <ul>
@@ -108,7 +115,7 @@
                                     <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
                                 </ul>
                             </div>
-                            <div class="block-reassurance">
+                            @*<div class="block-reassurance">
                                 <ul>
                                     <li>
                                         <img src="assets/img/cart/cart1.png" alt="">
@@ -123,7 +130,7 @@
                                         <span>Chính sách đổi trả</span>
                                     </li>
                                 </ul>
-                            </div>
+                            </div>*@
                         </div>
                     </div>
                 </div>
@@ -241,9 +248,17 @@
                         <div class="single__product">
                             <div class="single_product__inner">
                                 <span class="new_badge">new</span>
+                                @if (item.Quality != 0)
+                                {
+                                    <span class="number">Còn hàng</span>
+                                }
+                                else
+                                {
+                                    <span class="number" style="background:orangered">Hết hàng</span>
+                                }
                                 <div class="product_img">
                                     <a title="@item.Name" href="@url">
-                                        <img src="@item.Image" alt="" style="width:207px;height:150px">
+                                        <img src="@item.Image" alt="" style="height:253.8px;width:253.8px">
                                     </a>
                                 </div>
                                 <div class="product__content text-center">
@@ -252,7 +267,7 @@
                                             <h4><a title="@item.Name" href="@url">@item.Name</a></h4>
                                         </div>
                                         <div class="product_price">
-                                            <p>$@item.Price</p>
+                                            <p>@item.Price vnđ</p>
                                         </div>
                                     </div>
                                     <div class="product__hover">
