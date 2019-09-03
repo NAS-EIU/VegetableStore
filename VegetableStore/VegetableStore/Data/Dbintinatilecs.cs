@@ -137,10 +137,10 @@ namespace VegetableStore.Data
                         SortOrder = 1,
                         Products = new List<Product>()
                         {
-                            new Product(){Name = "Bưởi Đoan Hùng",DateCreated=DateTime.Now,Image="/uploaded/images/buoi-doan-hung (1).jpg",Price = 1000,Status = Status.Active,Month=1},
-                            new Product(){Name = "Lê Đông Khê",DateCreated=DateTime.Now,Image="/uploaded/images/image.jpeg",Price = 11000,Status = Status.Active,Month=2},
-                            new Product(){Name = "Na Đồng Bành",DateCreated=DateTime.Now,Image="/uploaded/images/na.jpg",Price = 12000,Status = Status.Active,Month=3},
-                            new Product(){Name = "Vải Thiều",DateCreated=DateTime.Now,Image="/uploaded/images/vai.jpg",Price = 1000,Status = Status.Active,Month=4}
+                            new Product(){Name = "Bưởi Đoan Hùng",DateCreated=DateTime.Now,Image="/uploaded/images/buoi-doan-hung (1).jpg",Quality=100,Vote=10,Price = 1000,Status = Status.Active,Month=1},
+                            new Product(){Name = "Lê Đông Khê",DateCreated=DateTime.Now,Image="/uploaded/images/image.jpeg",Price = 11000,Quality=100,Vote=20,Status = Status.Active,Month=2},
+                            new Product(){Name = "Na Đồng Bành",DateCreated=DateTime.Now,Image="/uploaded/images/na.jpg",Price = 12000,Quality=100,Vote=13,Status = Status.Active,Month=3},
+                            new Product(){Name = "Vải Thiều",DateCreated=DateTime.Now,Image="/uploaded/images/vai.jpg",Price = 1000,Quality=100,Vote=12,Status = Status.Active,Month=4}
                         }
                     },
                     new ProductCategory()
@@ -151,10 +151,10 @@ namespace VegetableStore.Data
                         SortOrder = 2,
                         Products = new List<Product>()
                         {
-                            new Product(){Name = "Quả thanh trà",DateCreated=DateTime.Now,Image="/uploaded/images/thanhtra.jpg",Price = 12000,Status = Status.Active,Month=5},
-                            new Product(){Name = "Sầu riêng Ri6",DateCreated=DateTime.Now,Image="/uploaded/images/saurieng.jpg",Price = 1000,Status = Status.Active,Month=6},
-                            new Product(){Name = "Vú sữa Lò Rèn",DateCreated=DateTime.Now,Image="/uploaded/images/vu-sua.jpg",Price = 1000,Status = Status.Active,Month=7},
-                            new Product(){Name = "Nhãn tím Sóc Trăng",DateCreated=DateTime.Now,Image="/uploaded/images/nhan (2).jpg",Price = 1000,Status = Status.Active,Month=8}
+                            new Product(){Name = "Quả thanh trà",DateCreated=DateTime.Now,Image="/uploaded/images/thanhtra.jpg",Quality=100,Vote=23,Price = 12000,Status = Status.Active,Month=5},
+                            new Product(){Name = "Sầu riêng Ri6",DateCreated=DateTime.Now,Image="/uploaded/images/saurieng.jpg",Quality=100,Vote=60,Price = 1000,Status = Status.Active,Month=6},
+                            new Product(){Name = "Vú sữa Lò Rèn",DateCreated=DateTime.Now,Image="/uploaded/images/vu-sua.jpg",Quality=100,Vote=24,Price = 1000,Status = Status.Active,Month=7},
+                            new Product(){Name = "Nhãn tím Sóc Trăng",DateCreated=DateTime.Now,Image="/uploaded/images/nhan (2).jpg",Quality=100,Vote=35,Price = 1000,Status = Status.Active,Month=8}
                         }
                     },
                     new ProductCategory()
@@ -165,16 +165,16 @@ namespace VegetableStore.Data
                         SortOrder = 3,
                         Products = new List<Product>()
                         {
-                            new Product(){Name = "Thanh Long Bình Thuận",DateCreated=DateTime.Now,Image="/uploaded/images/dragon.jpg",Price = 1000,Status = Status.Active,Month=9},
-                            new Product(){Name = "Sầu Riêng Khánh Sơn",DateCreated=DateTime.Now,Image="/uploaded/images/Durian.jpg",Price = 1000,Status = Status.Active,Month=10},
-                            new Product(){Name = "Xoài tượng Bình Định",DateCreated=DateTime.Now,Image="/uploaded/images/mango.jpg",Price = 1000,Status = Status.Active,Month=11},
-                            new Product(){Name = "Dưa hấu Bình Sơn",DateCreated=DateTime.Now,Image="/uploaded/images/watermelon.jpg",Price = 1000,Status = Status.Active,Month=12}
+                            new Product(){Name = "Thanh Long Bình Thuận",DateCreated=DateTime.Now,Image="/uploaded/images/dragon.jpg",Quality=100,Vote=13,Price = 1000,Status = Status.Active,Month=9},
+                            new Product(){Name = "Sầu Riêng Khánh Sơn",DateCreated=DateTime.Now,Image="/uploaded/images/Durian.jpg",Quality=100,Vote=100,Price = 1000,Status = Status.Active,Month=10},
+                            new Product(){Name = "Xoài tượng Bình Định",DateCreated=DateTime.Now,Image="/uploaded/images/mango.jpg",Quality=100,Vote=40,Price = 1000,Status = Status.Active,Month=11},
+                            new Product(){Name = "Dưa hấu Bình Sơn",DateCreated=DateTime.Now,Image="/uploaded/images/watermelon.jpg",Quality=100,Vote=40,Price = 1000,Status = Status.Active,Month=12}
                         }
                     },
                     new ProductCategory() { Name = "Trái cây theo mùa", ParentId = null, Status = Status.Active, SortOrder = 0 },
                     new ProductCategory()
                     {
-                        Name = "Trái cây xắt sẵn",
+                        Name = "Trái cây cắt sẵn",
                         ParentId = null,
                         Status = Status.Active,
                         SortOrder = 0,
@@ -184,6 +184,15 @@ namespace VegetableStore.Data
                             new Product(){Name = "Nhãn Thái",DateCreated=DateTime.Now,Image="/uploaded/images/nhanthai.jpg",Price = 1000,Status = Status.Active,Month=10},
                             new Product(){Name = "Vải Thiều",DateCreated=DateTime.Now,Image="/uploaded/images/vaithieu.jpg",Price = 1000,Status = Status.Active,Month=11},
                             new Product(){Name = "Xoài Thái",DateCreated=DateTime.Now,Image="/uploaded/images/xoaithai.jpg",Price = 1000,Status = Status.Active,Month=12}
+                        }
+                    },
+                    new ProductCategory() { Name = "Giỏ trái cây", ParentId = null, Status = Status.Active, SortOrder = 0 ,
+                        Products=new List<Product>()
+                        {
+                            new Product(){Name = "Giỏ trái cây 1",DateCreated=DateTime.Now,Image="/uploaded/images/daosapa.jpg",Price = 1000,Status = Status.Active,Month=9},
+                            new Product(){Name = "Giỏ trái cây 2",DateCreated=DateTime.Now,Image="/uploaded/images/nhanthai.jpg",Price = 1000,Status = Status.Active,Month=10},
+                            new Product(){Name = "Giỏ trái cây 3",DateCreated=DateTime.Now,Image="/uploaded/images/vaithieu.jpg",Price = 1000,Status = Status.Active,Month=11},
+                            new Product(){Name = "Giỏ trái cây 4",DateCreated=DateTime.Now,Image="/uploaded/images/xoaithai.jpg",Price = 1000,Status = Status.Active,Month=12}
                         }
                     }
                 };

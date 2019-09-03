@@ -39,6 +39,16 @@ namespace VegetableStore.Controllers
         {
             return View();
         }
+        public IActionResult RemoveBill(int Billid)
+        {
+            var bill = _billRepository.GetBillDetails(Billid);
+            foreach(var item in bill)
+            {
+                _billRepository.DeleteDetail(Billid, item.ProductId);
+            }
+            _billRepository.RemoveBill(Billid);
+            return new OkObjectResult("OK");
+        }
         [Route("checkout.html", Name = "Checkout")]
         [HttpGet]
         public IActionResult Checkout()

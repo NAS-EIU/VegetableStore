@@ -384,7 +384,7 @@
                         Name: item.Name,
                         Month: item.Month,
                         Image: item.Image == null ? '<img src="/admin-side/images/user.png" width=25' : '<img src="' + item.Image + '" width=25 />',
-                        Quantity: item.Quanlity,
+                        Quantity: item.Quality,
                         Vote: item.Vote,                      
                         CategoryName: item.ProductCategory.Name,
                         Price: tedu.formatNumber(item.Price, 0),

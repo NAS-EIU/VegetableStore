@@ -32,8 +32,8 @@ namespace VegetableStore.Controllers
                 //var culture = HttpContext.Features.Get<IRequestCultureFeature>().RequestCulture.Culture.Name;
                 ViewData["BodyClass"] = "cms-index-index cms-home-page";
                 var homeVm = new HomeViewModel();
-                homeVm.HotProducts = _productRepository.GetHotProduct(12);
-                homeVm.TopSellProducts = _productRepository.GetLastest(12);
+                homeVm.HotProducts = _productRepository.GetHotProduct(5);
+                homeVm.TopSellProducts = _productRepository.GetLastest(5);
                 
                 return View(homeVm);
             

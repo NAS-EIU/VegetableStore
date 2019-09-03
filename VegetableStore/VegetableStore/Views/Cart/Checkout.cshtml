@@ -16,9 +16,9 @@
                 <nav>
                     <ul>
                         <li>
-                            <a href="/">Home ></a>
+                            <a href="/">Trang chủ ></a>
                         </li>
-                        <li>checkout</li>
+                        <li>Thanh Toán</li>
                     </ul>
                 </nav>
             </div>
@@ -36,13 +36,13 @@
                 if ((bool)ViewData["Success"] == true)
                 {
                     <div class="alert alert-success">
-                        Thank you for your order. We are going to confirm your order soon.
+                        Cảm ơn vì đơn hàng của bạn. Chúng tôi sẽ sớm xác nhận đôn hàng của bạn.
                     </div>
                 }
                 else
                 {
                     <div class="alert alert-danger">
-                        Have an error in order progress. Please contact to administrator.
+                       Có lõi trong quá trình đặt hàng. Hãy liên lạc bên admin.
                     </div>
                 }
             }
@@ -54,29 +54,29 @@
                             @Html.AntiForgeryToken()
                             <div class="col-lg-6 col-md-6">
                                 <div>
-                                    <h3>Billing Details</h3>
+                                    <h3>Chi tiết thanh toán</h3>
                                     <div class="row">
 
                                         <div class="col-12 mb-30">
-                                            <label for="b_f_name">Full Name <span>*</span></label>
+                                            <label for="b_f_name">Họ và tên <span>*</span></label>
                                             <input id="b_f_name" type="text" asp-for="CustomerName" value="@user.FullName">
                                         </div>
 
                                         <div class="col-12 mb-30">
-                                            <label for="b_f_address">Address <span>*</span></label>
+                                            <label for="b_f_address">Địa chỉ <span>*</span></label>
                                             <input id="b_f_address" type="text" asp-for="CustomerAddress" value="@user.Address">
                                         </div>
                                         <div class="col-lg-6 mb-30">
-                                            <label for="b_email">Email Address</label>
+                                            <label for="b_email">Email</label>
                                             <input id="b_email" type="text" value="@user.Email">
                                         </div>
                                         <div class="col-lg-6 mb-30">
-                                            <label>Phone   <span>*</span></label>
+                                            <label>Số điện thoại <span>*</span></label>
                                             <input placeholder="Phone Number" type="text" asp-for="CustomerMobile" value="@user.PhoneNumber">
                                         </div>
                                         <div class="col-12">
                                             <div class="order-notes">
-                                                <label for="order_note">Order Notes</label>
+                                                <label for="order_note">Lưu ý</label>
                                                 <textarea id="order_note" type="text" asp-for="CustomerMessage"></textarea>
                                             </div>
                                         </div>
@@ -91,8 +91,8 @@
                                         <table>
                                             <thead>
                                                 <tr>
-                                                    <th class="product-name">Product</th>
-                                                    <th class="product-total">Total</th>
+                                                    <th class="product-name">Sản phẩm</th>
+                                                    <th class="product-total">Tổng cộng</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -105,13 +105,9 @@
                                                 }
 
                                             </tbody>
-                                            <tfoot>
+                                            <tfoot>                                               
                                                 <tr>
-                                                    <th>Cart Subtotal</th>
-                                                    <td>$@Model.Carts.Sum(x => x.Quantity * x.Price).ToString("N0")</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Order Total</th>
+                                                    <th>Tổng số tất cả</th>
                                                     <td><strong>$@Model.Carts.Sum(x => x.Quantity * x.Price).ToString("N0")</strong></td>
                                                 </tr>
                                             </tfoot>
@@ -129,7 +125,7 @@
 
                                         }
                                         <div class="order-button">
-                                            <button type="submit" class="button pull-right">Place order</button>
+                                            <button type="submit" class="button pull-right">Đặt hàng</button>
                                         </div>
                                     </div>
                                 </div>

@@ -12,7 +12,7 @@ namespace VegetableStore.Repositories
 
         PagedResult<BillViewModel> GetAllPaging(string startDate, string endDate, string keyword,
             int pageIndex, int pageSize);
-
+        void RemoveBill(int id);
         BillViewModel GetDetail(int billId);
 
         BillDetailViewModel CreateDetail(BillDetailViewModel billDetailVm);
