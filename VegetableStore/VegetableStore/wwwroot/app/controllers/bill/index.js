@@ -259,34 +259,6 @@
         });
     }
 
-    function loadColors() {
-        return $.ajax({
-            type: "GET",
-            url: "/Admin/Bill/GetColors",
-            dataType: "json",
-            success: function (response) {
-                cachedObj.colors = response;
-            },
-            error: function () {
-                tedu.notify('Has an error in progress', 'error');
-            }
-        });
-    }
-
-    function loadSizes() {
-        return $.ajax({
-            type: "GET",
-            url: "/Admin/Bill/GetSizes",
-            dataType: "json",
-            success: function (response) {
-                cachedObj.sizes = response;
-            },
-            error: function () {
-                tedu.notify('Has an error in progress', 'error');
-            }
-        });
-    }
-
     function getProductOptions(selectedId) {
         var products = "<select class='form-control ddlProductId'>";
         $.each(cachedObj.products, function (i, product) {

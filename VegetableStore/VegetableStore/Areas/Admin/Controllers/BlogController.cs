@@ -6,31 +6,28 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using VegetableStore.Interfaces;
 using VegetableStore.Models.ViewModels;
+using VegetableStore.Repositories;
 
 namespace VegetableStore.Areas.Admin.Controllers
 {
-    public class BlogController : Controller
+    public class BlogController : BaseController
     {
 
-        private IBlogRepository _blogRepository;
+        private readonly IBlogRepository _blogRepository;
 
         public BlogController(IBlogRepository blogRepository)
         {
             _blogRepository = blogRepository;
         }
-     
-        
-        public IActionResult GetAll()
+
+        public IActionResult Index()
         {
-            var model = _blogRepository.GetAll();
-            return new OkObjectResult(model);
+            return View();
         }
-        [Route("/admin/blog/index")]
-        [HttpGet]
-        public IActionResult GetAllPaging( int page, int pageSize)
+
+        public IActionResult GetAllPaging(string startDate, string endDate, string keyword, int page, int pageSize)
         {
             var model = _blogRepository.GetAllPaging( page, pageSize);
-
             return new OkObjectResult(model);
         }
 
@@ -57,35 +54,36 @@ namespace VegetableStore.Areas.Admin.Controllers
             }
         }
 
-        [HttpPost]
-        public IActionResult Delete(int id)
+        [HttpGet]
+        public IActionResult GetAll()
         {
-            if (!ModelState.IsValid)
-            {
-                return new BadRequestObjectResult(ModelState);
-            }
-            else
-            {
-                _blogRepository.Delete(id);
-                _blogRepository.Save();
-
-                return new OkObjectResult(id);
-            }
+            var model = _blogRepository.GetAll();
+            return new OkObjectResult(model);
         }
 
-        [HttpPost]
-        public IActionResult SaveImages(int blogId, string[] images)
+        [HttpGet]
+        public IActionResult GetById(int id)
         {
-            _blogRepository.AddImages(blogId, images);
+            var model = _blogRepository.GetById(id);
+
+            return new OkObjectResult(model);
+        }
+
+
+        [HttpPost]
+        public IActionResult SaveImages(int productId, string[] images)
+        {
+            _blogRepository.AddImages(productId, images);
             _blogRepository.Save();
             return new OkObjectResult(images);
         }
 
         [HttpGet]
-        public IActionResult GetImages(int blogId)
+        public IActionResult GetImages(int productId)
         {
-            var images = _blogRepository.GetImages(blogId);
+            var images = _blogRepository.GetImages(productId);
             return new OkObjectResult(images);
         }
+
     }
 }

@@ -12,7 +12,7 @@ using VegetableStore.Utilities;
 
 namespace VegetableStore.Repositories
 {
-    public class BlogRepository:IBlogRepository
+    public class BlogRepository : IBlogRepository
     {
         private IRepository<Blog, int> _blogRepository;
         private IRepository<BlogImage, int> _blogImageRepository;
@@ -24,16 +24,16 @@ namespace VegetableStore.Repositories
             _blogImageRepository = blogImageRepository;
             _unitOfWork = unitOfWork;
         }
-        public PagedResult<BlogViewModel> GetAllPaging( int page, int pageSize)
+        public PagedResult<BlogViewModel> GetAllPaging(int page, int pageSize)
         {
             var query = _blogRepository.FindAll(x => x.Status == Status.Active);
 
             int totalRow = query.Count();
 
-            query = query.OrderByDescending(x => x.DateCreated)
-                .Skip((page - 1) * pageSize).Take(pageSize);
+            var data = query.OrderByDescending(x => x.DateCreated)
+                .Skip((page - 1) * pageSize).Take(pageSize).ProjectTo<BlogViewModel>().ToList();
 
-            var data = query.ProjectTo<BlogViewModel>().ToList();
+            //var data = query.ProjectTo<BlogViewModel>().ToList();
 
             var paginationSet = new PagedResult<BlogViewModel>()
             {
@@ -92,9 +92,9 @@ namespace VegetableStore.Repositories
         {
             return Mapper.Map<Blog, BlogViewModel>(_blogRepository.FindById(id));
         }
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
-        }
+        //public void Dispose()
+        //{
+        //    GC.SuppressFinalize(this);
+        //}
     }
 }
