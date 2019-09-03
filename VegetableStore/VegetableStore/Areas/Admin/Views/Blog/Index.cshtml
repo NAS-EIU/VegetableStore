@@ -5,7 +5,7 @@
 }
 
 @section Scripts{
-   @* <script src="~/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>*@
+    @* <script src="~/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>*@
     <script src="~/app/controllers/blog/index.js" asp-append-version="true"></script>
     <script>
         var billObj = new blogController();
@@ -95,9 +95,9 @@
             <td>{{{Image}}}</td>
             <td>{{{DateModified}}}</td>
             <td>{{{Status}}}</td>
-            <td >
-                <a href="#" data-id="{{Id}}" class="btn-view"><i class="fa fa-eye"></i></a>
-                <a class="btn  btn-sm btn-edit" data-id="{{Id}}"><i class="fa fa-pencil"></i></a>
+            <td>
+                <a class="btn  btn-sm btn-edit" data-id="{{Id}}" title="sửa"><i class="fa fa-pencil"></i></a>
+                <a class="btn  btn-sm btn-delete" data-id="{{Id}}" title="xóa"><i class="fa fa-trash"></i></a>
             </td>
         </tr>
     </script>

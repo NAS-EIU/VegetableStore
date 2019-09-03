@@ -16,7 +16,8 @@ namespace VegetableStore.Models.ViewModels
 
         [StringLength(255)]
         public string Image { get; set; }
-        [Required(ErrorMessage = "Vui lòng điền nội dung", AllowEmptyStrings = false)]
+
+      //  [Required(ErrorMessage = "Vui lòng điền nội dung", AllowEmptyStrings = false)]
         public string Content { get; set; }
 
         [StringLength(255)]

@@ -7,7 +7,7 @@ using VegetableStore.Utilities;
 
 namespace VegetableStore.Interfaces
 {
-    public interface IBlogRepository 
+    public interface IBlogRepository : IDisposable
     {
         void Update(BlogViewModel blog);
         void Delete(int id);

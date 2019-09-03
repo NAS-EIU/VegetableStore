@@ -43,54 +43,54 @@
             loadData(true);
         });
 
-        $('body').on('click', '.btn-view', function (e) {
-            e.preventDefault();
-            var that = $(this).data('id');
-            $.ajax({
-                type: "GET",
-                url: "/Admin/Bill/GetById",
-                data: { id: that },
-                beforeSend: function () {
-                    tedu.startLoading();
-                },
-                success: function (response) {
-                    var data = response;
-                    $('#hidId').val(data.Id);
-                    $('#txtCustomerName').val(data.CustomerName);
-                    $('#txtCustomerAddress').val(data.CustomerAddress);
-                    $('#txtCustomerMobile').val(data.CustomerMobile);
-                    $('#txtCustomerMessage').val(data.CustomerMessage);
-                    $('#ddlPaymentMethod').val(data.PaymentMethod);
-                    $('#ddlCustomerId').val(data.CustomerId);
-                    $('#ddlBillStatus').val(data.BillStatus);
+        //$('body').on('click', '.btn-view', function (e) {
+        //    e.preventDefault();
+        //    var that = $(this).data('id');
+        //    $.ajax({
+        //        type: "GET",
+        //        url: "/Admin/Bill/GetById",
+        //        data: { id: that },
+        //        beforeSend: function () {
+        //            tedu.startLoading();
+        //        },
+        //        success: function (response) {
+        //            var data = response;
+        //            $('#hidId').val(data.Id);
+        //            $('#txtCustomerName').val(data.CustomerName);
+        //            $('#txtCustomerAddress').val(data.CustomerAddress);
+        //            $('#txtCustomerMobile').val(data.CustomerMobile);
+        //            $('#txtCustomerMessage').val(data.CustomerMessage);
+        //            $('#ddlPaymentMethod').val(data.PaymentMethod);
+        //            $('#ddlCustomerId').val(data.CustomerId);
+        //            $('#ddlBillStatus').val(data.BillStatus);
 
-                    var billDetails = data.BillDetails;
-                    if (data.BillDetails != null && data.BillDetails.length > 0) {
-                        var render = '';
-                        var templateDetails = $('#template-table-bill-details').html();
+        //            var billDetails = data.BillDetails;
+        //            if (data.BillDetails != null && data.BillDetails.length > 0) {
+        //                var render = '';
+        //                var templateDetails = $('#template-table-bill-details').html();
 
-                        $.each(billDetails, function (i, item) {
-                            var products = getProductOptions(item.ProductId);
+        //                $.each(billDetails, function (i, item) {
+        //                    var products = getProductOptions(item.ProductId);
 
-                            render += Mustache.render(templateDetails,
-                                {
-                                    Id: item.Id,
-                                    Products: products,
-                                    Quantity: item.Quantity
-                                });
-                        });
-                        $('#tbl-bill-details').html(render);
-                    }
-                    $('#modal-detail').modal('show');
-                    tedu.stopLoading();
+        //                    render += Mustache.render(templateDetails,
+        //                        {
+        //                            Id: item.Id,
+        //                            Products: products,
+        //                            Quantity: item.Quantity
+        //                        });
+        //                });
+        //                $('#tbl-bill-details').html(render);
+        //            }
+        //            $('#modal-detail').modal('show');
+        //            tedu.stopLoading();
 
-                },
-                error: function (e) {
-                    tedu.notify('Has an error in progress', 'error');
-                    tedu.stopLoading();
-                }
-            });
-        });
+        //        },
+        //        error: function (e) {
+        //            tedu.notify('Has an error in progress', 'error');
+        //            tedu.stopLoading();
+        //        }
+        //    });
+        //});
 
         $('#btnSelectImg').on('click', function () {
             $('#fileInputImage').click();
@@ -124,21 +124,16 @@
             saveBlog(e);
         });
 
-        $('#btnAddDetail').on('click', function () {
-            var template = $('#template-table-bill-details').html();
-            var products = getProductOptions(null);
-            var render = Mustache.render(template,
-                {
-                    Id: 0,
-                    Products: products,
-                    Quantity: 0,
-                    Total: 0
-                });
-            $('#tbl-bill-details').append(render);
+        $('body').on('click', '.btn-edit', function (e) {
+            e.preventDefault();
+            var that = $(this).data('id');
+            loadDetails(that);
         });
 
-        $('body').on('click', '.btn-delete-detail', function () {
-            $(this).parent().parent().remove();
+        $('body').on('click', '.btn-delete', function (e) {
+            e.preventDefault();
+            var that = $(this).data('id');
+            deleteProduct(that);
         });
 
         $("#btnExport").on('click', function () {
@@ -159,6 +154,59 @@
             });
         });
     };
+
+
+    function deleteProduct(id) {
+        tedu.confirm('Bạn có muôn xóa ?', function () {
+            $.ajax({
+                type: "POST",
+                url: "/Admin/Blog/Delete",
+                data: { id: that },
+                dataType: "json",
+                beforeSend: function () {
+                    tedu.startLoading();
+                },
+                success: function (response) {
+                    tedu.notify('Xóa thành công', 'success');
+                    tedu.stopLoading();
+                    loadData();
+                },
+                error: function (status) {
+                    tedu.notify('Has an error in delete progress', 'error');
+                    tedu.stopLoading();
+                }
+            });
+        });
+    }
+
+    function loadDetails(that) {
+        $.ajax({
+            type: "GET",
+            url: "/Admin/Blog/GetById",
+            data: { id: that },
+            dataType: "json",
+            beforeSend: function () {
+                tedu.startLoading();
+            },
+            success: function (response) {
+                var data = response;
+                $('#hidIdM').val(data.Id);
+                $('#txtNameM').val(data.Title);
+                $('#txtImageM').val(data.Image);
+                $('#txtContent').val(data.Content);
+                $('#txtTagM').val(data.Tags);
+                $('#ckStatusM').prop('checked', data.Status == 1);
+                $('#ckShowHomeM').prop('checked', data.HomeFlag);
+                $('#modal-add-edit').modal('show');
+                tedu.stopLoading();
+
+            },
+            error: function (status) {
+                tedu.notify('Có lỗi xảy ra', 'error');
+                tedu.stopLoading();
+            }
+        });
+    }
 
     function saveBlog(e) {
         if ($('#frmMaintainance').valid()) {

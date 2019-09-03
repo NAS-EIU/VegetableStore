@@ -92,9 +92,11 @@ namespace VegetableStore.Repositories
         {
             return Mapper.Map<Blog, BlogViewModel>(_blogRepository.FindById(id));
         }
-        //public void Dispose()
-        //{
-        //    GC.SuppressFinalize(this);
-        //}
+
+
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
+        }
     }
 }

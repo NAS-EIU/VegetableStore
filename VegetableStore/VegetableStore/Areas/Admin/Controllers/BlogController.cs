@@ -54,6 +54,22 @@ namespace VegetableStore.Areas.Admin.Controllers
             }
         }
 
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return new BadRequestObjectResult(ModelState);
+            }
+            else
+            {
+                _blogRepository.Delete(id);
+                _blogRepository.Save();
+
+                return new OkObjectResult(id);
+            }
+        }
+
         [HttpGet]
         public IActionResult GetAll()
         {
