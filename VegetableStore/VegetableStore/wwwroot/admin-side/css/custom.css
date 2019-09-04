@@ -3392,7 +3392,7 @@ ul.project_files li a i {
     font-size: 35px
 }
 .login {
-    background: #F7F7F7
+    background-image: url("../../assets/img/background.jpg")
 }
 .login .fa-paw {
     font-size: 26px
@@ -3405,13 +3405,16 @@ a.hiddenanchor {
     margin: 0px auto;
     margin-top: 5%;
     max-width: 350px;
-    position: relative
+    position: relative;
+    background-color:azure;
 }
 .registration_form,
 .login_form {
     position: absolute;
     top: 0px;
-    width: 100%
+    width: 100%;
+    background-color: ghostwhite;
+    border-radius: 5px;
 }
 .registration_form {
     z-index: 21;
