@@ -16,18 +16,21 @@ namespace VegetableStore.Models
         {
         }
 
-        public Blog(string title, string image, string content, string tags, Status status)
+        public Blog(string title, string image, DateTime dateCreated, int vote, string content, string tags, Status status)
         {
             Title = title;
             Image = image;
+            DateCreated = dateCreated;
+            Vote = vote;
             Content = content;
             Tags = tags;
             Status = status;
         }
 
-        public Blog(string title, string image, string content, string tags, DateTime dateCreated, DateTime dateModified, Status status)
+        public Blog(string title, int vote, string image, string content, string tags, DateTime dateCreated, DateTime dateModified, Status status)
         {
             Title = title;
+            Vote = vote;
             Image = image;
             Content = content;
             Tags = tags;
@@ -39,7 +42,7 @@ namespace VegetableStore.Models
         [StringLength(255)]
         [Required]
         public string Title { get; set; }
-
+        public int Vote { get; set; }
         [StringLength(255)]
         public string Image { get; set; }
 
@@ -53,5 +56,6 @@ namespace VegetableStore.Models
         public DateTime DateModified { set; get; }
 
         public Status Status { set; get; }
+        
     }
 }

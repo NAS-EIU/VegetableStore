@@ -13,7 +13,7 @@ namespace VegetableStore.Models.ViewModels
         [StringLength(255)]
         [Required(ErrorMessage = "Vui lòng điền tiêu đề", AllowEmptyStrings = false)]
         public string Title { get; set; }
-
+        public int Vote { get; set; }
         [StringLength(255)]
         public string Image { get; set; }
 

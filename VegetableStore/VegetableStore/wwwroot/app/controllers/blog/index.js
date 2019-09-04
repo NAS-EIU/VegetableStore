@@ -1,16 +1,15 @@
-﻿var blogController = function () {
-
-
+﻿var BlogController = function () {   
     this.initialize = function () {
         loadData();
         registerEvents();
+        registerControls();
     }
 
     function registerEvents() {
-        //$('#txtFromDate, #txtToDate').datepicker({
-        //    autoclose: true,
-        //    format: 'dd/mm/yyyy'
-        //});
+        $('#txtFromDate, #txtToDate').datepicker({
+            autoclose: true,
+            format: 'dd/mm/yyyy'
+        });
         //Init validation
         $('#frmMaintainance').validate({
             errorClass: 'red',
@@ -18,11 +17,12 @@
             lang: 'vi',
             rules: {
                 txtNameM: { required: true },
-                txtContent: { required: true },
-                ckStatusM: { required: true }
+                txtImageM: { required: true },
+                txtContentM: { required: true },
+                txtTagM: { required: true }
             }
         });
-        $('#txt-search-keyword').keypress(function (e) {
+        $('#txtSearchKeyword').keypress(function (e) {
             if (e.which === 13) {
                 e.preventDefault();
                 loadData();
@@ -34,106 +34,128 @@
 
         $("#btn-create").on('click', function () {
             resetFormMaintainance();
-            $('#modal-add-edit').modal('show');
+            $('#modal-detail').modal('show');
         });
-
         $("#ddl-show-page").on('change', function () {
             tedu.configs.pageSize = $(this).val();
             tedu.configs.pageIndex = 1;
             loadData(true);
         });
 
-        //$('body').on('click', '.btn-view', function (e) {
-        //    e.preventDefault();
-        //    var that = $(this).data('id');
-        //    $.ajax({
-        //        type: "GET",
-        //        url: "/Admin/Bill/GetById",
-        //        data: { id: that },
-        //        beforeSend: function () {
-        //            tedu.startLoading();
-        //        },
-        //        success: function (response) {
-        //            var data = response;
-        //            $('#hidId').val(data.Id);
-        //            $('#txtCustomerName').val(data.CustomerName);
-        //            $('#txtCustomerAddress').val(data.CustomerAddress);
-        //            $('#txtCustomerMobile').val(data.CustomerMobile);
-        //            $('#txtCustomerMessage').val(data.CustomerMessage);
-        //            $('#ddlPaymentMethod').val(data.PaymentMethod);
-        //            $('#ddlCustomerId').val(data.CustomerId);
-        //            $('#ddlBillStatus').val(data.BillStatus);
-
-        //            var billDetails = data.BillDetails;
-        //            if (data.BillDetails != null && data.BillDetails.length > 0) {
-        //                var render = '';
-        //                var templateDetails = $('#template-table-bill-details').html();
-
-        //                $.each(billDetails, function (i, item) {
-        //                    var products = getProductOptions(item.ProductId);
-
-        //                    render += Mustache.render(templateDetails,
-        //                        {
-        //                            Id: item.Id,
-        //                            Products: products,
-        //                            Quantity: item.Quantity
-        //                        });
-        //                });
-        //                $('#tbl-bill-details').html(render);
-        //            }
-        //            $('#modal-detail').modal('show');
-        //            tedu.stopLoading();
-
-        //        },
-        //        error: function (e) {
-        //            tedu.notify('Has an error in progress', 'error');
-        //            tedu.stopLoading();
-        //        }
-        //    });
-        //});
-
-        $('#btnSelectImg').on('click', function () {
-            $('#fileInputImage').click();
-        });
-
-        $("#fileInputImage").on('change', function () {
-            var fileUpload = $(this).get(0);
-            var files = fileUpload.files;
-            var data = new FormData();
-            for (var i = 0; i < files.length; i++) {
-                data.append(files[i].name, files[i]);
-            }
+        $('body').on('click', '.btn-view', function (e) {
+            e.preventDefault();
+            var that = $(this).data('id');
             $.ajax({
-                type: "POST",
-                url: "/Admin/Upload/UploadImage",
-                contentType: false,
-                processData: false,
-                data: data,
-                success: function (path) {
-                    $('#txtImageM').val(path);
-                    tedu.notify('Tải ảnh thành công', 'success');
-
+                type: "GET",
+                url: "/Admin/Blog/GetById",
+                data: { id: that },
+                beforeSend: function () {
+                    tedu.startLoading();
                 },
-                error: function () {
-                    tedu.notify('Có lỗi khi tải ảnh', 'error');
+                success: function (response) {
+                    var data = response;
+                    $('#hidId').val(data.Id);
+                    $('#txtNameM').val(data.Title);
+
+                    $('#txtImageM').val(data.Image);
+                    $('#txtContentM').val(data.Content);
+                    $('#txtTagM').val(data.Tags);
+                    $('#ckStatusM').prop('checked', data.Status == 1);
+                    $('#ckHotM').prop('checked', data.HotFlag);
+                    $('#ckShowHomeM').prop('checked', data.HomeFlag);
+
+                    $('#modal-add-edit').modal('show');
+                    tedu.stopLoading();
+                  
+                },
+                error: function (e) {
+                    tedu.notify('Has an error in progress', 'error');
+                    tedu.stopLoading();
                 }
             });
         });
 
         $('#btnSave').on('click', function (e) {
-            saveBlog(e);
+            if ($('#frmMaintainance').valid()) {
+                e.preventDefault();
+                var id = $('#hidId').val();
+                var customerName = $('#txtCustomerName').val();
+                var customerAddress = $('#txtCustomerAddress').val();
+                var customerId = $('#ddlCustomerId').val();
+                var customerMobile = $('#txtCustomerMobile').val();
+                var customerMessage = $('#txtCustomerMessage').val();
+                var paymentMethod = $('#ddlPaymentMethod').val();
+                var billStatus = $('#ddlBillStatus').val();
+                //bill detail
+
+                var billDetails = [];
+                $.each($('#tbl-bill-details tr'), function (i, item) {
+                    billDetails.push({
+                        Id: $(item).data('id'),
+                        ProductId: $(item).find('select.ddlProductId').first().val(),
+                        Quantity: $(item).find('input.txtQuantity').first().val(),
+                        //ColorId: $(item).find('select.ddlColorId').first().val(),
+                        //SizeId: $(item).find('select.ddlSizeId').first().val(),
+                        BillId: id
+                    });
+                });
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Admin/Bill/SaveEntity",
+                    data: {
+                        Id: id,
+                        BillStatus: billStatus,
+                        CustomerAddress: customerAddress,
+                        CustomerId: customerId,
+                        CustomerMessage: customerMessage,
+                        CustomerMobile: customerMobile,
+                        CustomerName: customerName,
+                        PaymentMethod: paymentMethod,
+                        Status: 1,
+                        BillDetails: billDetails
+                    },
+                    dataType: "json",
+                    beforeSend: function () {
+                        tedu.startLoading();
+                    },
+                    success: function (response) {
+                        tedu.notify('Save order successful', 'success');
+                        $('#modal-detail').modal('hide');
+                        resetFormMaintainance();
+
+                        tedu.stopLoading();
+                        loadData(true);
+                    },
+                    error: function () {
+                        tedu.notify('Has an error in progress', 'error');
+                        tedu.stopLoading();
+                    }
+                });
+                return false;
+            }
+
         });
 
-        $('body').on('click', '.btn-edit', function (e) {
-            e.preventDefault();
-            var that = $(this).data('id');
-            loadDetails(that);
+        $('#btnAddDetail').on('click', function () {
+            var template = $('#template-table-bill-details').html();
+            var products = getProductOptions(null);
+            //var colors = getColorOptions(null);
+            //var sizes = getSizeOptions(null);
+            var render = Mustache.render(template,
+                {
+                    Id: 0,
+                    Products: products,
+                    //Colors: colors,
+                    //Sizes: sizes,
+                    Quantity: 0,
+                    Total: 0
+                });
+            $('#tbl-bill-details').append(render);
         });
 
-        $('body').on('click', '.btn-delete', function (e) {
-            e.preventDefault();
-            var that = $(this).data('id');
-            deleteProduct(that);
+        $('body').on('click', '.btn-delete-detail', function () {
+            $(this).parent().parent().remove();
         });
 
         $("#btnExport").on('click', function () {
@@ -156,116 +178,63 @@
     };
 
 
-    function deleteProduct(id) {
-        tedu.confirm('Bạn có muôn xóa ?', function () {
-            $.ajax({
-                type: "POST",
-                url: "/Admin/Blog/Delete",
-                data: { id: that },
-                dataType: "json",
-                beforeSend: function () {
-                    tedu.startLoading();
-                },
-                success: function (response) {
-                    tedu.notify('Xóa thành công', 'success');
-                    tedu.stopLoading();
-                    loadData();
-                },
-                error: function (status) {
-                    tedu.notify('Has an error in delete progress', 'error');
-                    tedu.stopLoading();
-                }
-            });
-        });
-    }
 
-    function loadDetails(that) {
-        $.ajax({
+
+
+    function loadProducts() {
+        return $.ajax({
             type: "GET",
-            url: "/Admin/Blog/GetById",
-            data: { id: that },
+            url: "/Admin/Product/GetAll",
             dataType: "json",
-            beforeSend: function () {
-                tedu.startLoading();
-            },
             success: function (response) {
-                var data = response;
-                $('#hidIdM').val(data.Id);
-                $('#txtNameM').val(data.Title);
-                $('#txtImageM').val(data.Image);
-                $('#txtContent').val(data.Content);
-                $('#txtTagM').val(data.Tags);
-                $('#ckStatusM').prop('checked', data.Status == 1);
-                $('#ckShowHomeM').prop('checked', data.HomeFlag);
-                $('#modal-add-edit').modal('show');
-                tedu.stopLoading();
-
+                cachedObj.products = response;
             },
-            error: function (status) {
-                tedu.notify('Có lỗi xảy ra', 'error');
-                tedu.stopLoading();
+            error: function () {
+                tedu.notify('Has an error in progress', 'error');
             }
         });
     }
 
-    function saveBlog(e) {
-        if ($('#frmMaintainance').valid()) {
-            e.preventDefault();
-            var id = $('#hidIdM').val();
-            var title = $('#txtNameM').val();
-            var image = $('#txtImageM').val();
-            var content = $('#txtContent').val('');
-            var tags = $('#txtTagM').val();
-            var status = $('#ckStatusM').prop('checked') == true ? 1 : 0;
-            var showHome = $('#ckShowHomeM').prop('checked');
 
-            $.ajax({
-                type: "POST",
-                url: "/Admin/Blog/SaveEntity",
-                data: {
-                    Id: id,
-                    Title   : title,
-                    Image: image,
-                    HomeFlag: showHome,
-                    Tags: tags,
-                    Status: status,
-                    Content: content
-                },
-                dataType: "json",
-                beforeSend: function () {
-                    tedu.startLoading();
-                },
-                success: function (response) {
-                    tedu.notify('Cập nhật thành công', 'success');
-                    $('#modal-add-edit').modal('hide');
-                    resetFormMaintainance();
 
-                    tedu.stopLoading();
-                    loadData(true);
-                },
-                error: function () {
-                    tedu.notify('Có lỗi trong quá trình lưu', 'error');
-                    tedu.stopLoading();
-                }
-            });
-            return false;
-        }
+    function registerControls() {
+        CKEDITOR.replace('txtContentM', {});
+
+        //Fix: cannot click on element ck in modal
+        $.fn.modal.Constructor.prototype.enforceFocus = function () {
+            $(document)
+                .off('focusin.bs.modal') // guard against infinite focus loop
+                .on('focusin.bs.modal', $.proxy(function (e) {
+                    if (
+                        this.$element[0] !== e.target && !this.$element.has(e.target).length
+                        // CKEditor compatibility fix start.
+                        && !$(e.target).closest('.cke_dialog, .cke').length
+                        // CKEditor compatibility fix end.
+                    ) {
+                        this.$element.trigger('focus');
+                    }
+                }, this));
+        };
+
     }
 
     function resetFormMaintainance() {
-        $('#hidIdM').val(0);
-        $('#txtNameM').val('');
-        $('#txtImageM').val('');
-        $('#txtContent').val('');
-        $('#txtTagM').val('');
-        $('#ckStatusM').prop('checked', true);
-        $('#ckShowHomeM').prop('checked', false);
+        $('#hidId').val(0);
+        $('#txtCustomerName').val('');
+
+        $('#txtCustomerAddress').val('');
+        $('#txtCustomerMobile').val('');
+        $('#txtCustomerMessage').val('');
+        $('#ddlPaymentMethod').val('');
+        $('#ddlCustomerId').val('');
+        $('#ddlBillStatus').val('');
+        $('#tbl-bill-details').html('');
     }
 
     function loadData(isPageChanged) {
         $.ajax({
             type: "GET",
-            url: "/admin/blog/GetAllPaging",
+            url: "/admin/bill/GetAllPaging",
             data: {
                 startDate: $('#txtFromDate').val(),
                 endDate: $('#txtToDate').val(),
@@ -283,12 +252,11 @@
                 if (response.RowCount > 0) {
                     $.each(response.Results, function (i, item) {
                         render += Mustache.render(template, {
-                            Title: item.Title,
+                            CustomerName: item.CustomerName,
                             Id: item.Id,
-                            DateModified: item.DateModified,
-                            Image: item.Image == null ? '<img src="/admin-side/images/user.png" width=25' : '<img src="' + item.Image + '" width=25 />',
-                            Status: tedu.getStatus(item.Status)
-                            //BillStatus: getBillStatusName(item.BillStatus)
+                            PaymentMethod: getPaymentMethodName(item.PaymentMethod),
+                            DateCreated: tedu.dateTimeFormatJson(item.DateCreated),
+                            BillStatus: getBillStatusName(item.BillStatus)
                         });
                     });
                     $("#lbl-total-records").text(response.RowCount);

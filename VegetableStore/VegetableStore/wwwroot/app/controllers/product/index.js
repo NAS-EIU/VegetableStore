@@ -148,7 +148,7 @@
     }
 
     function registerControls() {
-        CKEDITOR.replace('txtContent', {});
+        CKEDITOR.replace('txtDescM', {});
 
         //Fix: cannot click on element ck in modal
         $.fn.modal.Constructor.prototype.enforceFocus = function () {
