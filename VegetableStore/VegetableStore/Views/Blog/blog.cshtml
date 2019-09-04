@@ -5,7 +5,7 @@
     var item = Model.Data.Results[0];
 }
 
-<h2>blog</h2>
+<h2>Blog</h2>
 
 <div class="blog_details_area">
     <div class="container">
@@ -16,8 +16,8 @@
                         <h3>Recent Posts</h3>
                         @foreach (var items in Model.Data.Results)
                         {
-                            var url = "/"  + "blog" + "-" + items.Id + ".html";
-                            <div class="recent_post mb-30">
+                            var url = "/" + "blog" + "-" + items.Id + ".html";
+                            <div class="recent_post mb-30" style="border-style: outset;">
                                 <div class="recent_post_title">
                                     <a href="@url"><img src="@items.Image" alt=""></a>
                                 </div>
@@ -37,7 +37,7 @@
                         <img src="@item.Image" style=" display: block; margin-left: auto; margin-right: auto; width:50%" alt="">
                     </div>
                     <div class="post_excerpt">
-                        <p>@item.Content</p>
+                        <textarea rows="8" readonly>@item.Content</textarea>
                     </div>
                 </div>
             </div>
