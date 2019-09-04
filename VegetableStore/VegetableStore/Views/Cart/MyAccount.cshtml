@@ -2,7 +2,8 @@
 @inject UserManager<AppUser> UserManager
 @{
     var username = UserManager.GetUserName(User).ToString();
-    var bills = Model.Where(x => x.CustomerId.ToString() == UserManager.GetUserId(User).ToString());
+    var bills = Model.Where(x => x.CustomerId.ToString() == UserManager.GetUserId(User));
+
 }
 <div class="breadcrumb_container">
     <div class="container-fluid">

@@ -72,16 +72,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-5 col-sm-6">
-                                <form class="Relevance"action="/@Model.Category.Name-c.@(Model.Category.Id).html" method="get">
-                                    <span>Sắp xếp :</span>
+                            <div class="col-lg-6 col-md-5 col-sm-6">                                
+                                <form action="/@Model.Category.Name-c.@(Model.Category.Id).html" method="get">
+                                    <span>Sắp xếp theo :</span>
                                     <div class="dropdown dropdown-shop">
-                                        <select name="drop" id="dropdown">
-                                            <option value="1">Theo tên sản phẩm (a - z)</option>
-                                            <option value="2">Theo tên sản phẩm (z - a)</option>
-                                            <option value="3">Theo giá (thấp - cao)</option>
-                                            <option value="4">Theo giá (cao - thấp)</option>
-                                        </select>
+                                        <select name="drop" id="dropdown" asp-for="SortType"
+                                                onchange="this.form.submit()" asp-items="Model.SortTypes"></select>
                                     </div>
                                 </form>
                             </div>
@@ -93,30 +89,29 @@
                                 <div class="row">
                                     @foreach (var item in Model.Data.Results)
                                     {
-                                        var url = "";
-                                        if (item.CategoryId != 7)
-                                        {
-                                            url = "/" + item.Name + "-" + "p." + item.Id + ".html";
-                                        }
-                                        else
-                                        {
-                                            url = "/" + item.Name + "-" + "s." + item.Id + ".html";
-                                        }
+                                        var url = "/" + item.Name + "-" + "p." + item.Id + ".html";
                                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
 
                                             <div class="single__product">
                                                 <div class="single_product__inner">
                                                     <span class="new_badge">mới</span>
-                                                    
+                                                    @if (item.Quality != 0)
+                                                    {
+                                                        <span class="number">Còn hàng</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="number" style="background:orangered">Hết hàng</span>
+                                                    }
                                                     <div class="product_img">
                                                         <a href="@url">
-                                                            <img style="width:270px;height:200px" src="@item.Image" alt="">
+                                                            <img style="height:253.8px;width:253.8px" src="@item.Image" alt="">
                                                         </a>
                                                     </div>
                                                     <div class="product__content text-center">
                                                         <div class="produc_desc_info">
                                                             <div class="product_title">
-                                                                <h4><a href="product-details.html">@item.Name</a></h4>
+                                                                <h4><a href="@url">@item.Name</a></h4>
                                                             </div>
                                                             <div class="product_price">
                                                                 <p>@item.Price</p>
@@ -149,7 +144,7 @@
                                                     <span class="discount_price">-5%</span>
                                                     <div class="product_img">
                                                         <a href="@url">
-                                                            <img src="@item.Image" alt="">
+                                                            <img src="@item.Image" alt=""style="height:253.8px;width:253.8px">
                                                         </a>
                                                     </div>
 
@@ -159,7 +154,7 @@
                                                 <div class="product__content text-left">
                                                     <div class="produc_desc_info">
                                                         <div class="product_title title_shop">
-                                                            <h4><a href="product-details.html">@item.Name</a></h4>
+                                                            <h4><a href="@url">@item.Name</a></h4>
                                                         </div>
                                                         <div class="product_price price_shop">
 
@@ -171,7 +166,7 @@
                                                     </div>
                                                     <div class="product__hover hover_shop">
                                                         <div class="product_addto_cart">
-                                                            <button type="submit">ADD TO CART</button>
+                                                            <button type="submit">Thêm vào giỏ</button>
                                                         </div>
                                                         <div class="product_cart_icone">
                                                             <ul>

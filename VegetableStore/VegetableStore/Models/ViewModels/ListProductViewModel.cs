@@ -15,9 +15,10 @@ namespace VegetableStore.Models.ViewModels
         public string SortType { set; get; }
         public List<SelectListItem> SortTypes { get; } = new List<SelectListItem>
         {
-            new SelectListItem(){Value = "lastest",Text = "Lastest"},
-            new SelectListItem(){Value = "price",Text = "Price"},
-            new SelectListItem(){Value = "name",Text = "Name"},
+           new SelectListItem(){Value = "atoz",Text = "Theo tên sản phẩm (a - z)"},
+            new SelectListItem(){Value = "ztoa",Text = "Theo tên sản phẩm (z - a)"},
+            new SelectListItem(){Value = "lowtohigh",Text = "Theo giá (thấp - cao)"},
+            new SelectListItem(){Value = "hightolow",Text = "Theo giá (cao - thấp)"}
         };
         public List<SelectListItem> PageSizes { get; } = new List<SelectListItem>
         {

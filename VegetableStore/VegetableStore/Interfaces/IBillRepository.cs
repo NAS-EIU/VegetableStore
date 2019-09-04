@@ -9,7 +9,7 @@ namespace VegetableStore.Repositories
     {
         void Create(BillViewModel billVm);
         void Update(BillViewModel billVm);
-
+        List<BillViewModel> GetBills();
         PagedResult<BillViewModel> GetAllPaging(string startDate, string endDate, string keyword,
             int pageIndex, int pageSize);
         void RemoveBill(int id);

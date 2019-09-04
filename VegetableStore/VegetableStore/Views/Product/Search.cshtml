@@ -39,7 +39,7 @@
                         <div class="categories_banner_inner">
                             <img src="assets/img/banner/shop.jpg" alt="">
                         </div>
-                        <h3>SHOP</h3>
+                        <h3>Cửa hàng</h3>
                     </div>
                     <div class="tav_menu_wrapper">
                         <div class="row align-items-center">
@@ -53,27 +53,20 @@
                                     </div>
                                     <div class="tab_menu_right">
                                         <p>
-                                            There are  @foreach (var item in Model.Data.Results)
-                                            {
-                                                if (item.Name.ToLower().Contains(@Model.Keyword.ToLower())) { count++; }
-                                            } @count product(s).
+                                            Có @Model.Data.Results.Count() Sản phẩm.
                                         </p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-5 col-sm-6">
-                                <div class="Relevance">
-                                    <span>Sort by:</span>
+                                <form action="/search.html" method="get">
+                                    <input type="hidden" name="keyword" value="@Model.Keyword" />
+                                    <span>Sắp xếp theo :</span>
                                     <div class="dropdown dropdown-shop">
-                                        <select name="drop" id="dropdown">
-                                            <option value="1">Relevance</option>
-                                            <option value="2">Name, A to Z</option>
-                                            <option value="2">Name, Z to A</option>
-                                            <option value="2">Price, low to high</option>
-                                            <option value="2">Price, high to low</option>
-                                        </select>
-                                    </div>
-                                </div>
+                                        <select name="drop" id="dropdown" asp-for="SortType"
+                                                onchange="this.form.submit()" asp-items="Model.SortTypes"></select>
+                                    </div>                                   
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -83,8 +76,7 @@
                                 <div class="row">
                                     @foreach (var item in Model.Data.Results)
                                     { 
-                                        if (item.Name.ToLower().Contains(@Model.Keyword.ToLower()))
-                                        {
+                                        
 
                                             var url = "/" + item.Name + "-" + "p." + item.Id + ".html";
                                             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
@@ -92,10 +84,17 @@
                                                 <div class="single__product">
                                                     <div class="single_product__inner">
                                                         <span class="new_badge">new</span>
-                                                        <span class="discount_price">-5%</span>
+                                                        @if (item.Quality != 0)
+                                                        {
+                                                            <span class="number">Còn hàng</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="number" style="background:orangered">Hết hàng</span>
+                                                        }
                                                         <div class="product_img">
                                                             <a href="#">
-                                                                <img src="@item.Image" alt="">
+                                                                <img src="@item.Image" alt="" style="height:253.8px;width:253.8px">
                                                             </a>
                                                         </div>
                                                         <div class="product__content text-center">
@@ -104,7 +103,7 @@
                                                                     <h4><a href="product-details.html">@item.Name</a></h4>
                                                                 </div>
                                                                 <div class="product_price">
-                                                                    <p>@item.Price</p>
+                                                                    <p>@item.Price  vnđ</p>
                                                                 </div>
                                                             </div>
                                                             <div class="product__hover">
@@ -119,7 +118,7 @@
                                                 </div>
 
                                             </div>
-                                        }
+                                        
                                     }
                                 </div>
                             </div>

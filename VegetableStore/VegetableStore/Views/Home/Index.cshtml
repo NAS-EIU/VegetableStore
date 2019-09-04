@@ -106,9 +106,17 @@
                         <div class="single__product">
                             <div class="single_product__inner">
                                 <span class="new_badge">new</span>
+                                @if (item.Quality != 0)
+                                {
+                                    <span class="number">Còn hàng</span>
+                                }
+                                else
+                                {
+                                    <span class="number" style="background:orangered">Hết hàng</span>
+                                }
                                 <div class="product_img">
                                     <a href="@url">
-                                        <img src="@item.Image" alt="" style="width:207px;height:150px">
+                                        <img src="@item.Image" alt="" style="height:253.8px;width:350px">
                                     </a>
                                 </div>
                                 <div class="product__content text-center">
@@ -117,12 +125,12 @@
                                             <h4><a href="@url">@item.Name</a></h4>
                                         </div>
                                         <div class="product_price">
-                                            <p>$@item.Price</p>
+                                            <p>@item.Price vnđ</p>
                                         </div>
                                     </div>
                                     <div class="product__hover">
                                         <ul>
-                                         <li><a href="#" class="cart-order" data-id="@item.Id"><i class="ion-android-cart" title="Thêm vào gỏi"></i></a></li>
+                                            <li><a href="#" class="cart-order" data-id="@item.Id"><i class="ion-android-cart" title="Thêm vào gỏi"></i></a></li>
                                             <li><a class="cart-fore" href="#" data-id="@item.Id" data-toggle="modal" data-target="#my_modal" title="Xem Nhanh"><i class="ion-android-open"></i></a></li>
                                             <li><a href="@url" data-id="@item.Id"><i class="ion-clipboard" title="Xem thông tin"></i></a></li>
                                         </ul>
@@ -253,18 +261,27 @@
                                 <div class="single__product">
                                     <div class="single_product__inner">
                                         <span class="new_badge">new</span>
+                                        @if (item.Quality != 0)
+                                        {
+                                            <span class="number">Còn hàng</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="number" style="background:orangered">Hết hàng</span>
+                                        }
+
                                         <div class="product_img">
                                             <a href="#">
-                                                <img src="@item.Image" alt="" style="width:207px;height:150px">
+                                                <img src="@item.Image" alt="" style="height:253.8px;width:350px">
                                             </a>
                                         </div>
                                         <div class="product__content text-center">
                                             <div class="produc_desc_info">
                                                 <div class="product_title">
-                                                    <h4><a href="product-details.html">@item.Name</a></h4>
+                                                    <h4><a href="@url">@item.Name</a></h4>
                                                 </div>
                                                 <div class="product_price">
-                                                    <p>$@item.Price</p>
+                                                    <p>@item.Price vnđ</p>
                                                 </div>
                                             </div>
                                             <div class="product__hover">
