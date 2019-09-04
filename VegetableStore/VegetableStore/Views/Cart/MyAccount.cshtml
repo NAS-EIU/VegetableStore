@@ -62,7 +62,7 @@
                                                 <td>@item.DateCreated</td>
                                                 <td><span class="success">@item.BillStatus</span></td>
                                                 <td> $@item.BillDetails.Sum(x => x.Quantity * x.Price).ToString("N0") for @item.BillDetails.Count(x => x.BillId == item.Id) items </td>
-                                                <td><a  class="remove">X</a></td>
+                                                <td><a  class="remove"data-id="@item.Id">X</a></td>
                                             </tr>
                                         }
 

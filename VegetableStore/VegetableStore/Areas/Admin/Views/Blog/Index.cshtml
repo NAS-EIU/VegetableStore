@@ -93,24 +93,16 @@
 <script id="table-template" type="x-tmpl-mustache">
     <tr>
 
-        <td>{{Name}}</td>
-
-        <td>{{Price}}</td>
-        <td>{{{Image}}}</td>
-        <td>{{CreatedDate}}</td>
-        <td>{{Quantity}}</td>
-        <td>{{Vote}}</td>
+        <td>{{Title}}</td>
+        <td>{{CreatedDate}}</td>  
         <td>{{{Status}}}</td>
+        <td>{{Vote}}</td>        
         <th scope="row">
             <a class="btn  btn-sm btn-edit" data-id="{{Id}}" title="sửa"><i class="fa fa-pencil"></i></a>
             <a class="btn  btn-sm btn-delete" data-id="{{Id}}" title="xóa"><i class="fa fa-trash"></i></a>
-            <a href="#" data-id="{{Id}}" class="btn btn-xs btn-images" title="đổi hình"><i class="fa fa-image"></i></a>
-            <a href="#" data-id="{{Id}}" class="btn btn-xs btn-quantity" title="số lượng"><i class="fa fa-hourglass-start"></i></a>
+
 
         </th>
     </tr>
 </script>
-@Html.Partial("_AddEditModal.cshtml")
-@Html.Partial("_ImportExcelModal.cshtml")
-@Html.Partial("_QuantityManagement.cshtml")
-@Html.Partial("_ImageManagement.cshtml")
+@Html.Partial("_AddBlog.cshtml")

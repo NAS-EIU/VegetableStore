@@ -1,7 +1,18 @@
-﻿
+﻿@model BlogViewModel
 @{
     ViewData["Title"] = "BlogDetails";
 
+}
+
+@section Scripts{
+   
+<script>
+    var url = '@Model.Content';
+    $('div.post_excerpt').html(url);
+    var a = $('div.post_excerpt').text();
+    $('div.post_excerpt').html(a);
+
+ </script>
 }
 <div class="breadcrumb_container">
     <div class="container-fluid">
@@ -19,6 +30,7 @@
         </div>
     </div>
 </div>
+
 <div class="blog_details_area">
     <div class="container">
         <div class="row">
@@ -115,18 +127,12 @@
                             <li>October 26, 2018</li>
                         </ul>
                     </div>
-                    <h3>The other day the grass was brown, now it’s green because I ain’t give up. </h3>
+                    <h3>@Model.Title</h3>
                     <div class="blog_details_img">
-                        <img src="assets/img/blog/blog_details.jpg" alt="">
+                        <img src="@Model.Image" alt="">
                     </div>
                     <div class="post_excerpt">
-                        <p>Formfitting clothing is all about a sweet spot. That elusive place where an item is tight but not clingy, sexy but not cloying, cool but not over the top. Alexandra Alvarez’s label. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. </p>
-                        <h4>Stanndard Featured</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
-
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </p>
-
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
+                        
                     </div>
 
 

@@ -107,13 +107,12 @@ input[type="radio"] {
 }
 .product_tab_img {
     border: 1px solid #1ad21a;
-    height: 470px;
-    width: 468px;
+    height:403px;
     padding-left: 0px;
     padding-right: 0px;
 }
 .table_primary_block{
-    padding-top:30px;
+    padding-top:10px;
 }
 /* 2.1 dropdownmenu css here */
 .main_menu_inner .menu nav ul li ul.sub_menu {
@@ -989,10 +988,10 @@ input[type="radio"] {
   text-transform: capitalize;
 }
 .section_title {
-  border-bottom: 1px solid #ebebeb;
-  display: block;
-  margin-bottom: 30px;
-  padding-bottom: 23px;
+    border-bottom: 1px solid #78a20678;
+    display: block;
+    margin-bottom: 30px;
+    padding-bottom: 23px;
 }
 /*--- 2.9 Owl carousel button ---*/
 .owl-nav > div {
@@ -2701,8 +2700,8 @@ footer.footer_three {
 	font-size: 13px;
 }
 .breadcrumb_container {
-  background: #f5f5f5 none repeat scroll 0 0;
-  padding: 25px 60px;
+    background: #ffc1074d none repeat scroll 0 0;
+    padding: 25px 60px;
 }/* product page  css here 
 
 ========================================= */
@@ -2726,7 +2725,7 @@ footer.footer_three {
 }
 #product_description_short p {
 	color: #363f4d;
-	padding: 36px 0;
+	padding: 32px 0;
 }
 .product_variants_item {
 	margin-bottom: 10px;

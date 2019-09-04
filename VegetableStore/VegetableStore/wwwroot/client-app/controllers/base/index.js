@@ -22,7 +22,31 @@
                 }
             });
         });
-
+        $('body').on('click', 'a.remove', function (e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+            var status = "Cancelled";
+            tedu.confirm('Bạn có muôn huy ?', function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/Admin/Bill/UpdateStatus",
+                    data: { id, status },
+                    dataType: "json",
+                    beforeSend: function () {
+                        tedu.startLoading();
+                    },
+                    success: function (response) {
+                        tedu.notify('Huy thành công', 'success');
+                        tedu.stopLoading();
+                        location.reload();
+                    },
+                    error: function (status) {
+                        tedu.notify('Has an error in delete progress', 'error');
+                        tedu.stopLoading();
+                    }
+                });
+            });
+        });
         $('body').on('click', '.remove-cart', function (e) {
             e.preventDefault();
             var id = $(this).data('id');

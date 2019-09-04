@@ -84,6 +84,7 @@ namespace VegetableStore.Repositories
         {
             var order = _orderRepository.FindById(billId);
             order.BillStatus = status;
+            order.BillDetails= _orderDetailRepository.FindAll(x => x.BillId == billId).ToList();
             if (status == BillStatus.Completed)
             {
                 foreach(var item in order.BillDetails)
